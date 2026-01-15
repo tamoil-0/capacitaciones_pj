@@ -1,0 +1,26 @@
+# ════════════════════════════════════════════════════════
+# DEPENDENCIAS PARA SISTEMA OMR
+# ════════════════════════════════════════════════════════
+
+# Procesamiento de Imágenes
+opencv-python==4.8.1.78
+numpy==1.24.3
+Pillow==10.0.0
+
+# Interfaz Gráfica
+customtkinter==5.2.0
+CTkMessagebox==2.5
+
+# Procesamiento de PDFs
+pdf2image==1.16.3
+pypdf==3.15.0
+
+# Generación de PDFs
+reportlab==4.0.4
+
+# HTTP y API
+requests==2.31.0
+urllib3==2.0.4
+
+# Compilador a EXE
+pyinstaller==6.3.0

@@ -1,0 +1,1587 @@
+[2026-01-09 11:09:22] [INFO] OMRApiClient inicializado
+[2026-01-09 11:09:23] [INFO] GET http://127.0.0.1:8000/api/eventos (intento 1/3)
+[2026-01-09 11:09:23] [WARNING] ✗ Error en request: HTTP 503: <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<meta type="copyright" content="Copyright (C) 1996-2023 The Squid Software Foundation and contributors">
+<meta http-equiv="Content-Type" CONTENT="text/html; charset=utf-8">
+<title>ERROR: The requested URL could not be retrieved</title>
+<style type="text/css"><!-- 
+ /*
+ * Copyright (C) 1996-2023 The Squid Software Foundation and contributors
+ *
+ * Squid software is distributed under GPLv2+ license and includes
+ * contributions from numerous individuals and organizations.
+ * Please see the COPYING and CONTRIBUTORS files for details.
+ */
+
+/*
+ Stylesheet for Squid Error pages
+ Adapted from design by Free CSS Templates
+ http://www.freecsstemplates.org
+ Released for free under a Creative Commons Attribution 2.5 License
+*/
+
+/* Page basics */
+* {
+	font-family: verdana, sans-serif;
+}
+
+html body {
+	margin: 0;
+	padding: 0;
+	background: #efefef;
+	font-size: 12px;
+	color: #1e1e1e;
+}
+
+/* Page displayed title area */
+#titles {
+	margin-left: 15px;
+	padding: 10px;
+	padding-left: 100px;
+	background: url('/squid-internal-static/icons/SN.png') no-repeat left;
+}
+
+/* initial title */
+#titles h1 {
+	color: #000000;
+}
+#titles h2 {
+	color: #000000;
+}
+
+/* special event: FTP success page titles */
+#titles ftpsuccess {
+	background-color:#00ff00;
+	width:100%;
+}
+
+/* Page displayed body content area */
+#content {
+	padding: 10px;
+	background: #ffffff;
+}
+
+/* General text */
+p {
+}
+
+/* error brief description */
+#error p {
+}
+
+/* some data which may have caused the problem */
+#data {
+}
+
+/* the error message received from the system or other software */
+#sysmsg {
+}
+
+pre {
+}
+
+/* special event: FTP directory listing */
+#dirmsg {
+    font-family: courier, monospace;
+    color: black;
+    font-size: 10pt;
+}
+#dirlisting {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+#dirlisting tr.entry td.icon,td.filename,td.size,td.date {
+    border-bottom: groove;
+}
+#dirlisting td.size {
+    width: 50px;
+    text-align: right;
+    padding-right: 5px;
+}
+
+/* horizontal lines */
+hr {
+	margin: 0;
+}
+
+/* page displayed footer area */
+#footer {
+	font-size: 9px;
+	padding-left: 10px;
+}
+
+
+body
+:lang(fa) { direction: rtl; font-size: 100%; font-family: Tahoma, Roya, sans-serif; float: right; }
+:lang(he) { direction: rtl; }
+ --></style>
+</head><body id=ERR_CONNECT_FAIL>
+<div id="titles">
+<h1>ERROR</h1>
+<h2>The requested URL could not be retrieved</h2>
+</div>
+<hr>
+
+<div id="content">
+<p>The following error was encountered while trying to retrieve the URL: <a href="http://127.0.0.1:8000/api/eventos">http://127.0.0.1:8000/api/eventos</a></p>
+
+<blockquote id="error">
+<p><b>Connection to 127.0.0.1 failed.</b></p>
+</blockquote>
+
+<p id="sysmsg">The system returned: <i>(61) Connection refused</i></p>
+
+<p>The remote host or network may be down. Please try the request again.</p>
+
+<p>Your cache administrator is <a href="mailto:eticona@pj.gob.pe?subject=CacheErrorInfo%20-%20ERR_CONNECT_FAIL&amp;body=CacheHost%3A%20proxypfsense%0D%0AErrPage%3A%20ERR_CONNECT_FAIL%0D%0AErr%3A%20(61)%20Connection%20refused%0D%0ATimeStamp%3A%20Fri,%2009%20Jan%202026%2016%3A09%3A24%20GMT%0D%0A%0D%0AClientIP%3A%20172.17.177.24%0D%0AServerIP%3A%20127.0.0.1%0D%0A%0D%0AHTTP%20Request%3A%0D%0AGET%20%2Fapi%2Feventos%20HTTP%2F1.1%0AHost%3A%20127.0.0.1%3A8000%0D%0AUser-Agent%3A%20python-requests%2F2.32.3%0D%0AAccept-Encoding%3A%20gzip,%20deflate,%20br%0D%0AAccept%3A%20application%2Fjson%0D%0AConnection%3A%20keep-alive%0D%0AContent-Type%3A%20application%2Fjson%0D%0A%0D%0A%0D%0A">eticona@pj.gob.pe</a>.</p>
+
+<br>
+</div>
+
+<hr>
+<div id="footer">
+<p>Generated Fri, 09 Jan 2026 16:09:24 GMT by proxypfsense (squid/6.3)</p>
+<!-- ERR_CONNECT_FAIL -->
+</div>
+</body></html>
+
+[2026-01-09 11:09:25] [INFO] GET http://127.0.0.1:8000/api/eventos (intento 2/3)
+[2026-01-09 11:09:25] [WARNING] ✗ Error en request: HTTP 503: <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<meta type="copyright" content="Copyright (C) 1996-2023 The Squid Software Foundation and contributors">
+<meta http-equiv="Content-Type" CONTENT="text/html; charset=utf-8">
+<title>ERROR: The requested URL could not be retrieved</title>
+<style type="text/css"><!-- 
+ /*
+ * Copyright (C) 1996-2023 The Squid Software Foundation and contributors
+ *
+ * Squid software is distributed under GPLv2+ license and includes
+ * contributions from numerous individuals and organizations.
+ * Please see the COPYING and CONTRIBUTORS files for details.
+ */
+
+/*
+ Stylesheet for Squid Error pages
+ Adapted from design by Free CSS Templates
+ http://www.freecsstemplates.org
+ Released for free under a Creative Commons Attribution 2.5 License
+*/
+
+/* Page basics */
+* {
+	font-family: verdana, sans-serif;
+}
+
+html body {
+	margin: 0;
+	padding: 0;
+	background: #efefef;
+	font-size: 12px;
+	color: #1e1e1e;
+}
+
+/* Page displayed title area */
+#titles {
+	margin-left: 15px;
+	padding: 10px;
+	padding-left: 100px;
+	background: url('/squid-internal-static/icons/SN.png') no-repeat left;
+}
+
+/* initial title */
+#titles h1 {
+	color: #000000;
+}
+#titles h2 {
+	color: #000000;
+}
+
+/* special event: FTP success page titles */
+#titles ftpsuccess {
+	background-color:#00ff00;
+	width:100%;
+}
+
+/* Page displayed body content area */
+#content {
+	padding: 10px;
+	background: #ffffff;
+}
+
+/* General text */
+p {
+}
+
+/* error brief description */
+#error p {
+}
+
+/* some data which may have caused the problem */
+#data {
+}
+
+/* the error message received from the system or other software */
+#sysmsg {
+}
+
+pre {
+}
+
+/* special event: FTP directory listing */
+#dirmsg {
+    font-family: courier, monospace;
+    color: black;
+    font-size: 10pt;
+}
+#dirlisting {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+#dirlisting tr.entry td.icon,td.filename,td.size,td.date {
+    border-bottom: groove;
+}
+#dirlisting td.size {
+    width: 50px;
+    text-align: right;
+    padding-right: 5px;
+}
+
+/* horizontal lines */
+hr {
+	margin: 0;
+}
+
+/* page displayed footer area */
+#footer {
+	font-size: 9px;
+	padding-left: 10px;
+}
+
+
+body
+:lang(fa) { direction: rtl; font-size: 100%; font-family: Tahoma, Roya, sans-serif; float: right; }
+:lang(he) { direction: rtl; }
+ --></style>
+</head><body id=ERR_CONNECT_FAIL>
+<div id="titles">
+<h1>ERROR</h1>
+<h2>The requested URL could not be retrieved</h2>
+</div>
+<hr>
+
+<div id="content">
+<p>The following error was encountered while trying to retrieve the URL: <a href="http://127.0.0.1:8000/api/eventos">http://127.0.0.1:8000/api/eventos</a></p>
+
+<blockquote id="error">
+<p><b>Connection to 127.0.0.1 failed.</b></p>
+</blockquote>
+
+<p id="sysmsg">The system returned: <i>(61) Connection refused</i></p>
+
+<p>The remote host or network may be down. Please try the request again.</p>
+
+<p>Your cache administrator is <a href="mailto:eticona@pj.gob.pe?subject=CacheErrorInfo%20-%20ERR_CONNECT_FAIL&amp;body=CacheHost%3A%20proxypfsense%0D%0AErrPage%3A%20ERR_CONNECT_FAIL%0D%0AErr%3A%20(61)%20Connection%20refused%0D%0ATimeStamp%3A%20Fri,%2009%20Jan%202026%2016%3A09%3A26%20GMT%0D%0A%0D%0AClientIP%3A%20172.17.177.24%0D%0AServerIP%3A%20127.0.0.1%0D%0A%0D%0AHTTP%20Request%3A%0D%0AGET%20%2Fapi%2Feventos%20HTTP%2F1.1%0AHost%3A%20127.0.0.1%3A8000%0D%0AUser-Agent%3A%20python-requests%2F2.32.3%0D%0AAccept-Encoding%3A%20gzip,%20deflate,%20br%0D%0AAccept%3A%20application%2Fjson%0D%0AConnection%3A%20keep-alive%0D%0AContent-Type%3A%20application%2Fjson%0D%0A%0D%0A%0D%0A">eticona@pj.gob.pe</a>.</p>
+
+<br>
+</div>
+
+<hr>
+<div id="footer">
+<p>Generated Fri, 09 Jan 2026 16:09:26 GMT by proxypfsense (squid/6.3)</p>
+<!-- ERR_CONNECT_FAIL -->
+</div>
+</body></html>
+
+[2026-01-09 11:09:29] [INFO] GET http://127.0.0.1:8000/api/eventos (intento 3/3)
+[2026-01-09 11:09:29] [WARNING] ✗ Error en request: HTTP 503: <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<meta type="copyright" content="Copyright (C) 1996-2023 The Squid Software Foundation and contributors">
+<meta http-equiv="Content-Type" CONTENT="text/html; charset=utf-8">
+<title>ERROR: The requested URL could not be retrieved</title>
+<style type="text/css"><!-- 
+ /*
+ * Copyright (C) 1996-2023 The Squid Software Foundation and contributors
+ *
+ * Squid software is distributed under GPLv2+ license and includes
+ * contributions from numerous individuals and organizations.
+ * Please see the COPYING and CONTRIBUTORS files for details.
+ */
+
+/*
+ Stylesheet for Squid Error pages
+ Adapted from design by Free CSS Templates
+ http://www.freecsstemplates.org
+ Released for free under a Creative Commons Attribution 2.5 License
+*/
+
+/* Page basics */
+* {
+	font-family: verdana, sans-serif;
+}
+
+html body {
+	margin: 0;
+	padding: 0;
+	background: #efefef;
+	font-size: 12px;
+	color: #1e1e1e;
+}
+
+/* Page displayed title area */
+#titles {
+	margin-left: 15px;
+	padding: 10px;
+	padding-left: 100px;
+	background: url('/squid-internal-static/icons/SN.png') no-repeat left;
+}
+
+/* initial title */
+#titles h1 {
+	color: #000000;
+}
+#titles h2 {
+	color: #000000;
+}
+
+/* special event: FTP success page titles */
+#titles ftpsuccess {
+	background-color:#00ff00;
+	width:100%;
+}
+
+/* Page displayed body content area */
+#content {
+	padding: 10px;
+	background: #ffffff;
+}
+
+/* General text */
+p {
+}
+
+/* error brief description */
+#error p {
+}
+
+/* some data which may have caused the problem */
+#data {
+}
+
+/* the error message received from the system or other software */
+#sysmsg {
+}
+
+pre {
+}
+
+/* special event: FTP directory listing */
+#dirmsg {
+    font-family: courier, monospace;
+    color: black;
+    font-size: 10pt;
+}
+#dirlisting {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+#dirlisting tr.entry td.icon,td.filename,td.size,td.date {
+    border-bottom: groove;
+}
+#dirlisting td.size {
+    width: 50px;
+    text-align: right;
+    padding-right: 5px;
+}
+
+/* horizontal lines */
+hr {
+	margin: 0;
+}
+
+/* page displayed footer area */
+#footer {
+	font-size: 9px;
+	padding-left: 10px;
+}
+
+
+body
+:lang(fa) { direction: rtl; font-size: 100%; font-family: Tahoma, Roya, sans-serif; float: right; }
+:lang(he) { direction: rtl; }
+ --></style>
+</head><body id=ERR_CONNECT_FAIL>
+<div id="titles">
+<h1>ERROR</h1>
+<h2>The requested URL could not be retrieved</h2>
+</div>
+<hr>
+
+<div id="content">
+<p>The following error was encountered while trying to retrieve the URL: <a href="http://127.0.0.1:8000/api/eventos">http://127.0.0.1:8000/api/eventos</a></p>
+
+<blockquote id="error">
+<p><b>Connection to 127.0.0.1 failed.</b></p>
+</blockquote>
+
+<p id="sysmsg">The system returned: <i>(61) Connection refused</i></p>
+
+<p>The remote host or network may be down. Please try the request again.</p>
+
+<p>Your cache administrator is <a href="mailto:eticona@pj.gob.pe?subject=CacheErrorInfo%20-%20ERR_CONNECT_FAIL&amp;body=CacheHost%3A%20proxypfsense%0D%0AErrPage%3A%20ERR_CONNECT_FAIL%0D%0AErr%3A%20(61)%20Connection%20refused%0D%0ATimeStamp%3A%20Fri,%2009%20Jan%202026%2016%3A09%3A30%20GMT%0D%0A%0D%0AClientIP%3A%20172.17.177.24%0D%0AServerIP%3A%20127.0.0.1%0D%0A%0D%0AHTTP%20Request%3A%0D%0AGET%20%2Fapi%2Feventos%20HTTP%2F1.1%0AHost%3A%20127.0.0.1%3A8000%0D%0AUser-Agent%3A%20python-requests%2F2.32.3%0D%0AAccept-Encoding%3A%20gzip,%20deflate,%20br%0D%0AAccept%3A%20application%2Fjson%0D%0AConnection%3A%20keep-alive%0D%0AContent-Type%3A%20application%2Fjson%0D%0A%0D%0A%0D%0A">eticona@pj.gob.pe</a>.</p>
+
+<br>
+</div>
+
+<hr>
+<div id="footer">
+<p>Generated Fri, 09 Jan 2026 16:09:30 GMT by proxypfsense (squid/6.3)</p>
+<!-- ERR_CONNECT_FAIL -->
+</div>
+</body></html>
+
+[2026-01-09 11:09:40] [INFO] OMRApiClient inicializado
+[2026-01-09 11:09:41] [INFO] GET http://127.0.0.1:8000/api/omr/eventos (intento 1/3)
+[2026-01-09 11:09:41] [WARNING] ✗ Error en request: HTTP 503: <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<meta type="copyright" content="Copyright (C) 1996-2023 The Squid Software Foundation and contributors">
+<meta http-equiv="Content-Type" CONTENT="text/html; charset=utf-8">
+<title>ERROR: The requested URL could not be retrieved</title>
+<style type="text/css"><!-- 
+ /*
+ * Copyright (C) 1996-2023 The Squid Software Foundation and contributors
+ *
+ * Squid software is distributed under GPLv2+ license and includes
+ * contributions from numerous individuals and organizations.
+ * Please see the COPYING and CONTRIBUTORS files for details.
+ */
+
+/*
+ Stylesheet for Squid Error pages
+ Adapted from design by Free CSS Templates
+ http://www.freecsstemplates.org
+ Released for free under a Creative Commons Attribution 2.5 License
+*/
+
+/* Page basics */
+* {
+	font-family: verdana, sans-serif;
+}
+
+html body {
+	margin: 0;
+	padding: 0;
+	background: #efefef;
+	font-size: 12px;
+	color: #1e1e1e;
+}
+
+/* Page displayed title area */
+#titles {
+	margin-left: 15px;
+	padding: 10px;
+	padding-left: 100px;
+	background: url('/squid-internal-static/icons/SN.png') no-repeat left;
+}
+
+/* initial title */
+#titles h1 {
+	color: #000000;
+}
+#titles h2 {
+	color: #000000;
+}
+
+/* special event: FTP success page titles */
+#titles ftpsuccess {
+	background-color:#00ff00;
+	width:100%;
+}
+
+/* Page displayed body content area */
+#content {
+	padding: 10px;
+	background: #ffffff;
+}
+
+/* General text */
+p {
+}
+
+/* error brief description */
+#error p {
+}
+
+/* some data which may have caused the problem */
+#data {
+}
+
+/* the error message received from the system or other software */
+#sysmsg {
+}
+
+pre {
+}
+
+/* special event: FTP directory listing */
+#dirmsg {
+    font-family: courier, monospace;
+    color: black;
+    font-size: 10pt;
+}
+#dirlisting {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+#dirlisting tr.entry td.icon,td.filename,td.size,td.date {
+    border-bottom: groove;
+}
+#dirlisting td.size {
+    width: 50px;
+    text-align: right;
+    padding-right: 5px;
+}
+
+/* horizontal lines */
+hr {
+	margin: 0;
+}
+
+/* page displayed footer area */
+#footer {
+	font-size: 9px;
+	padding-left: 10px;
+}
+
+
+body
+:lang(fa) { direction: rtl; font-size: 100%; font-family: Tahoma, Roya, sans-serif; float: right; }
+:lang(he) { direction: rtl; }
+ --></style>
+</head><body id=ERR_CONNECT_FAIL>
+<div id="titles">
+<h1>ERROR</h1>
+<h2>The requested URL could not be retrieved</h2>
+</div>
+<hr>
+
+<div id="content">
+<p>The following error was encountered while trying to retrieve the URL: <a href="http://127.0.0.1:8000/api/omr/eventos">http://127.0.0.1:8000/api/omr/eventos</a></p>
+
+<blockquote id="error">
+<p><b>Connection to 127.0.0.1 failed.</b></p>
+</blockquote>
+
+<p id="sysmsg">The system returned: <i>(61) Connection refused</i></p>
+
+<p>The remote host or network may be down. Please try the request again.</p>
+
+<p>Your cache administrator is <a href="mailto:eticona@pj.gob.pe?subject=CacheErrorInfo%20-%20ERR_CONNECT_FAIL&amp;body=CacheHost%3A%20proxypfsense%0D%0AErrPage%3A%20ERR_CONNECT_FAIL%0D%0AErr%3A%20(61)%20Connection%20refused%0D%0ATimeStamp%3A%20Fri,%2009%20Jan%202026%2016%3A09%3A42%20GMT%0D%0A%0D%0AClientIP%3A%20172.17.177.24%0D%0AServerIP%3A%20127.0.0.1%0D%0A%0D%0AHTTP%20Request%3A%0D%0AGET%20%2Fapi%2Fomr%2Feventos%20HTTP%2F1.1%0AHost%3A%20127.0.0.1%3A8000%0D%0AUser-Agent%3A%20python-requests%2F2.32.3%0D%0AAccept-Encoding%3A%20gzip,%20deflate,%20br%0D%0AAccept%3A%20application%2Fjson%0D%0AConnection%3A%20keep-alive%0D%0AContent-Type%3A%20application%2Fjson%0D%0A%0D%0A%0D%0A">eticona@pj.gob.pe</a>.</p>
+
+<br>
+</div>
+
+<hr>
+<div id="footer">
+<p>Generated Fri, 09 Jan 2026 16:09:42 GMT by proxypfsense (squid/6.3)</p>
+<!-- ERR_CONNECT_FAIL -->
+</div>
+</body></html>
+
+[2026-01-09 11:09:43] [INFO] GET http://127.0.0.1:8000/api/omr/eventos (intento 2/3)
+[2026-01-09 11:09:43] [WARNING] ✗ Error en request: HTTP 503: <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<meta type="copyright" content="Copyright (C) 1996-2023 The Squid Software Foundation and contributors">
+<meta http-equiv="Content-Type" CONTENT="text/html; charset=utf-8">
+<title>ERROR: The requested URL could not be retrieved</title>
+<style type="text/css"><!-- 
+ /*
+ * Copyright (C) 1996-2023 The Squid Software Foundation and contributors
+ *
+ * Squid software is distributed under GPLv2+ license and includes
+ * contributions from numerous individuals and organizations.
+ * Please see the COPYING and CONTRIBUTORS files for details.
+ */
+
+/*
+ Stylesheet for Squid Error pages
+ Adapted from design by Free CSS Templates
+ http://www.freecsstemplates.org
+ Released for free under a Creative Commons Attribution 2.5 License
+*/
+
+/* Page basics */
+* {
+	font-family: verdana, sans-serif;
+}
+
+html body {
+	margin: 0;
+	padding: 0;
+	background: #efefef;
+	font-size: 12px;
+	color: #1e1e1e;
+}
+
+/* Page displayed title area */
+#titles {
+	margin-left: 15px;
+	padding: 10px;
+	padding-left: 100px;
+	background: url('/squid-internal-static/icons/SN.png') no-repeat left;
+}
+
+/* initial title */
+#titles h1 {
+	color: #000000;
+}
+#titles h2 {
+	color: #000000;
+}
+
+/* special event: FTP success page titles */
+#titles ftpsuccess {
+	background-color:#00ff00;
+	width:100%;
+}
+
+/* Page displayed body content area */
+#content {
+	padding: 10px;
+	background: #ffffff;
+}
+
+/* General text */
+p {
+}
+
+/* error brief description */
+#error p {
+}
+
+/* some data which may have caused the problem */
+#data {
+}
+
+/* the error message received from the system or other software */
+#sysmsg {
+}
+
+pre {
+}
+
+/* special event: FTP directory listing */
+#dirmsg {
+    font-family: courier, monospace;
+    color: black;
+    font-size: 10pt;
+}
+#dirlisting {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+#dirlisting tr.entry td.icon,td.filename,td.size,td.date {
+    border-bottom: groove;
+}
+#dirlisting td.size {
+    width: 50px;
+    text-align: right;
+    padding-right: 5px;
+}
+
+/* horizontal lines */
+hr {
+	margin: 0;
+}
+
+/* page displayed footer area */
+#footer {
+	font-size: 9px;
+	padding-left: 10px;
+}
+
+
+body
+:lang(fa) { direction: rtl; font-size: 100%; font-family: Tahoma, Roya, sans-serif; float: right; }
+:lang(he) { direction: rtl; }
+ --></style>
+</head><body id=ERR_CONNECT_FAIL>
+<div id="titles">
+<h1>ERROR</h1>
+<h2>The requested URL could not be retrieved</h2>
+</div>
+<hr>
+
+<div id="content">
+<p>The following error was encountered while trying to retrieve the URL: <a href="http://127.0.0.1:8000/api/omr/eventos">http://127.0.0.1:8000/api/omr/eventos</a></p>
+
+<blockquote id="error">
+<p><b>Connection to 127.0.0.1 failed.</b></p>
+</blockquote>
+
+<p id="sysmsg">The system returned: <i>(61) Connection refused</i></p>
+
+<p>The remote host or network may be down. Please try the request again.</p>
+
+<p>Your cache administrator is <a href="mailto:eticona@pj.gob.pe?subject=CacheErrorInfo%20-%20ERR_CONNECT_FAIL&amp;body=CacheHost%3A%20proxypfsense%0D%0AErrPage%3A%20ERR_CONNECT_FAIL%0D%0AErr%3A%20(61)%20Connection%20refused%0D%0ATimeStamp%3A%20Fri,%2009%20Jan%202026%2016%3A09%3A44%20GMT%0D%0A%0D%0AClientIP%3A%20172.17.177.24%0D%0AServerIP%3A%20127.0.0.1%0D%0A%0D%0AHTTP%20Request%3A%0D%0AGET%20%2Fapi%2Fomr%2Feventos%20HTTP%2F1.1%0AHost%3A%20127.0.0.1%3A8000%0D%0AUser-Agent%3A%20python-requests%2F2.32.3%0D%0AAccept-Encoding%3A%20gzip,%20deflate,%20br%0D%0AAccept%3A%20application%2Fjson%0D%0AConnection%3A%20keep-alive%0D%0AContent-Type%3A%20application%2Fjson%0D%0A%0D%0A%0D%0A">eticona@pj.gob.pe</a>.</p>
+
+<br>
+</div>
+
+<hr>
+<div id="footer">
+<p>Generated Fri, 09 Jan 2026 16:09:44 GMT by proxypfsense (squid/6.3)</p>
+<!-- ERR_CONNECT_FAIL -->
+</div>
+</body></html>
+
+[2026-01-09 11:09:47] [INFO] GET http://127.0.0.1:8000/api/omr/eventos (intento 3/3)
+[2026-01-09 11:09:47] [WARNING] ✗ Error en request: HTTP 503: <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<meta type="copyright" content="Copyright (C) 1996-2023 The Squid Software Foundation and contributors">
+<meta http-equiv="Content-Type" CONTENT="text/html; charset=utf-8">
+<title>ERROR: The requested URL could not be retrieved</title>
+<style type="text/css"><!-- 
+ /*
+ * Copyright (C) 1996-2023 The Squid Software Foundation and contributors
+ *
+ * Squid software is distributed under GPLv2+ license and includes
+ * contributions from numerous individuals and organizations.
+ * Please see the COPYING and CONTRIBUTORS files for details.
+ */
+
+/*
+ Stylesheet for Squid Error pages
+ Adapted from design by Free CSS Templates
+ http://www.freecsstemplates.org
+ Released for free under a Creative Commons Attribution 2.5 License
+*/
+
+/* Page basics */
+* {
+	font-family: verdana, sans-serif;
+}
+
+html body {
+	margin: 0;
+	padding: 0;
+	background: #efefef;
+	font-size: 12px;
+	color: #1e1e1e;
+}
+
+/* Page displayed title area */
+#titles {
+	margin-left: 15px;
+	padding: 10px;
+	padding-left: 100px;
+	background: url('/squid-internal-static/icons/SN.png') no-repeat left;
+}
+
+/* initial title */
+#titles h1 {
+	color: #000000;
+}
+#titles h2 {
+	color: #000000;
+}
+
+/* special event: FTP success page titles */
+#titles ftpsuccess {
+	background-color:#00ff00;
+	width:100%;
+}
+
+/* Page displayed body content area */
+#content {
+	padding: 10px;
+	background: #ffffff;
+}
+
+/* General text */
+p {
+}
+
+/* error brief description */
+#error p {
+}
+
+/* some data which may have caused the problem */
+#data {
+}
+
+/* the error message received from the system or other software */
+#sysmsg {
+}
+
+pre {
+}
+
+/* special event: FTP directory listing */
+#dirmsg {
+    font-family: courier, monospace;
+    color: black;
+    font-size: 10pt;
+}
+#dirlisting {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+#dirlisting tr.entry td.icon,td.filename,td.size,td.date {
+    border-bottom: groove;
+}
+#dirlisting td.size {
+    width: 50px;
+    text-align: right;
+    padding-right: 5px;
+}
+
+/* horizontal lines */
+hr {
+	margin: 0;
+}
+
+/* page displayed footer area */
+#footer {
+	font-size: 9px;
+	padding-left: 10px;
+}
+
+
+body
+:lang(fa) { direction: rtl; font-size: 100%; font-family: Tahoma, Roya, sans-serif; float: right; }
+:lang(he) { direction: rtl; }
+ --></style>
+</head><body id=ERR_CONNECT_FAIL>
+<div id="titles">
+<h1>ERROR</h1>
+<h2>The requested URL could not be retrieved</h2>
+</div>
+<hr>
+
+<div id="content">
+<p>The following error was encountered while trying to retrieve the URL: <a href="http://127.0.0.1:8000/api/omr/eventos">http://127.0.0.1:8000/api/omr/eventos</a></p>
+
+<blockquote id="error">
+<p><b>Connection to 127.0.0.1 failed.</b></p>
+</blockquote>
+
+<p id="sysmsg">The system returned: <i>(61) Connection refused</i></p>
+
+<p>The remote host or network may be down. Please try the request again.</p>
+
+<p>Your cache administrator is <a href="mailto:eticona@pj.gob.pe?subject=CacheErrorInfo%20-%20ERR_CONNECT_FAIL&amp;body=CacheHost%3A%20proxypfsense%0D%0AErrPage%3A%20ERR_CONNECT_FAIL%0D%0AErr%3A%20(61)%20Connection%20refused%0D%0ATimeStamp%3A%20Fri,%2009%20Jan%202026%2016%3A09%3A48%20GMT%0D%0A%0D%0AClientIP%3A%20172.17.177.24%0D%0AServerIP%3A%20127.0.0.1%0D%0A%0D%0AHTTP%20Request%3A%0D%0AGET%20%2Fapi%2Fomr%2Feventos%20HTTP%2F1.1%0AHost%3A%20127.0.0.1%3A8000%0D%0AUser-Agent%3A%20python-requests%2F2.32.3%0D%0AAccept-Encoding%3A%20gzip,%20deflate,%20br%0D%0AAccept%3A%20application%2Fjson%0D%0AConnection%3A%20keep-alive%0D%0AContent-Type%3A%20application%2Fjson%0D%0A%0D%0A%0D%0A">eticona@pj.gob.pe</a>.</p>
+
+<br>
+</div>
+
+<hr>
+<div id="footer">
+<p>Generated Fri, 09 Jan 2026 16:09:48 GMT by proxypfsense (squid/6.3)</p>
+<!-- ERR_CONNECT_FAIL -->
+</div>
+</body></html>
+
+[2026-01-09 11:13:00] [INFO] OMRApiClient inicializado
+[2026-01-09 11:13:01] [INFO] GET http://127.0.0.1:8000/api/omr/eventos (intento 1/3)
+[2026-01-09 11:13:01] [WARNING] ✗ Error en request: HTTP 503: <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<meta type="copyright" content="Copyright (C) 1996-2023 The Squid Software Foundation and contributors">
+<meta http-equiv="Content-Type" CONTENT="text/html; charset=utf-8">
+<title>ERROR: The requested URL could not be retrieved</title>
+<style type="text/css"><!-- 
+ /*
+ * Copyright (C) 1996-2023 The Squid Software Foundation and contributors
+ *
+ * Squid software is distributed under GPLv2+ license and includes
+ * contributions from numerous individuals and organizations.
+ * Please see the COPYING and CONTRIBUTORS files for details.
+ */
+
+/*
+ Stylesheet for Squid Error pages
+ Adapted from design by Free CSS Templates
+ http://www.freecsstemplates.org
+ Released for free under a Creative Commons Attribution 2.5 License
+*/
+
+/* Page basics */
+* {
+	font-family: verdana, sans-serif;
+}
+
+html body {
+	margin: 0;
+	padding: 0;
+	background: #efefef;
+	font-size: 12px;
+	color: #1e1e1e;
+}
+
+/* Page displayed title area */
+#titles {
+	margin-left: 15px;
+	padding: 10px;
+	padding-left: 100px;
+	background: url('/squid-internal-static/icons/SN.png') no-repeat left;
+}
+
+/* initial title */
+#titles h1 {
+	color: #000000;
+}
+#titles h2 {
+	color: #000000;
+}
+
+/* special event: FTP success page titles */
+#titles ftpsuccess {
+	background-color:#00ff00;
+	width:100%;
+}
+
+/* Page displayed body content area */
+#content {
+	padding: 10px;
+	background: #ffffff;
+}
+
+/* General text */
+p {
+}
+
+/* error brief description */
+#error p {
+}
+
+/* some data which may have caused the problem */
+#data {
+}
+
+/* the error message received from the system or other software */
+#sysmsg {
+}
+
+pre {
+}
+
+/* special event: FTP directory listing */
+#dirmsg {
+    font-family: courier, monospace;
+    color: black;
+    font-size: 10pt;
+}
+#dirlisting {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+#dirlisting tr.entry td.icon,td.filename,td.size,td.date {
+    border-bottom: groove;
+}
+#dirlisting td.size {
+    width: 50px;
+    text-align: right;
+    padding-right: 5px;
+}
+
+/* horizontal lines */
+hr {
+	margin: 0;
+}
+
+/* page displayed footer area */
+#footer {
+	font-size: 9px;
+	padding-left: 10px;
+}
+
+
+body
+:lang(fa) { direction: rtl; font-size: 100%; font-family: Tahoma, Roya, sans-serif; float: right; }
+:lang(he) { direction: rtl; }
+ --></style>
+</head><body id=ERR_CONNECT_FAIL>
+<div id="titles">
+<h1>ERROR</h1>
+<h2>The requested URL could not be retrieved</h2>
+</div>
+<hr>
+
+<div id="content">
+<p>The following error was encountered while trying to retrieve the URL: <a href="http://127.0.0.1:8000/api/omr/eventos">http://127.0.0.1:8000/api/omr/eventos</a></p>
+
+<blockquote id="error">
+<p><b>Connection to 127.0.0.1 failed.</b></p>
+</blockquote>
+
+<p id="sysmsg">The system returned: <i>(61) Connection refused</i></p>
+
+<p>The remote host or network may be down. Please try the request again.</p>
+
+<p>Your cache administrator is <a href="mailto:eticona@pj.gob.pe?subject=CacheErrorInfo%20-%20ERR_CONNECT_FAIL&amp;body=CacheHost%3A%20proxypfsense%0D%0AErrPage%3A%20ERR_CONNECT_FAIL%0D%0AErr%3A%20(61)%20Connection%20refused%0D%0ATimeStamp%3A%20Fri,%2009%20Jan%202026%2016%3A13%3A02%20GMT%0D%0A%0D%0AClientIP%3A%20172.17.177.24%0D%0AServerIP%3A%20127.0.0.1%0D%0A%0D%0AHTTP%20Request%3A%0D%0AGET%20%2Fapi%2Fomr%2Feventos%20HTTP%2F1.1%0AHost%3A%20127.0.0.1%3A8000%0D%0AUser-Agent%3A%20python-requests%2F2.32.3%0D%0AAccept-Encoding%3A%20gzip,%20deflate,%20br%0D%0AAccept%3A%20application%2Fjson%0D%0AConnection%3A%20keep-alive%0D%0AContent-Type%3A%20application%2Fjson%0D%0A%0D%0A%0D%0A">eticona@pj.gob.pe</a>.</p>
+
+<br>
+</div>
+
+<hr>
+<div id="footer">
+<p>Generated Fri, 09 Jan 2026 16:13:02 GMT by proxypfsense (squid/6.3)</p>
+<!-- ERR_CONNECT_FAIL -->
+</div>
+</body></html>
+
+[2026-01-09 11:13:03] [INFO] GET http://127.0.0.1:8000/api/omr/eventos (intento 2/3)
+[2026-01-09 11:13:03] [WARNING] ✗ Error en request: HTTP 503: <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<meta type="copyright" content="Copyright (C) 1996-2023 The Squid Software Foundation and contributors">
+<meta http-equiv="Content-Type" CONTENT="text/html; charset=utf-8">
+<title>ERROR: The requested URL could not be retrieved</title>
+<style type="text/css"><!-- 
+ /*
+ * Copyright (C) 1996-2023 The Squid Software Foundation and contributors
+ *
+ * Squid software is distributed under GPLv2+ license and includes
+ * contributions from numerous individuals and organizations.
+ * Please see the COPYING and CONTRIBUTORS files for details.
+ */
+
+/*
+ Stylesheet for Squid Error pages
+ Adapted from design by Free CSS Templates
+ http://www.freecsstemplates.org
+ Released for free under a Creative Commons Attribution 2.5 License
+*/
+
+/* Page basics */
+* {
+	font-family: verdana, sans-serif;
+}
+
+html body {
+	margin: 0;
+	padding: 0;
+	background: #efefef;
+	font-size: 12px;
+	color: #1e1e1e;
+}
+
+/* Page displayed title area */
+#titles {
+	margin-left: 15px;
+	padding: 10px;
+	padding-left: 100px;
+	background: url('/squid-internal-static/icons/SN.png') no-repeat left;
+}
+
+/* initial title */
+#titles h1 {
+	color: #000000;
+}
+#titles h2 {
+	color: #000000;
+}
+
+/* special event: FTP success page titles */
+#titles ftpsuccess {
+	background-color:#00ff00;
+	width:100%;
+}
+
+/* Page displayed body content area */
+#content {
+	padding: 10px;
+	background: #ffffff;
+}
+
+/* General text */
+p {
+}
+
+/* error brief description */
+#error p {
+}
+
+/* some data which may have caused the problem */
+#data {
+}
+
+/* the error message received from the system or other software */
+#sysmsg {
+}
+
+pre {
+}
+
+/* special event: FTP directory listing */
+#dirmsg {
+    font-family: courier, monospace;
+    color: black;
+    font-size: 10pt;
+}
+#dirlisting {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+#dirlisting tr.entry td.icon,td.filename,td.size,td.date {
+    border-bottom: groove;
+}
+#dirlisting td.size {
+    width: 50px;
+    text-align: right;
+    padding-right: 5px;
+}
+
+/* horizontal lines */
+hr {
+	margin: 0;
+}
+
+/* page displayed footer area */
+#footer {
+	font-size: 9px;
+	padding-left: 10px;
+}
+
+
+body
+:lang(fa) { direction: rtl; font-size: 100%; font-family: Tahoma, Roya, sans-serif; float: right; }
+:lang(he) { direction: rtl; }
+ --></style>
+</head><body id=ERR_CONNECT_FAIL>
+<div id="titles">
+<h1>ERROR</h1>
+<h2>The requested URL could not be retrieved</h2>
+</div>
+<hr>
+
+<div id="content">
+<p>The following error was encountered while trying to retrieve the URL: <a href="http://127.0.0.1:8000/api/omr/eventos">http://127.0.0.1:8000/api/omr/eventos</a></p>
+
+<blockquote id="error">
+<p><b>Connection to 127.0.0.1 failed.</b></p>
+</blockquote>
+
+<p id="sysmsg">The system returned: <i>(61) Connection refused</i></p>
+
+<p>The remote host or network may be down. Please try the request again.</p>
+
+<p>Your cache administrator is <a href="mailto:eticona@pj.gob.pe?subject=CacheErrorInfo%20-%20ERR_CONNECT_FAIL&amp;body=CacheHost%3A%20proxypfsense%0D%0AErrPage%3A%20ERR_CONNECT_FAIL%0D%0AErr%3A%20(61)%20Connection%20refused%0D%0ATimeStamp%3A%20Fri,%2009%20Jan%202026%2016%3A13%3A04%20GMT%0D%0A%0D%0AClientIP%3A%20172.17.177.24%0D%0AServerIP%3A%20127.0.0.1%0D%0A%0D%0AHTTP%20Request%3A%0D%0AGET%20%2Fapi%2Fomr%2Feventos%20HTTP%2F1.1%0AHost%3A%20127.0.0.1%3A8000%0D%0AUser-Agent%3A%20python-requests%2F2.32.3%0D%0AAccept-Encoding%3A%20gzip,%20deflate,%20br%0D%0AAccept%3A%20application%2Fjson%0D%0AConnection%3A%20keep-alive%0D%0AContent-Type%3A%20application%2Fjson%0D%0A%0D%0A%0D%0A">eticona@pj.gob.pe</a>.</p>
+
+<br>
+</div>
+
+<hr>
+<div id="footer">
+<p>Generated Fri, 09 Jan 2026 16:13:04 GMT by proxypfsense (squid/6.3)</p>
+<!-- ERR_CONNECT_FAIL -->
+</div>
+</body></html>
+
+[2026-01-09 11:13:07] [INFO] GET http://127.0.0.1:8000/api/omr/eventos (intento 3/3)
+[2026-01-09 11:13:07] [WARNING] ✗ Error en request: HTTP 503: <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<meta type="copyright" content="Copyright (C) 1996-2023 The Squid Software Foundation and contributors">
+<meta http-equiv="Content-Type" CONTENT="text/html; charset=utf-8">
+<title>ERROR: The requested URL could not be retrieved</title>
+<style type="text/css"><!-- 
+ /*
+ * Copyright (C) 1996-2023 The Squid Software Foundation and contributors
+ *
+ * Squid software is distributed under GPLv2+ license and includes
+ * contributions from numerous individuals and organizations.
+ * Please see the COPYING and CONTRIBUTORS files for details.
+ */
+
+/*
+ Stylesheet for Squid Error pages
+ Adapted from design by Free CSS Templates
+ http://www.freecsstemplates.org
+ Released for free under a Creative Commons Attribution 2.5 License
+*/
+
+/* Page basics */
+* {
+	font-family: verdana, sans-serif;
+}
+
+html body {
+	margin: 0;
+	padding: 0;
+	background: #efefef;
+	font-size: 12px;
+	color: #1e1e1e;
+}
+
+/* Page displayed title area */
+#titles {
+	margin-left: 15px;
+	padding: 10px;
+	padding-left: 100px;
+	background: url('/squid-internal-static/icons/SN.png') no-repeat left;
+}
+
+/* initial title */
+#titles h1 {
+	color: #000000;
+}
+#titles h2 {
+	color: #000000;
+}
+
+/* special event: FTP success page titles */
+#titles ftpsuccess {
+	background-color:#00ff00;
+	width:100%;
+}
+
+/* Page displayed body content area */
+#content {
+	padding: 10px;
+	background: #ffffff;
+}
+
+/* General text */
+p {
+}
+
+/* error brief description */
+#error p {
+}
+
+/* some data which may have caused the problem */
+#data {
+}
+
+/* the error message received from the system or other software */
+#sysmsg {
+}
+
+pre {
+}
+
+/* special event: FTP directory listing */
+#dirmsg {
+    font-family: courier, monospace;
+    color: black;
+    font-size: 10pt;
+}
+#dirlisting {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+#dirlisting tr.entry td.icon,td.filename,td.size,td.date {
+    border-bottom: groove;
+}
+#dirlisting td.size {
+    width: 50px;
+    text-align: right;
+    padding-right: 5px;
+}
+
+/* horizontal lines */
+hr {
+	margin: 0;
+}
+
+/* page displayed footer area */
+#footer {
+	font-size: 9px;
+	padding-left: 10px;
+}
+
+
+body
+:lang(fa) { direction: rtl; font-size: 100%; font-family: Tahoma, Roya, sans-serif; float: right; }
+:lang(he) { direction: rtl; }
+ --></style>
+</head><body id=ERR_CONNECT_FAIL>
+<div id="titles">
+<h1>ERROR</h1>
+<h2>The requested URL could not be retrieved</h2>
+</div>
+<hr>
+
+<div id="content">
+<p>The following error was encountered while trying to retrieve the URL: <a href="http://127.0.0.1:8000/api/omr/eventos">http://127.0.0.1:8000/api/omr/eventos</a></p>
+
+<blockquote id="error">
+<p><b>Connection to 127.0.0.1 failed.</b></p>
+</blockquote>
+
+<p id="sysmsg">The system returned: <i>(61) Connection refused</i></p>
+
+<p>The remote host or network may be down. Please try the request again.</p>
+
+<p>Your cache administrator is <a href="mailto:eticona@pj.gob.pe?subject=CacheErrorInfo%20-%20ERR_CONNECT_FAIL&amp;body=CacheHost%3A%20proxypfsense%0D%0AErrPage%3A%20ERR_CONNECT_FAIL%0D%0AErr%3A%20(61)%20Connection%20refused%0D%0ATimeStamp%3A%20Fri,%2009%20Jan%202026%2016%3A13%3A08%20GMT%0D%0A%0D%0AClientIP%3A%20172.17.177.24%0D%0AServerIP%3A%20127.0.0.1%0D%0A%0D%0AHTTP%20Request%3A%0D%0AGET%20%2Fapi%2Fomr%2Feventos%20HTTP%2F1.1%0AHost%3A%20127.0.0.1%3A8000%0D%0AUser-Agent%3A%20python-requests%2F2.32.3%0D%0AAccept-Encoding%3A%20gzip,%20deflate,%20br%0D%0AAccept%3A%20application%2Fjson%0D%0AConnection%3A%20keep-alive%0D%0AContent-Type%3A%20application%2Fjson%0D%0A%0D%0A%0D%0A">eticona@pj.gob.pe</a>.</p>
+
+<br>
+</div>
+
+<hr>
+<div id="footer">
+<p>Generated Fri, 09 Jan 2026 16:13:08 GMT by proxypfsense (squid/6.3)</p>
+<!-- ERR_CONNECT_FAIL -->
+</div>
+</body></html>
+
+[2026-01-09 11:14:03] [INFO] OMRApiClient inicializado
+[2026-01-09 11:14:04] [INFO] GET http://127.0.0.1:8000/api/omr/eventos (intento 1/3)
+[2026-01-09 11:14:04] [SUCCESS] ✓ Request exitoso: 200
+[2026-01-09 11:14:04] [DEBUG] Cache SET: eventos
+[2026-01-09 11:14:04] [INFO] GET http://127.0.0.1:8000/api/omr/eventos/8/inscritos (intento 1/3)
+[2026-01-09 11:14:04] [SUCCESS] ✓ Request exitoso: 200
+[2026-01-09 11:14:04] [DEBUG] Cache SET: inscritos_8
+[2026-01-09 11:14:04] [INFO] Inscritos obtenidos: 6
+[2026-01-09 11:14:07] [INFO] GET http://127.0.0.1:8000/api/omr/eventos/6/inscritos (intento 1/3)
+[2026-01-09 11:14:07] [SUCCESS] ✓ Request exitoso: 200
+[2026-01-09 11:14:07] [DEBUG] Cache SET: inscritos_6
+[2026-01-09 11:14:07] [INFO] Inscritos obtenidos: 5
+[2026-01-09 11:14:22] [INFO] POST http://127.0.0.1:8000/api/omr/evaluaciones (intento 1/3)
+[2026-01-09 11:14:22] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-09 11:14:22] [SUCCESS] Evaluación creada: ID 23
+[2026-01-09 11:14:22] [INFO] POST http://127.0.0.1:8000/api/omr/resultados (intento 1/3)
+[2026-01-09 11:14:22] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-09 11:14:22] [SUCCESS] Resultado guardado para evaluación 23
+[2026-01-09 11:14:22] [INFO] POST http://127.0.0.1:8000/api/omr/respuestas (intento 1/3)
+[2026-01-09 11:14:23] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-09 11:14:23] [SUCCESS] Respuestas guardadas: 30 preguntas
+[2026-01-09 11:14:24] [INFO] POST http://127.0.0.1:8000/api/omr/evaluaciones (intento 1/3)
+[2026-01-09 11:14:24] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-09 11:14:24] [SUCCESS] Evaluación creada: ID 24
+[2026-01-09 11:14:24] [INFO] POST http://127.0.0.1:8000/api/omr/resultados (intento 1/3)
+[2026-01-09 11:14:24] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-09 11:14:24] [SUCCESS] Resultado guardado para evaluación 24
+[2026-01-09 11:14:24] [INFO] POST http://127.0.0.1:8000/api/omr/respuestas (intento 1/3)
+[2026-01-09 11:14:24] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-09 11:14:24] [SUCCESS] Respuestas guardadas: 30 preguntas
+[2026-01-09 11:15:17] [INFO] OMRApiClient inicializado
+[2026-01-09 11:15:19] [INFO] GET http://127.0.0.1:8000/api/omr/eventos (intento 1/3)
+[2026-01-09 11:15:19] [SUCCESS] ✓ Request exitoso: 200
+[2026-01-09 11:15:19] [DEBUG] Cache SET: eventos
+[2026-01-09 11:15:19] [INFO] GET http://127.0.0.1:8000/api/omr/eventos/8/inscritos (intento 1/3)
+[2026-01-09 11:15:20] [SUCCESS] ✓ Request exitoso: 200
+[2026-01-09 11:15:20] [DEBUG] Cache SET: inscritos_8
+[2026-01-09 11:15:20] [INFO] Inscritos obtenidos: 6
+[2026-01-09 11:15:44] [INFO] GET http://127.0.0.1:8000/api/omr/eventos/1/inscritos (intento 1/3)
+[2026-01-09 11:15:45] [SUCCESS] ✓ Request exitoso: 200
+[2026-01-09 11:15:45] [DEBUG] Cache SET: inscritos_1
+[2026-01-09 11:15:45] [INFO] Inscritos obtenidos: 5
+[2026-01-09 11:16:10] [INFO] POST http://127.0.0.1:8000/api/omr/evaluaciones (intento 1/3)
+[2026-01-09 11:16:11] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-09 11:16:11] [SUCCESS] Evaluación creada: ID 25
+[2026-01-09 11:16:11] [INFO] POST http://127.0.0.1:8000/api/omr/resultados (intento 1/3)
+[2026-01-09 11:16:11] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-09 11:16:11] [SUCCESS] Resultado guardado para evaluación 25
+[2026-01-09 11:16:11] [INFO] POST http://127.0.0.1:8000/api/omr/respuestas (intento 1/3)
+[2026-01-09 11:16:12] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-09 11:16:12] [SUCCESS] Respuestas guardadas: 30 preguntas
+[2026-01-09 11:16:15] [INFO] POST http://127.0.0.1:8000/api/omr/evaluaciones (intento 1/3)
+[2026-01-09 11:16:15] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-09 11:16:15] [SUCCESS] Evaluación creada: ID 26
+[2026-01-09 11:16:15] [INFO] POST http://127.0.0.1:8000/api/omr/resultados (intento 1/3)
+[2026-01-09 11:16:16] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-09 11:16:16] [SUCCESS] Resultado guardado para evaluación 26
+[2026-01-09 11:16:16] [INFO] POST http://127.0.0.1:8000/api/omr/respuestas (intento 1/3)
+[2026-01-09 11:16:16] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-09 11:16:16] [SUCCESS] Respuestas guardadas: 30 preguntas
+[2026-01-15 05:59:57] [INFO] OMRApiClient inicializado
+[2026-01-15 05:59:59] [INFO] GET http://127.0.0.1:8000/api/omr/eventos (intento 1/3)
+[2026-01-15 06:00:00] [SUCCESS] ✓ Request exitoso: 200
+[2026-01-15 06:00:00] [DEBUG] Cache SET: eventos
+[2026-01-15 06:00:00] [INFO] GET http://127.0.0.1:8000/api/omr/eventos/8/inscritos (intento 1/3)
+[2026-01-15 06:00:00] [SUCCESS] ✓ Request exitoso: 200
+[2026-01-15 06:00:00] [DEBUG] Cache SET: inscritos_8
+[2026-01-15 06:00:00] [INFO] Inscritos obtenidos: 6
+[2026-01-15 06:00:21] [INFO] POST http://127.0.0.1:8000/api/omr/evaluaciones (intento 1/3)
+[2026-01-15 06:00:21] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-15 06:00:21] [SUCCESS] Evaluación creada: ID 29
+[2026-01-15 06:00:21] [INFO] POST http://127.0.0.1:8000/api/omr/resultados (intento 1/3)
+[2026-01-15 06:00:22] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-15 06:00:22] [SUCCESS] Resultado guardado para evaluación 29
+[2026-01-15 06:00:22] [INFO] POST http://127.0.0.1:8000/api/omr/respuestas (intento 1/3)
+[2026-01-15 06:00:22] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-15 06:00:22] [SUCCESS] Respuestas guardadas: 30 preguntas
+[2026-01-15 06:00:25] [INFO] POST http://127.0.0.1:8000/api/omr/evaluaciones (intento 1/3)
+[2026-01-15 06:00:26] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-15 06:00:26] [SUCCESS] Evaluación creada: ID 30
+[2026-01-15 06:00:26] [INFO] POST http://127.0.0.1:8000/api/omr/resultados (intento 1/3)
+[2026-01-15 06:00:26] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-15 06:00:26] [SUCCESS] Resultado guardado para evaluación 30
+[2026-01-15 06:00:26] [INFO] POST http://127.0.0.1:8000/api/omr/respuestas (intento 1/3)
+[2026-01-15 06:00:27] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-15 06:00:27] [SUCCESS] Respuestas guardadas: 30 preguntas
+[2026-01-15 06:06:18] [INFO] OMRApiClient inicializado
+[2026-01-15 06:06:19] [INFO] GET http://127.0.0.1:8000/api/omr/eventos (intento 1/3)
+[2026-01-15 06:06:19] [SUCCESS] ✓ Request exitoso: 200
+[2026-01-15 06:06:19] [DEBUG] Cache SET: eventos
+[2026-01-15 06:06:19] [INFO] GET http://127.0.0.1:8000/api/omr/eventos/8/inscritos (intento 1/3)
+[2026-01-15 06:06:20] [SUCCESS] ✓ Request exitoso: 200
+[2026-01-15 06:06:20] [DEBUG] Cache SET: inscritos_8
+[2026-01-15 06:06:20] [INFO] Inscritos obtenidos: 6
+[2026-01-15 06:06:21] [INFO] GET http://127.0.0.1:8000/api/omr/eventos/2/inscritos (intento 1/3)
+[2026-01-15 06:06:22] [SUCCESS] ✓ Request exitoso: 200
+[2026-01-15 06:06:22] [DEBUG] Cache SET: inscritos_2
+[2026-01-15 06:06:22] [INFO] Inscritos obtenidos: 2
+[2026-01-15 06:06:36] [INFO] POST http://127.0.0.1:8000/api/omr/evaluaciones (intento 1/3)
+[2026-01-15 06:06:37] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-15 06:06:37] [SUCCESS] Evaluación creada: ID 31
+[2026-01-15 06:06:37] [INFO] POST http://127.0.0.1:8000/api/omr/resultados (intento 1/3)
+[2026-01-15 06:06:37] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-15 06:06:37] [SUCCESS] Resultado guardado para evaluación 31
+[2026-01-15 06:06:37] [INFO] POST http://127.0.0.1:8000/api/omr/respuestas (intento 1/3)
+[2026-01-15 06:06:38] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-15 06:06:38] [SUCCESS] Respuestas guardadas: 30 preguntas
+[2026-01-15 06:06:41] [INFO] POST http://127.0.0.1:8000/api/omr/evaluaciones (intento 1/3)
+[2026-01-15 06:06:42] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-15 06:06:42] [SUCCESS] Evaluación creada: ID 32
+[2026-01-15 06:06:42] [INFO] POST http://127.0.0.1:8000/api/omr/resultados (intento 1/3)
+[2026-01-15 06:06:42] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-15 06:06:42] [SUCCESS] Resultado guardado para evaluación 32
+[2026-01-15 06:06:42] [INFO] POST http://127.0.0.1:8000/api/omr/respuestas (intento 1/3)
+[2026-01-15 06:06:42] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-15 06:06:42] [SUCCESS] Respuestas guardadas: 30 preguntas
+[2026-01-15 06:17:28] [INFO] OMRApiClient inicializado
+[2026-01-15 06:17:30] [INFO] GET http://127.0.0.1:8000/api/omr/eventos (intento 1/3)
+[2026-01-15 06:17:30] [SUCCESS] ✓ Request exitoso: 200
+[2026-01-15 06:17:30] [DEBUG] Cache SET: eventos
+[2026-01-15 06:17:30] [INFO] GET http://127.0.0.1:8000/api/omr/eventos/8/inscritos (intento 1/3)
+[2026-01-15 06:17:31] [SUCCESS] ✓ Request exitoso: 200
+[2026-01-15 06:17:31] [DEBUG] Cache SET: inscritos_8
+[2026-01-15 06:17:31] [INFO] Inscritos obtenidos: 6
+[2026-01-15 06:17:34] [DEBUG] Cache HIT: inscritos_8
+[2026-01-15 06:17:38] [INFO] GET http://127.0.0.1:8000/api/omr/eventos/6/inscritos (intento 1/3)
+[2026-01-15 06:17:39] [SUCCESS] ✓ Request exitoso: 200
+[2026-01-15 06:17:39] [DEBUG] Cache SET: inscritos_6
+[2026-01-15 06:17:39] [INFO] Inscritos obtenidos: 5
+[2026-01-15 06:17:55] [INFO] POST http://127.0.0.1:8000/api/omr/evaluaciones (intento 1/3)
+[2026-01-15 06:17:55] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-15 06:17:55] [SUCCESS] Evaluación creada: ID 33
+[2026-01-15 06:17:55] [INFO] POST http://127.0.0.1:8000/api/omr/resultados (intento 1/3)
+[2026-01-15 06:17:55] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-15 06:17:55] [SUCCESS] Resultado guardado para evaluación 33
+[2026-01-15 06:17:55] [INFO] POST http://127.0.0.1:8000/api/omr/respuestas (intento 1/3)
+[2026-01-15 06:17:56] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-15 06:17:56] [SUCCESS] Respuestas guardadas: 30 preguntas
+[2026-01-15 06:18:00] [INFO] POST http://127.0.0.1:8000/api/omr/evaluaciones (intento 1/3)
+[2026-01-15 06:18:00] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-15 06:18:00] [SUCCESS] Evaluación creada: ID 34
+[2026-01-15 06:18:00] [INFO] POST http://127.0.0.1:8000/api/omr/resultados (intento 1/3)
+[2026-01-15 06:18:00] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-15 06:18:00] [SUCCESS] Resultado guardado para evaluación 34
+[2026-01-15 06:18:00] [INFO] POST http://127.0.0.1:8000/api/omr/respuestas (intento 1/3)
+[2026-01-15 06:18:01] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-15 06:18:01] [SUCCESS] Respuestas guardadas: 30 preguntas
+[2026-01-15 06:25:47] [INFO] OMRApiClient inicializado
+[2026-01-15 06:25:50] [INFO] GET http://127.0.0.1:8000/api/omr/eventos (intento 1/3)
+[2026-01-15 06:25:52] [ERROR] ✗ Error de conexión en intento 1
+[2026-01-15 06:25:54] [INFO] GET http://127.0.0.1:8000/api/omr/eventos (intento 2/3)
+[2026-01-15 06:26:03] [SUCCESS] ✓ Request exitoso: 200
+[2026-01-15 06:26:03] [DEBUG] Cache SET: eventos
+[2026-01-15 06:26:03] [INFO] GET http://127.0.0.1:8000/api/omr/eventos/8/inscritos (intento 1/3)
+[2026-01-15 06:26:08] [SUCCESS] ✓ Request exitoso: 200
+[2026-01-15 06:26:08] [DEBUG] Cache SET: inscritos_8
+[2026-01-15 06:26:08] [INFO] Inscritos obtenidos: 6
+[2026-01-15 06:27:09] [INFO] GET http://127.0.0.1:8000/api/omr/eventos/4/inscritos (intento 1/3)
+[2026-01-15 06:27:10] [SUCCESS] ✓ Request exitoso: 200
+[2026-01-15 06:27:10] [DEBUG] Cache SET: inscritos_4
+[2026-01-15 06:27:10] [INFO] Inscritos obtenidos: 5
+[2026-01-15 06:27:17] [INFO] GET http://127.0.0.1:8000/api/omr/eventos/6/inscritos (intento 1/3)
+[2026-01-15 06:27:17] [SUCCESS] ✓ Request exitoso: 200
+[2026-01-15 06:27:17] [DEBUG] Cache SET: inscritos_6
+[2026-01-15 06:27:17] [INFO] Inscritos obtenidos: 5
+[2026-01-15 06:27:25] [INFO] GET http://127.0.0.1:8000/api/omr/eventos/7/inscritos (intento 1/3)
+[2026-01-15 06:27:26] [SUCCESS] ✓ Request exitoso: 200
+[2026-01-15 06:27:26] [DEBUG] Cache SET: inscritos_7
+[2026-01-15 06:27:26] [INFO] Inscritos obtenidos: 4
+[2026-01-15 06:28:55] [DEBUG] Cache HIT: eventos
+[2026-01-15 06:28:55] [DEBUG] Cache HIT: inscritos_8
+[2026-01-15 06:29:03] [INFO] OMRApiClient inicializado
+[2026-01-15 06:29:04] [INFO] GET http://127.0.0.1:8000/api/omr/eventos (intento 1/3)
+[2026-01-15 06:29:05] [SUCCESS] ✓ Request exitoso: 200
+[2026-01-15 06:29:05] [DEBUG] Cache SET: eventos
+[2026-01-15 06:29:05] [INFO] GET http://127.0.0.1:8000/api/omr/eventos/8/inscritos (intento 1/3)
+[2026-01-15 06:29:05] [SUCCESS] ✓ Request exitoso: 200
+[2026-01-15 06:29:05] [DEBUG] Cache SET: inscritos_8
+[2026-01-15 06:29:05] [INFO] Inscritos obtenidos: 6
+[2026-01-15 06:29:09] [INFO] GET http://127.0.0.1:8000/api/omr/eventos/7/inscritos (intento 1/3)
+[2026-01-15 06:29:09] [SUCCESS] ✓ Request exitoso: 200
+[2026-01-15 06:29:09] [DEBUG] Cache SET: inscritos_7
+[2026-01-15 06:29:09] [INFO] Inscritos obtenidos: 4
+[2026-01-15 06:32:31] [INFO] OMRApiClient inicializado
+[2026-01-15 06:32:34] [INFO] GET http://127.0.0.1:8000/api/omr/eventos (intento 1/3)
+[2026-01-15 06:32:44] [ERROR] ✗ Timeout en intento 1
+[2026-01-15 06:32:46] [INFO] GET http://127.0.0.1:8000/api/omr/eventos (intento 2/3)
+[2026-01-15 06:32:56] [ERROR] ✗ Timeout en intento 2
+[2026-01-15 06:33:00] [INFO] GET http://127.0.0.1:8000/api/omr/eventos (intento 3/3)
+[2026-01-15 06:33:14] [INFO] OMRApiClient inicializado
+[2026-01-15 06:33:15] [INFO] GET http://127.0.0.1:8000/api/omr/eventos (intento 1/3)
+[2026-01-15 06:33:15] [SUCCESS] ✓ Request exitoso: 200
+[2026-01-15 06:33:15] [DEBUG] Cache SET: eventos
+[2026-01-15 06:33:15] [INFO] GET http://127.0.0.1:8000/api/omr/eventos/8/inscritos (intento 1/3)
+[2026-01-15 06:33:16] [SUCCESS] ✓ Request exitoso: 200
+[2026-01-15 06:33:16] [DEBUG] Cache SET: inscritos_8
+[2026-01-15 06:33:16] [INFO] Inscritos obtenidos: 6
+[2026-01-15 06:33:20] [INFO] GET http://127.0.0.1:8000/api/omr/eventos/7/inscritos (intento 1/3)
+[2026-01-15 06:33:21] [SUCCESS] ✓ Request exitoso: 200
+[2026-01-15 06:33:21] [DEBUG] Cache SET: inscritos_7
+[2026-01-15 06:33:21] [INFO] Inscritos obtenidos: 4
+[2026-01-15 06:34:32] [INFO] OMRApiClient inicializado
+[2026-01-15 06:34:34] [INFO] GET http://127.0.0.1:8000/api/omr/eventos (intento 1/3)
+[2026-01-15 06:34:34] [SUCCESS] ✓ Request exitoso: 200
+[2026-01-15 06:34:34] [DEBUG] Cache SET: eventos
+[2026-01-15 06:34:34] [INFO] GET http://127.0.0.1:8000/api/omr/eventos/8/inscritos (intento 1/3)
+[2026-01-15 06:34:35] [SUCCESS] ✓ Request exitoso: 200
+[2026-01-15 06:34:35] [DEBUG] Cache SET: inscritos_8
+[2026-01-15 06:34:35] [INFO] Inscritos obtenidos: 6
+[2026-01-15 06:34:52] [INFO] POST http://127.0.0.1:8000/api/omr/evaluaciones (intento 1/3)
+[2026-01-15 06:34:54] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-15 06:34:54] [SUCCESS] Evaluación creada: ID 35
+[2026-01-15 06:34:54] [INFO] POST http://127.0.0.1:8000/api/omr/resultados (intento 1/3)
+[2026-01-15 06:34:54] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-15 06:34:54] [SUCCESS] Resultado guardado para evaluación 35
+[2026-01-15 06:34:54] [INFO] POST http://127.0.0.1:8000/api/omr/respuestas (intento 1/3)
+[2026-01-15 06:34:55] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-15 06:34:55] [SUCCESS] Respuestas guardadas: 30 preguntas
+[2026-01-15 06:35:00] [INFO] POST http://127.0.0.1:8000/api/omr/evaluaciones (intento 1/3)
+[2026-01-15 06:35:01] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-15 06:35:01] [SUCCESS] Evaluación creada: ID 36
+[2026-01-15 06:35:01] [INFO] POST http://127.0.0.1:8000/api/omr/resultados (intento 1/3)
+[2026-01-15 06:35:01] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-15 06:35:01] [SUCCESS] Resultado guardado para evaluación 36
+[2026-01-15 06:35:01] [INFO] POST http://127.0.0.1:8000/api/omr/respuestas (intento 1/3)
+[2026-01-15 06:35:01] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-15 06:35:01] [SUCCESS] Respuestas guardadas: 30 preguntas
+[2026-01-15 06:35:35] [INFO] GET http://127.0.0.1:8000/api/omr/eventos/7/inscritos (intento 1/3)
+[2026-01-15 06:35:35] [SUCCESS] ✓ Request exitoso: 200
+[2026-01-15 06:35:35] [DEBUG] Cache SET: inscritos_7
+[2026-01-15 06:35:35] [INFO] Inscritos obtenidos: 4
+[2026-01-15 06:36:04] [INFO] OMRApiClient inicializado
+[2026-01-15 06:36:06] [INFO] GET http://127.0.0.1:8000/api/omr/eventos (intento 1/3)
+[2026-01-15 06:36:06] [SUCCESS] ✓ Request exitoso: 200
+[2026-01-15 06:36:06] [DEBUG] Cache SET: eventos
+[2026-01-15 06:36:06] [INFO] GET http://127.0.0.1:8000/api/omr/eventos/8/inscritos (intento 1/3)
+[2026-01-15 06:36:06] [SUCCESS] ✓ Request exitoso: 200
+[2026-01-15 06:36:06] [DEBUG] Cache SET: inscritos_8
+[2026-01-15 06:36:06] [INFO] Inscritos obtenidos: 6
+[2026-01-15 06:36:09] [INFO] GET http://127.0.0.1:8000/api/omr/eventos/7/inscritos (intento 1/3)
+[2026-01-15 06:36:09] [SUCCESS] ✓ Request exitoso: 200
+[2026-01-15 06:36:09] [DEBUG] Cache SET: inscritos_7
+[2026-01-15 06:36:09] [INFO] Inscritos obtenidos: 4
+[2026-01-15 06:36:24] [INFO] POST http://127.0.0.1:8000/api/omr/evaluaciones (intento 1/3)
+[2026-01-15 06:36:24] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-15 06:36:24] [SUCCESS] Evaluación creada: ID 37
+[2026-01-15 06:36:24] [INFO] POST http://127.0.0.1:8000/api/omr/resultados (intento 1/3)
+[2026-01-15 06:36:25] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-15 06:36:25] [SUCCESS] Resultado guardado para evaluación 37
+[2026-01-15 06:36:25] [INFO] POST http://127.0.0.1:8000/api/omr/respuestas (intento 1/3)
+[2026-01-15 06:36:25] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-15 06:36:25] [SUCCESS] Respuestas guardadas: 30 preguntas
+[2026-01-15 06:36:29] [INFO] POST http://127.0.0.1:8000/api/omr/evaluaciones (intento 1/3)
+[2026-01-15 06:36:29] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-15 06:36:29] [SUCCESS] Evaluación creada: ID 38
+[2026-01-15 06:36:29] [INFO] POST http://127.0.0.1:8000/api/omr/resultados (intento 1/3)
+[2026-01-15 06:36:29] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-15 06:36:29] [SUCCESS] Resultado guardado para evaluación 38
+[2026-01-15 06:36:29] [INFO] POST http://127.0.0.1:8000/api/omr/respuestas (intento 1/3)
+[2026-01-15 06:36:30] [SUCCESS] ✓ Request exitoso: 201
+[2026-01-15 06:36:30] [SUCCESS] Respuestas guardadas: 30 preguntas

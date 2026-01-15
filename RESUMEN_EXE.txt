@@ -1,0 +1,120 @@
+════════════════════════════════════════════════════════════════
+RESUMEN: ARCHIVOS NECESARIOS PARA EL .EXE
+════════════════════════════════════════════════════════════════
+
+📦 EN TU MÁQUINA (para compilar):
+───────────────────────────────────────────────────────────────
+
+1. completo.py                    ← Script principal
+2. api_client.py                  ← Cliente API Laravel
+3. config.py                      ← Configuración de la API
+4. requirements.txt               ← Librerías Python
+5. Sistema_Calificacion_Examenes.spec ← Configuración PyInstaller
+6. compilar.bat                   ← Script para compilar
+7. poppler/ (carpeta completa)    ← Para procesar PDFs
+
+───────────────────────────────────────────────────────────────
+
+🚀 PARA COMPILAR:
+───────────────────────────────────────────────────────────────
+
+Ejecuta en CMD/PowerShell:
+    compilar.bat
+
+O manualmente:
+    pip install -r requirements.txt
+    pyinstaller Sistema_Calificacion_Examenes.spec
+
+───────────────────────────────────────────────────────────────
+
+💾 DESPUÉS DE COMPILAR (se genera en dist/):
+───────────────────────────────────────────────────────────────
+
+dist/
+├── Sistema_Calificacion_Examenes.exe  ← Ejecutable (copiar)
+└── _internal/                         ← TODO (copiar completo)
+    ├── poppler/                       ← Incluido automáticamente
+    ├── config.py                      ← Incluido automáticamente
+    ├── api_client.py                  ← Incluido automáticamente
+    └── [muchos archivos .dll y .pyd]  ← Incluidos automáticamente
+
+───────────────────────────────────────────────────────────────
+
+📂 EN LA OTRA MÁQUINA (sin Python):
+───────────────────────────────────────────────────────────────
+
+Copia estos 2 elementos:
+✅ Sistema_Calificacion_Examenes.exe
+✅ _internal/ (carpeta completa)
+
+Estructura final:
+MiCarpeta/
+├── Sistema_Calificacion_Examenes.exe
+└── _internal/
+    └── [todo el contenido]
+
+───────────────────────────────────────────────────────────────
+
+⚙️ CONFIGURACIÓN EN LA OTRA MÁQUINA:
+───────────────────────────────────────────────────────────────
+
+Edita: _internal/config.py
+
+Cambia:
+    API_BASE_URL = "http://127.0.0.1:8000/api"
+
+Por la IP real del servidor Laravel:
+    API_BASE_URL = "http://192.168.1.100:8000/api"
+    
+(Usa la IP donde está corriendo tu backend Laravel)
+
+───────────────────────────────────────────────────────────────
+
+✅ REQUISITOS DE LA OTRA MÁQUINA:
+───────────────────────────────────────────────────────────────
+
+✅ Windows 10/11 (64 bits)
+❌ NO necesita Python
+❌ NO necesita instalar nada más
+
+───────────────────────────────────────────────────────────────
+
+📚 LIBRERÍAS INCLUIDAS EN EL .EXE:
+───────────────────────────────────────────────────────────────
+
+✅ opencv-python (cv2)           ← Procesamiento de imágenes
+✅ numpy                          ← Arrays y matrices
+✅ Pillow (PIL)                   ← Manejo de imágenes
+✅ customtkinter                  ← Interfaz gráfica moderna
+✅ pdf2image                      ← Convertir PDF a imágenes
+✅ reportlab                      ← Generar PDFs
+✅ requests                       ← Cliente HTTP para API
+✅ poppler                        ← Procesador de PDFs
+
+───────────────────────────────────────────────────────────────
+
+🎯 TAMAÑO APROXIMADO:
+───────────────────────────────────────────────────────────────
+
+Carpeta dist/ completa: ~300 MB
+Comprimido en ZIP: ~120 MB
+
+───────────────────────────────────────────────────────────────
+
+🔥 COMANDO RÁPIDO PARA COMPILAR:
+───────────────────────────────────────────────────────────────
+
+    compilar_rapido.bat
+
+───────────────────────────────────────────────────────────────
+
+📝 NOTA IMPORTANTE:
+───────────────────────────────────────────────────────────────
+
+El .exe NO funcionará si:
+❌ La carpeta _internal no está junto al .exe
+❌ Falta el contenido de _internal
+❌ La URL de la API en config.py es incorrecta
+❌ El servidor Laravel no está corriendo
+
+════════════════════════════════════════════════════════════════

@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pruebas de Hipótesis: Proporciones (Detallado)</title>
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+/* 1. CONFIGURACIÓN BASE */
+* { box-sizing: border-box; }
+body {
+  background-color: #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  min-height: 100vh;
+  padding: 40px 0;
+  font-family: 'Inter', sans-serif;
+  color: #1f2937;
+}
+
+/* 2. CONTENEDOR DE DIAPOSITIVA */
+.slide-container {
+  background-color: #ffffff;
+  border-radius: 8px; /* Bordes menos redondeados para estilo más técnico */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  height: 720px;
+  width: 1280px;
+  overflow: hidden;
+  padding: 50px 60px;
+  position: relative;
+  margin-bottom: 40px; /* Separación entre slides para visualización en navegador */
+  border-top: 6px solid #2563eb; /* Línea superior corporativa */
+}
+
+/* 3. TIPOGRAFÍA TÉCNICA */
+h1 { font-size: 56px; font-weight: 700; color: #1e3a8a; margin: 0 0 10px 0; letter-spacing: -0.02em; }
+h2 { font-size: 36px; font-weight: 600; color: #1e3a8a; margin: 0 0 25px 0; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; width: 100%; }
+h3 { font-size: 22px; font-weight: 700; color: #2563eb; margin: 0 0 10px 0; text-transform: uppercase; font-size: 14px; letter-spacing: 1px; }
+
+p, li { font-size: 16px; line-height: 1.6; color: #374151; text-align: justify; }
+i.var { font-family: 'Times New Roman', serif; font-style: italic; font-weight: bold; }
+
+/* 4. LAYOUTS */
+.title-layout { display: flex; flex-direction: column; justify-content: center; height: 100%; text-align: center; }
+.content-area { height: 100%; display: flex; flex-direction: column; }
+.two-column { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 50px; height: 100%; }
+.equal-column { grid-template-columns: 1fr 1fr; }
+
+/* 5. ELEMENTOS DIDÁCTICOS */
+
+/* Cajas de Texto Detallado (Estilo Libro) */
+.text-block {
+    margin-bottom: 20px;
+}
+.text-block strong { color: #111827; }
+
+/* Caja de Fórmula */
+.formula-box {
+    background-color: #f8fafc;
+    border: 1px solid #cbd5e1;
+    padding: 15px;
+    border-radius: 6px;
+    margin: 15px 0;
+    text-align: center;
+}
+
+/* Explicación de Fórmula (Desglose) */
+.formula-breakdown {
+    font-size: 14px;
+    background-color: #eff6ff;
+    border-left: 4px solid #3b82f6;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 0 4px 4px 0;
+}
+.breakdown-item { margin-bottom: 8px; }
+.breakdown-item:last-child { margin-bottom: 0; }
+.breakdown-label { font-weight: bold; color: #1e40af; font-family: 'JetBrains Mono', monospace; font-size: 12px; }
+
+/* Listas Técnicas */
+ul.tech-list { list-style: none; padding: 0; margin: 0; }
+ul.tech-list li { 
+    margin-bottom: 8px; 
+    padding-left: 20px; 
+    position: relative; 
+    font-size: 15px;
+}
+ul.tech-list li::before { 
+    content: '•'; 
+    color: #2563eb; 
+    font-weight: bold; 
+    position: absolute; 
+    left: 0; 
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+/* Canvas para Gráficos */
+.canvas-wrapper {
+    width: 100%;
+    height: 220px;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+canvas { width: 100%; height: 100%; }
+.chart-caption {
+    font-size: 12px;
+    color: #64748b;
+    text-align: center;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+/* Pasos Matemáticos */
+.calc-step {
+    border-bottom: 1px dashed #cbd5e1;
+    padding: 10px 0;
+}
+.calc-step:last-child { border-bottom: none; }
+.calc-label { font-weight: 600; color: #4b5563; font-size: 14px; display: block; margin-bottom: 4px; }
+</style>
+</head>
+<body>
+
+<!-- Slide 1: Título -->
+<div class="slide-container">
+    <div class="title-layout">
+        <span style="color: #64748b; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; font-size: 14px; margin-bottom: 15px;">Universidad nacional del altiplano</span>
+        <h1>Pruebas de Hipótesis<br>con respecto a la Proporción</h1>
+        <p style="font-size: 24px; color: #4b5563; max-width: 800px; margin: 20px auto;">Kevin A. Juli Yanarico</p>
+    </div>
+</div>
+
+<!-- Slide 2: Fundamentos -->
+<div class="slide-container">
+    <h2>Fundamentos y Formulación General</h2>
+    <div class="two-column equal-column">
+        <div>
+            <h3>Contexto de Aplicación</h3>
+            <div class="text-block">
+                <p>Las pruebas de hipótesis para proporciones se utilizan cuando la variable de interés es <strong>Cualitativa (Categórica)</strong> y dicotómica (solo dos resultados posibles: Éxito/Fracaso, Sí/No, Defectuoso/Conforme).</p>
+            </div>
+            <div class="text-block">
+                <strong>Diferencia clave con variables Cuantitativas:</strong>
+                <ul class="tech-list" style="margin-top: 10px;">
+                    <li><strong>Cuantitativo:</strong> Se analiza la <em>media</em> (<i class="var">&mu;</i>) o la <em>varianza</em> (<i class="var">&sigma;</i>²). Ejemplo: Tiempo promedio de respuesta (segundos).</li>
+                    <li><strong>Cualitativo (Este caso):</strong> Se analiza la <em>frecuencia relativa</em> (<i class="var">&pi;</i>). Ejemplo: Porcentaje de servidores disponibles (%).</li>
+                </ul>
+            </div>
+            <div class="text-block" style="background: #f1f5f9; padding: 15px; border-radius: 6px; border-left: 4px solid #64748b;">
+                <strong>Supuestos del Modelo:</strong>
+                <ul class="tech-list">
+                    <li>Muestreo aleatorio simple.</li>
+                    <li>Independencia de observaciones.</li>
+                    <li>Tamaño de muestra grande: <i class="var">n&pi;</i> &ge; 5 y <i class="var">n</i>(1-<i class="var">&pi;</i>) &ge; 5 para aproximar a la Normal.</li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <h3>El Estadístico de Prueba Z</h3>
+            <p>Para muestras grandes, utilizamos la aproximación a la distribución normal estandarizada.</p>
+            <div class="formula-box">
+                <math display="block" style="font-size: 24px;">
+                  <msub><mi>Z</mi><mi>c</mi></msub>
+                  <mo>=</mo>
+                  <mfrac>
+                    <mrow><mi>p</mi><mo>-</mo><msub><mi>&#x03C0;</mi><mn>0</mn></msub></mrow>
+                    <msqrt>
+                      <mfrac>
+                        <mrow><msub><mi>&#x03C0;</mi><mn>0</mn></msub><mo>(</mo><mn>1</mn><mo>-</mo><msub><mi>&#x03C0;</mi><mn>0</mn></msub><mo>)</mo></mrow>
+                        <mi>n</mi>
+                      </mfrac>
+                    </msqrt>
+                  </mfrac>
+                </math>
+            </div>
+            <div class="formula-breakdown">
+                <div class="breakdown-item">
+                    <span class="breakdown-label">NUMERADOR (<i class="var">p</i> - <i class="var">&pi;</i><sub>0</sub>):</span><br>
+                    Mide la <strong>distancia absoluta</strong> entre la evidencia muestral (<i class="var">p</i>) y el valor hipotético poblacional (<i class="var">&pi;</i><sub>0</sub>).
+                </div>
+                <div class="breakdown-item">
+                    <span class="breakdown-label">DENOMINADOR (Error Estándar):</span><br>
+                    Representa la <strong>variabilidad esperada</strong> de las proporciones muestrales. Actúa como un factor de escala para estandarizar la diferencia.
+                </div>
+                <div class="breakdown-item">
+                    <span class="breakdown-label">RESULTADO (<i class="var">Z</i><sub>c</sub>):</span><br>
+                    Número de desviaciones estándar que la muestra se aleja de la hipótesis nula.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 3: Cola Inferior (Teoría) -->
+<div class="slide-container">
+    <h2>4.1. Prueba de Cola Inferior (Unilateral Izquierda)</h2>
+    <div class="two-column">
+        <div>
+            <h3>Definición Detallada</h3>
+            <p>Se utiliza cuando el investigador desea demostrar que la proporción poblacional real (<i class="var">&pi;</i>) ha <strong>disminuido</strong> o es <strong>menor</strong> que un valor de referencia histórico o estándar (<i class="var">&pi;</i><sub>0</sub>).</p>
+            
+            <div class="text-block" style="margin-top: 20px;">
+                <strong>Planteamiento de Hipótesis:</strong>
+                <ul class="tech-list" style="margin-top: 10px;">
+                    <li><strong style="color:#4b5563">H<sub>0</sub>: <i class="var">&pi;</i> &ge; <i class="var">&pi;</i><sub>0</sub></strong> (Hipótesis Nula). Asume que la proporción se mantiene igual o es mayor.</li>
+                    <li><strong style="color:#dc2626">H<sub>1</sub>: <i class="var">&pi;</i> < <i class="var">&pi;</i><sub>0</sub></strong> (Hipótesis Alterna). Lo que queremos probar (disminución).</li>
+                </ul>
+            </div>
+
+            <div class="formula-breakdown" style="border-left-color: #dc2626; background-color: #fef2f2;">
+                <div class="breakdown-item">
+                    <span class="breakdown-label" style="color:#b91c1c">REGIÓN DE RECHAZO:</span>
+                    Se ubica en el extremo izquierdo de la curva normal. Rechazamos H<sub>0</sub> si el estadístico calculado <i class="var">Z</i><sub>c</sub> es menor que el valor crítico negativo -<i class="var">Z</i><sub>&alpha;</sub>.
+                </div>
+                <div class="breakdown-item" style="text-align: center; margin-top: 10px;">
+                    <math display="inline" style="font-size: 20px; font-weight: bold; color: #b91c1c;">
+                        <msub><mi>Z</mi><mi>c</mi></msub><mo>&lt;</mo><mo>-</mo><msub><mi>Z</mi><mi>&#x03B1;</mi></msub>
+                    </math>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h3>Representación Gráfica</h3>
+            <div class="canvas-wrapper">
+                <canvas id="chart-inferior"></canvas>
+            </div>
+            <p class="chart-caption">La zona roja representa la región de rechazo (<i class="var">&alpha;</i>). Si <i class="var">Z</i><sub>c</sub> cae aquí, la disminución es significativa.</p>
+            
+            <div class="text-block" style="margin-top: 20px; font-size: 14px; background: #fff; padding: 15px; border: 1px solid #e2e8f0; border-radius: 6px;">
+                <strong>Ejemplo de lógica:</strong><br>
+                Si esperamos un 90% de satisfacción (<i class="var">&pi;</i><sub>0</sub>=0.9) y obtenemos una muestra con 60% (<i class="var">p</i>=0.6), la diferencia es negativa. Si esa diferencia es lo suficientemente grande (supera el valor crítico), concluimos que la satisfacción bajó realmente.
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 4: Ejemplo Cola Inferior -->
+<div class="slide-container">
+    <h2>Ejemplo 4.1: Conectividad en Ancón</h2>
+    <div class="two-column equal-column">
+        <div>
+            <div class="text-block">
+                <strong>Problema:</strong> OSIPTEL reporta que el 87.7% de hogares peruanos tienen internet. Se cree que en el distrito de Ancón la conectividad es <strong>menor</strong>. Se toma una muestra de 350 hogares, encontrando 243 con internet. Use <i class="var">&alpha;</i> = 0.05.
+            </div>
+            <div class="formula-breakdown">
+                <span class="breakdown-label">PASO 1: DATOS Y PARÁMETROS</span>
+                <ul class="tech-list">
+                    <li>Muestra (<i class="var">n</i>) = 350</li>
+                    <li>Éxitos (<i class="var">x</i>) = 243</li>
+                    <li>Proporción Hipotética (<i class="var">&pi;</i><sub>0</sub>) = 0.877</li>
+                    <li>Nivel de Confianza = 95% (<i class="var">&alpha;</i>=0.05)</li>
+                    <li>Valor Crítico (<i class="var">Z</i><sub>&alpha;</sub>) = -1.645 (Cola Izq)</li>
+                </ul>
+            </div>
+            <div class="formula-breakdown" style="margin-top: 15px;">
+                <span class="breakdown-label">PASO 2: CÁLCULO DE PROPORCIÓN MUESTRAL</span>
+                <math display="block" style="margin: 10px 0;">
+                    <mi>p</mi><mo>=</mo><mfrac><mi>x</mi><mi>n</mi></mfrac><mo>=</mo><mfrac><mn>243</mn><mn>350</mn></mfrac><mo>=</mo><mn>0.6943</mn>
+                </math>
+            </div>
+        </div>
+        <div>
+            <div class="formula-breakdown">
+                <span class="breakdown-label">PASO 3: ESTADÍSTICO DE PRUEBA</span>
+                <div class="calc-step">
+                    <span class="calc-label">Sustitución en fórmula Z:</span>
+                    <math display="block" style="font-size: 18px;">
+                      <msub><mi>Z</mi><mi>c</mi></msub>
+                      <mo>=</mo>
+                      <mfrac><mrow><mn>0.6943</mn><mo>-</mo><mn>0.877</mn></mrow><msqrt><mfrac><mrow><mn>0.877</mn><mo>(</mo><mn>1</mn><mo>-</mo><mn>0.877</mn><mo>)</mo></mrow><mn>350</mn></mfrac></msqrt></mfrac>
+                    </math>
+                </div>
+                <div class="calc-step">
+                    <span class="calc-label">Operación:</span>
+                    <math display="block">
+                        <msub><mi>Z</mi><mi>c</mi></msub><mo>=</mo><mfrac><mrow><mo>-</mo><mn>0.1827</mn></mrow><mn>0.01755</mn></mfrac><mo>=</mo><mn>-10.41</mn>
+                    </math>
+                </div>
+            </div>
+            
+            <div class="canvas-wrapper" style="height: 150px; margin-top: 15px;">
+                <canvas id="chart-inferior-ex"></canvas>
+            </div>
+
+            <div class="formula-breakdown" style="border-left-color: #10b981; background-color: #ecfdf5; margin-top: 15px;">
+                <span class="breakdown-label" style="color: #047857">PASO 4: CONCLUSIÓN</span>
+                <p style="margin: 5px 0 0 0; font-size: 14px;">
+                    Como -10.41 < -1.645, el valor cae profundamente en la región de rechazo. <strong>Se rechaza H<sub>0</sub></strong>. Existe evidencia significativa de que la conectividad en Ancón es menor al promedio nacional.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 5: Cola Superior (Teoría) -->
+<div class="slide-container">
+    <h2>4.2. Prueba de Cola Superior (Unilateral Derecha)</h2>
+    <div class="two-column">
+        <div>
+            <h3>Definición Detallada</h3>
+            <p>Se utiliza cuando el objetivo es demostrar que la proporción poblacional ha <strong>aumentado</strong> o es <strong>mayor</strong> que el estándar establecido. Es común en pruebas de mejora de calidad o efectividad de ventas.</p>
+            
+            <div class="text-block" style="margin-top: 20px;">
+                <strong>Planteamiento de Hipótesis:</strong>
+                <ul class="tech-list" style="margin-top: 10px;">
+                    <li><strong style="color:#4b5563">H<sub>0</sub>: <i class="var">&pi;</i> &le; <i class="var">&pi;</i><sub>0</sub></strong> (Nula). Asume que no hubo mejora.</li>
+                    <li><strong style="color:#15803d">H<sub>1</sub>: <i class="var">&pi;</i> > <i class="var">&pi;</i><sub>0</sub></strong> (Alterna). Lo que queremos probar (aumento).</li>
+                </ul>
+            </div>
+
+            <div class="formula-breakdown" style="border-left-color: #15803d; background-color: #f0fdf4;">
+                <div class="breakdown-item">
+                    <span class="breakdown-label" style="color:#15803d">REGIÓN DE RECHAZO:</span>
+                    Se ubica en el extremo derecho. Rechazamos H<sub>0</sub> si el estadístico calculado <i class="var">Z</i><sub>c</sub> es mayor que el valor crítico positivo +<i class="var">Z</i><sub>&alpha;</sub>.
+                </div>
+                <div class="breakdown-item" style="text-align: center; margin-top: 10px;">
+                    <math display="inline" style="font-size: 20px; font-weight: bold; color: #15803d;">
+                        <msub><mi>Z</mi><mi>c</mi></msub><mo>&gt;</mo><msub><mi>Z</mi><mi>&#x03B1;</mi></msub>
+                    </math>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h3>Representación Gráfica</h3>
+            <div class="canvas-wrapper">
+                <canvas id="chart-superior"></canvas>
+            </div>
+            <p class="chart-caption">La zona verde representa la región de rechazo (<i class="var">&alpha;</i>). Valores altos de Z confirman el aumento.</p>
+            
+            <div class="text-block" style="margin-top: 20px; font-size: 14px; background: #fff; padding: 15px; border: 1px solid #e2e8f0; border-radius: 6px;">
+                <strong>Ejemplo de lógica:</strong><br>
+                Si implementamos una mejora para subir la eficiencia del 90% (<i class="var">&pi;</i><sub>0</sub>=0.9) y la muestra arroja 95% (<i class="var">p</i>=0.95), necesitamos que esta diferencia positiva sea estadísticamente sólida (Z alto) para descartar que fue suerte.
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 6: Ejemplo Cola Superior -->
+<div class="slide-container">
+    <h2>Ejemplo 4.2: Disponibilidad de Servidores</h2>
+    <div class="two-column equal-column">
+        <div>
+            <div class="text-block">
+                <strong>Problema:</strong> El SLA garantiza 99.0% de disponibilidad. Se instala un nuevo algoritmo y en 1000 peticiones, 996 son exitosas. ¿Ha <strong>mejorado</strong> significativamente la disponibilidad?
+            </div>
+            <div class="formula-breakdown">
+                <span class="breakdown-label">PASO 1: DATOS Y PARÁMETROS</span>
+                <ul class="tech-list">
+                    <li>Muestra (<i class="var">n</i>) = 1000</li>
+                    <li>Éxitos (<i class="var">x</i>) = 996</li>
+                    <li>Meta (<i class="var">&pi;</i><sub>0</sub>) = 0.99</li>
+                    <li>Nivel de Confianza = 95% (<i class="var">&alpha;</i>=0.05)</li>
+                    <li>Valor Crítico (<i class="var">Z</i><sub>&alpha;</sub>) = +1.645 (Cola Der)</li>
+                </ul>
+            </div>
+            <div class="formula-breakdown" style="margin-top: 15px;">
+                <span class="breakdown-label">PASO 2: CÁLCULO DE PROPORCIÓN MUESTRAL</span>
+                <math display="block" style="margin: 10px 0;">
+                    <mi>p</mi><mo>=</mo><mfrac><mn>996</mn><mn>1000</mn></mfrac><mo>=</mo><mn>0.996</mn>
+                </math>
+            </div>
+        </div>
+        <div>
+            <div class="formula-breakdown">
+                <span class="breakdown-label">PASO 3: ESTADÍSTICO DE PRUEBA</span>
+                <div class="calc-step">
+                    <span class="calc-label">Error Estándar (Denominador):</span>
+                    <math display="block">
+                        <msqrt><mfrac><mrow><mn>0.99</mn><mo>(</mo><mn>0.01</mn><mo>)</mo></mrow><mn>1000</mn></mfrac></msqrt>
+                        <mo>=</mo>
+                        <msqrt><mn>0.0000099</mn></msqrt>
+                        <mo>=</mo>
+                        <mn>0.00315</mn>
+                    </math>
+                </div>
+                <div class="calc-step">
+                    <span class="calc-label">Cálculo Final Z:</span>
+                    <math display="block">
+                        <msub><mi>Z</mi><mi>c</mi></msub>
+                        <mo>=</mo>
+                        <mfrac><mrow><mn>0.996</mn><mo>-</mo><mn>0.99</mn></mrow><mn>0.00315</mn></mfrac>
+                        <mo>=</mo>
+                        <mn>1.90</mn>
+                    </math>
+                </div>
+            </div>
+            
+            <div class="canvas-wrapper" style="height: 150px; margin-top: 15px;">
+                <canvas id="chart-superior-ex"></canvas>
+            </div>
+
+            <div class="formula-breakdown" style="border-left-color: #10b981; background-color: #ecfdf5; margin-top: 15px;">
+                <span class="breakdown-label" style="color: #047857">PASO 4: CONCLUSIÓN</span>
+                <p style="margin: 5px 0 0 0; font-size: 14px;">
+                    Como 1.90 > 1.645, rechazamos H<sub>0</sub>. El nuevo algoritmo ha mejorado significativamente la disponibilidad del sistema.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 7: Prueba Bilateral (Teoría) -->
+<div class="slide-container">
+    <h2>4.3. Prueba Bilateral (Dos Colas)</h2>
+    <div class="two-column">
+        <div>
+            <h3>Definición Detallada</h3>
+            <p>Se utiliza para detectar <strong>cualquier cambio</strong> significativo, ya sea un aumento o una disminución respecto al parámetro. Es la prueba más rigurosa y conservadora.</p>
+            
+            <div class="text-block" style="margin-top: 20px;">
+                <strong>Planteamiento de Hipótesis:</strong>
+                <ul class="tech-list" style="margin-top: 10px;">
+                    <li><strong style="color:#4b5563">H<sub>0</sub>: <i class="var">&pi;</i> = <i class="var">&pi;</i><sub>0</sub></strong> (Nula). Asume igualdad exacta.</li>
+                    <li><strong style="color:#d97706">H<sub>1</sub>: <i class="var">&pi;</i> &ne; <i class="var">&pi;</i><sub>0</sub></strong> (Alterna). Probar diferencia (&ne;).</li>
+                </ul>
+            </div>
+
+            <div class="formula-breakdown" style="border-left-color: #d97706; background-color: #fffbeb;">
+                <div class="breakdown-item">
+                    <span class="breakdown-label" style="color:#d97706">REGIÓN DE RECHAZO DIVIDIDA:</span>
+                    El riesgo <i class="var">&alpha;</i> se divide en dos colas (<i class="var">&alpha;</i>/2). Rechazamos si el valor cae muy a la izquierda O muy a la derecha.
+                </div>
+                <div class="breakdown-item" style="text-align: center; margin-top: 10px;">
+                    <math display="inline" style="font-size: 20px; font-weight: bold; color: #d97706;">
+                        <mo>|</mo><msub><mi>Z</mi><mi>c</mi></msub><mo>|</mo><mo>&gt;</mo><msub><mi>Z</mi><mrow><mi>&#x03B1;</mi><mo>/</mo><mn>2</mn></mrow></msub>
+                    </math>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h3>Representación Gráfica</h3>
+            <div class="canvas-wrapper">
+                <canvas id="chart-bilateral"></canvas>
+            </div>
+            <p class="chart-caption">La región de rechazo son las dos colas amarillas. Ambas suman <i class="var">&alpha;</i>.</p>
+            
+            <div class="text-block" style="margin-top: 20px; font-size: 14px; background: #fff; padding: 15px; border: 1px solid #e2e8f0; border-radius: 6px;">
+                <strong>Importancia del Valor Absoluto |<i class="var">Z</i><sub>c</sub>|:</strong><br>
+                En esta prueba, no nos importa el signo (si subió o bajó), solo la <strong>magnitud del cambio</strong>. Tomamos el valor absoluto del Z calculado y lo comparamos con el crítico positivo (ej: 1.96). Si la magnitud es mayor, es significativo.
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 8: Ejemplo Bilateral -->
+<div class="slide-container">
+    <h2>Ejemplo 4.3: Streaming en Lima</h2>
+    <div class="two-column equal-column">
+        <div>
+            <div class="text-block">
+                <strong>Problema:</strong> Históricamente el 49% usa streaming. En una muestra reciente de 540 personas, 283 lo usan. ¿Ha <strong>cambiado</strong> el uso (ya sea subido o bajado)?
+            </div>
+            <div class="formula-breakdown">
+                <span class="breakdown-label">PASO 1: DATOS Y PARÁMETROS</span>
+                <ul class="tech-list">
+                    <li>Muestra (<i class="var">n</i>) = 540</li>
+                    <li>Éxitos (<i class="var">x</i>) = 283</li>
+                    <li>Histórico (<i class="var">&pi;</i><sub>0</sub>) = 0.49</li>
+                    <li>Confianza = 95% (<i class="var">&alpha;</i>=0.05, <i class="var">&alpha;</i>/2=0.025)</li>
+                    <li>Valor Crítico (<i class="var">Z</i><sub>&alpha;/2</sub>) = 1.96</li>
+                </ul>
+            </div>
+            <div class="formula-breakdown" style="margin-top: 15px;">
+                <span class="breakdown-label">PASO 2: CÁLCULO DE PROPORCIÓN MUESTRAL</span>
+                <math display="block" style="margin: 10px 0;">
+                    <mi>p</mi><mo>=</mo><mfrac><mn>283</mn><mn>540</mn></mfrac><mo>=</mo><mn>0.5241</mn>
+                </math>
+            </div>
+        </div>
+        <div>
+            <div class="formula-breakdown">
+                <span class="breakdown-label">PASO 3: ESTADÍSTICO DE PRUEBA</span>
+                <div class="calc-step">
+                    <span class="calc-label">Error Estándar:</span>
+                    <math display="block">
+                        <msqrt><mfrac><mrow><mn>0.49</mn><mo>(</mo><mn>0.51</mn><mo>)</mo></mrow><mn>540</mn></mfrac></msqrt>
+                        <mo>=</mo>
+                        <mn>0.0215</mn>
+                    </math>
+                </div>
+                <div class="calc-step">
+                    <span class="calc-label">Calculo Z:</span>
+                    <math display="block">
+                        <msub><mi>Z</mi><mi>c</mi></msub>
+                        <mo>=</mo>
+                        <mfrac><mrow><mn>0.5241</mn><mo>-</mo><mn>0.49</mn></mrow><mn>0.0215</mn></mfrac>
+                        <mo>=</mo>
+                        <mn>1.58</mn>
+                    </math>
+                </div>
+            </div>
+            
+            <div class="canvas-wrapper" style="height: 150px; margin-top: 15px;">
+                <canvas id="chart-bilateral-ex"></canvas>
+            </div>
+
+            <div class="formula-breakdown" style="border-left-color: #64748b; background-color: #f1f5f9; margin-top: 15px;">
+                <span class="breakdown-label" style="color: #374151">PASO 4: CONCLUSIÓN</span>
+                <p style="margin: 5px 0 0 0; font-size: 14px;">
+                    Tomamos el valor absoluto |1.58| = 1.58. Como 1.58 < 1.96, <strong>NO se rechaza H<sub>0</sub></strong>. Aunque subió al 52%, la diferencia no es estadísticamente significativa para afirmar un cambio poblacional.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 9: Diferencia de Proporciones (Teoría) -->
+<div class="slide-container">
+    <h2>4.4. Prueba de Diferencia de Proporciones</h2>
+    <div class="two-column">
+        <div>
+            <h3>Comparación de Dos Poblaciones Independientes</h3>
+            <p>Se utiliza para determinar si existen diferencias significativas entre dos grupos distintos (Ej: Hombres vs Mujeres, Grupo A vs Grupo B, Algoritmo 1 vs Algoritmo 2).</p>
+            
+            <div class="formula-box">
+                <math display="block">
+                  <msub><mi>Z</mi><mi>c</mi></msub>
+                  <mo>=</mo>
+                  <mfrac>
+                    <mrow><msub><mi>p</mi><mn>1</mn></msub><mo>-</mo><msub><mi>p</mi><mn>2</mn></msub></mrow>
+                    <msqrt>
+                      <mrow><mi>p</mi><mo>(</mo><mn>1</mn><mo>-</mo><mi>p</mi><mo>)</mo><mo>(</mo><mfrac><mn>1</mn><msub><mi>n</mi><mn>1</mn></msub></mfrac><mo>+</mo><mfrac><mn>1</mn><msub><mi>n</mi><mn>2</mn></msub></mfrac><mo>)</mo></mrow>
+                    </msqrt>
+                  </mfrac>
+                </math>
+            </div>
+            <div class="formula-breakdown">
+                <div class="breakdown-item">
+                    <span class="breakdown-label">NUMERADOR:</span> Diferencia real observada entre las dos muestras.
+                </div>
+                <div class="breakdown-item">
+                    <span class="breakdown-label">DENOMINADOR:</span> Error estándar combinado para la diferencia de dos variables aleatorias independientes.
+                </div>
+            </div>
+        </div>
+        <div>
+            <h3>La Proporción Ponderada (<i class="var">p</i>)</h3>
+            <p>Bajo la hipótesis nula (H<sub>0</sub>: <i class="var">&pi;</i><sub>1</sub> = <i class="var">&pi;</i><sub>2</sub>), asumimos que ambos grupos provienen de la misma población en cuanto a esa característica.</p>
+            <div class="formula-box" style="border-left-color: #8b5cf6;">
+                <math display="block">
+                     <mi>p</mi><mo>=</mo><mfrac><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>+</mo><msub><mi>x</mi><mn>2</mn></msub></mrow><mrow><msub><mi>n</mi><mn>1</mn></msub><mo>+</mo><msub><mi>n</mi><mn>2</mn></msub></mrow></mfrac>
+                </math>
+            </div>
+            <div class="formula-breakdown">
+                <span class="breakdown-label">¿POR QUÉ SE PONDERA?</span><br>
+                Para obtener una estimación más precisa de la varianza, combinamos los éxitos totales y los dividimos por el total de observaciones (<i class="var">n</i><sub>1</sub> + <i class="var">n</i><sub>2</sub>). Esto crea un "promedio pesado" que estabiliza el cálculo del error estándar.
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 10: Ejemplo Diferencia -->
+<div class="slide-container">
+    <h2>Ejemplo 4.4: A/B Testing (Algoritmos)</h2>
+    <div class="two-column equal-column">
+        <div>
+            <div class="text-block">
+                <strong>Problema:</strong> Comparar la tasa de conversión. El Algoritmo A tuvo 15% de éxito y el B 20%. Ambos con muestra de 1000. ¿Es B realmente mejor o fue azar? (Prueba Bilateral para detectar diferencia).
+            </div>
+            <div class="formula-breakdown">
+                <span class="breakdown-label">PASO 1: DATOS</span>
+                <ul class="tech-list">
+                    <li>Muestra A: <i class="var">n</i><sub>1</sub>=1000, <i class="var">p</i><sub>1</sub>=0.15 (<i class="var">x</i><sub>1</sub>=150)</li>
+                    <li>Muestra B: <i class="var">n</i><sub>2</sub>=1000, <i class="var">p</i><sub>2</sub>=0.20 (<i class="var">x</i><sub>2</sub>=200)</li>
+                    <li>Confianza: 95% (<i class="var">Z</i><sub>crit</sub> = 1.96)</li>
+                </ul>
+            </div>
+            <div class="formula-breakdown" style="margin-top:15px; border-left-color: #8b5cf6; background: #f5f3ff;">
+                <span class="breakdown-label" style="color: #5b21b6">PASO 2: PROPORCIÓN PONDERADA</span>
+                <math display="block" style="margin: 10px 0;">
+                    <mi>p</mi><mo>=</mo><mfrac><mrow><mn>150</mn><mo>+</mo><mn>200</mn></mrow><mn>2000</mn></mfrac><mo>=</mo><mfrac><mn>350</mn><mn>2000</mn></mfrac><mo>=</mo><mn>0.175</mn>
+                </math>
+            </div>
+        </div>
+        <div>
+            <div class="formula-breakdown">
+                <span class="breakdown-label">PASO 3: ESTADÍSTICO Z</span>
+                <div class="calc-step">
+                    <span class="calc-label">Error Estándar (Usando p=0.175):</span>
+                    <math display="block">
+                        <msqrt><mn>0.175</mn><mo>(</mo><mn>0.825</mn><mo>)</mo><mo>(</mo><mfrac><mn>1</mn><mn>1000</mn></mfrac><mo>+</mo><mfrac><mn>1</mn><mn>1000</mn></mfrac><mo>)</mo></msqrt>
+                        <mo>=</mo>
+                        <mn>0.017</mn>
+                    </math>
+                </div>
+                <div class="calc-step">
+                    <span class="calc-label">Cálculo Z:</span>
+                    <math display="block">
+                        <msub><mi>Z</mi><mi>c</mi></msub>
+                        <mo>=</mo>
+                        <mfrac><mrow><mn>0.15</mn><mo>-</mo><mn>0.20</mn></mrow><mn>0.017</mn></mfrac>
+                        <mo>=</mo>
+                        <mfrac><mrow><mo>-</mo><mn>0.05</mn></mrow><mn>0.017</mn></mfrac>
+                        <mo>=</mo>
+                        <mo>-</mo><mn>2.94</mn>
+                    </math>
+                </div>
+            </div>
+            
+            <div class="canvas-wrapper" style="height: 150px; margin-top: 15px;">
+                <canvas id="chart-diferencia-ex"></canvas>
+            </div>
+
+            <div class="formula-breakdown" style="border-left-color: #10b981; background-color: #ecfdf5; margin-top: 15px;">
+                <span class="breakdown-label" style="color: #047857">PASO 4: CONCLUSIÓN</span>
+                <p style="margin: 5px 0 0 0; font-size: 14px;">
+                    |-2.94| = 2.94. Como 2.94 > 1.96, rechazamos H<sub>0</sub>. Existe una diferencia significativa: el Algoritmo B es superior.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Función centralizada para dibujar las curvas normales
+    function drawNormalCurve(canvasId, type, observedZ = null) {
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) return;
+        
+        // Configuración de alta resolución
+        const dpr = window.devicePixelRatio || 1;
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+        const ctx = canvas.getContext('2d');
+        ctx.scale(dpr, dpr);
+        
+        const w = rect.width;
+        const h = rect.height;
+        const bottomY = h - 30; // Eje X
+        const topY = 20;
+        const meanX = w / 2;
+        const sigma = w / 8; // Ancho de la campana
+
+        // Función Normal
+        function pdf(x) {
+            return (1 / (sigma * Math.sqrt(2 * Math.PI))) * Math.exp(-0.5 * Math.pow((x - meanX) / sigma, 2));
+        }
+        const maxVal = pdf(meanX);
+        function scaleY(y) { return bottomY - (y / maxVal) * (bottomY - topY); }
+        function zToX(z) { return meanX + (z * sigma); }
+
+        // 1. Dibujar forma base (relleno gris)
+        ctx.beginPath();
+        ctx.moveTo(0, bottomY);
+        for(let i=0; i<=w; i++) ctx.lineTo(i, scaleY(pdf(i)));
+        ctx.lineTo(w, bottomY);
+        ctx.fillStyle = '#f1f5f9';
+        ctx.fill();
+
+        // 2. Colorear Zonas de Rechazo
+        ctx.beginPath();
+        let color = '#cbd5e1';
+        if(type === 'inferior') {
+            color = '#fca5a5'; // Rojo
+            let limitX = zToX(-1.64);
+            ctx.moveTo(0, bottomY);
+            for(let i=0; i<=limitX; i++) ctx.lineTo(i, scaleY(pdf(i)));
+            ctx.lineTo(limitX, bottomY);
+        } else if (type === 'superior') {
+            color = '#86efac'; // Verde
+            let limitX = zToX(1.64);
+            ctx.moveTo(limitX, bottomY);
+            for(let i=limitX; i<=w; i++) ctx.lineTo(i, scaleY(pdf(i)));
+            ctx.lineTo(w, bottomY);
+        } else if (type === 'bilateral') {
+            color = '#fcd34d'; // Amarillo
+            // Izquierda
+            let limitX1 = zToX(-1.96);
+            ctx.moveTo(0, bottomY);
+            for(let i=0; i<=limitX1; i++) ctx.lineTo(i, scaleY(pdf(i)));
+            ctx.lineTo(limitX1, bottomY);
+            ctx.fillStyle = color;
+            ctx.fill();
+            // Derecha
+            ctx.beginPath();
+            let limitX2 = zToX(1.96);
+            ctx.moveTo(limitX2, bottomY);
+            for(let i=limitX2; i<=w; i++) ctx.lineTo(i, scaleY(pdf(i)));
+            ctx.lineTo(w, bottomY);
+        }
+        ctx.fillStyle = color;
+        ctx.fill();
+
+        // 3. Contorno
+        ctx.beginPath();
+        for(let i=0; i<=w; i++) ctx.lineTo(i, scaleY(pdf(i)));
+        ctx.strokeStyle = '#475569';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        // 4. Ejes y Etiquetas
+        ctx.beginPath();
+        ctx.moveTo(0, bottomY); ctx.lineTo(w, bottomY); // Eje X
+        ctx.strokeStyle = '#1e293b';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        ctx.fillStyle = '#64748b';
+        ctx.font = '10px Inter';
+        ctx.textAlign = 'center';
+        [-3, -2, -1, 0, 1, 2, 3].forEach(z => {
+            let x = zToX(z);
+            ctx.fillText(z, x, h - 10);
+            ctx.beginPath(); ctx.moveTo(x, bottomY); ctx.lineTo(x, bottomY+3); ctx.stroke();
+        });
+
+        // 5. Línea de Z Observado (si existe)
+        if(observedZ !== null) {
+            let zClamped = Math.max(-3.5, Math.min(3.5, observedZ));
+            let obsX = zToX(zClamped);
+            let obsY = scaleY(pdf(obsX));
+            
+            ctx.beginPath();
+            ctx.moveTo(obsX, bottomY);
+            ctx.lineTo(obsX, obsY - 15);
+            ctx.strokeStyle = '#1e3a8a';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([4, 2]);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Punto
+            ctx.beginPath();
+            ctx.arc(obsX, obsY, 4, 0, 2*Math.PI);
+            ctx.fillStyle = '#1e3a8a';
+            ctx.fill();
+
+            // Texto
+            ctx.fillStyle = '#1e3a8a';
+            ctx.font = 'bold 11px Inter';
+            ctx.fillText(`Z=${observedZ}`, obsX, obsY - 20);
+        }
+    }
+
+    window.onload = () => {
+        // Teóricos
+        drawNormalCurve('chart-inferior', 'inferior');
+        drawNormalCurve('chart-superior', 'superior');
+        drawNormalCurve('chart-bilateral', 'bilateral');
+        
+        // Ejemplos
+        drawNormalCurve('chart-inferior-ex', 'inferior', -10.41);
+        drawNormalCurve('chart-superior-ex', 'superior', 1.90);
+        drawNormalCurve('chart-bilateral-ex', 'bilateral', 1.58);
+        drawNormalCurve('chart-diferencia-ex', 'bilateral', -2.94);
+    };
+</script>
+
+</body>
+</html>

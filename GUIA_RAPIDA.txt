@@ -1,0 +1,78 @@
+════════════════════════════════════════════════════════════════
+GUÍA RÁPIDA: COMPILAR Y USAR EL .EXE
+════════════════════════════════════════════════════════════════
+
+┌────────────────────────────────────────────────────────────┐
+│ PASO 1: COMPILAR (en tu máquina con Python)                │
+└────────────────────────────────────────────────────────────┘
+
+    Doble clic en:  compilar.bat
+    
+    Espera 2-5 minutos...
+    
+    ✓ Se crea la carpeta dist/
+
+
+┌────────────────────────────────────────────────────────────┐
+│ PASO 2: COPIAR TODO (dist/ contiene)                       │
+└────────────────────────────────────────────────────────────┘
+
+    dist/
+    ├── Sistema_Calificacion_Examenes.exe  ← Copiar
+    └── _internal/                         ← Copiar TODO
+
+
+┌────────────────────────────────────────────────────────────┐
+│ PASO 3: EN LA OTRA MÁQUINA                                 │
+└────────────────────────────────────────────────────────────┘
+
+    1. Pega ambos (exe + _internal) en una carpeta
+    
+    2. Abre: _internal/config.py
+    
+    3. Cambia la IP:
+       API_BASE_URL = "http://TU_IP_SERVIDOR:8000/api"
+    
+    4. Guarda
+    
+    5. Doble clic en Sistema_Calificacion_Examenes.exe
+
+
+┌────────────────────────────────────────────────────────────┐
+│ QUÉ NECESITA LA OTRA MÁQUINA                               │
+└────────────────────────────────────────────────────────────┘
+
+    ✅ Windows 10/11
+    ❌ NO necesita Python
+    ❌ NO necesita instalar nada
+
+
+┌────────────────────────────────────────────────────────────┐
+│ LIBRERÍAS INCLUIDAS EN EL .EXE                             │
+└────────────────────────────────────────────────────────────┘
+
+    ✅ opencv-python (procesamiento de imágenes)
+    ✅ numpy (cálculos numéricos)
+    ✅ customtkinter (interfaz gráfica)
+    ✅ pdf2image (leer PDFs)
+    ✅ reportlab (generar PDFs)
+    ✅ requests (conexión con API)
+    ✅ poppler (procesar PDFs)
+
+
+┌────────────────────────────────────────────────────────────┐
+│ SI HAY PROBLEMAS                                           │
+└────────────────────────────────────────────────────────────┘
+
+    ❌ "No se puede abrir"
+       → Verifica que _internal esté junto al .exe
+    
+    ❌ "No carga eventos"
+       → Verifica la IP en _internal/config.py
+       → Verifica que Laravel esté corriendo
+    
+    ❌ "Poppler no encontrado"
+       → Verifica que _internal/poppler existe
+
+
+════════════════════════════════════════════════════════════════

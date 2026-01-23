@@ -19,20 +19,22 @@ capacitaciones_pj/
 
 ### 🟢 INICIAR EL SISTEMA
 
-**Paso 1:** Hacer **DOBLE CLIC** en:
+**Paso 1:** Abrir **XAMPP Control Panel** y hacer clic en **START** en:
+- ✅ Apache
+- ✅ MySQL
+
+**Paso 2:** Hacer **DOBLE CLIC** en:
 ```
 INICIAR_SISTEMA.bat
 ```
 
 **¿Qué hace?**
-- ✅ Inicia Apache (servidor web)
-- ✅ Inicia MySQL (base de datos)
 - ✅ Inicia el Backend (Laravel)
 - ✅ Inicia el Frontend (Vue)
 - ✅ Abre automáticamente el navegador
 
 **Resultado:**
-- Se abrirán **3 ventanas negras** → **NO LAS CIERRES**
+- Se abrirán **2 ventanas negras** → **NO LAS CIERRES**
 - El navegador se abrirá automáticamente en: `http://localhost:5173`
 - Login: `pjudicial` / `Corte2026`
 
@@ -40,15 +42,20 @@ INICIAR_SISTEMA.bat
 
 ### 🔴 DETENER EL SISTEMA
 
-**Al terminar el día, hacer DOBLE CLIC en:**
+**Al terminar el día:**
+
+**Paso 1:** Hacer DOBLE CLIC en:
 ```
 DETENER_SISTEMA.bat
 ```
+(Esto detiene Backend y Frontend)
+
+**Paso 2:** En **XAMPP Control Panel**, hacer clic en **STOP** en:
+- Apache
+- MySQL
 
 **¿Qué hace?**
-- ✅ Cierra todas las ventanas negras
-- ✅ Detiene Apache
-- ✅ Detiene MySQL
+- ✅ Cierra las 2 ventanas negras (Backend y Frontend)
 - ✅ Libera memoria RAM
 
 ---
@@ -97,7 +104,9 @@ VERIFICAR_SERVICIOS.bat
 3. **Crear base de datos** en phpMyAdmin:
    - Nombre: `capacitaciones`
    - Cotejamiento: `utf8mb4_unicode_ci`
-4. **Migrar datos**:
+4. **Migrar datos**::
+   - Inicia Apache y MySQL desde XAMPP Control Panel
+   - Ejecut
    ```bash
    cd backend
    php artisan migrate:fresh --seed
@@ -107,16 +116,20 @@ VERIFICAR_SERVICIOS.bat
 ---
 
 ### Uso Normal (Todos los Días):
-
-1. **Llegar a la oficina:**
+Abrir XAMPP Control Panel
+   - Start → Apache
+   - Start → MySQL
    - Doble clic en `INICIAR_SISTEMA.bat`
    - Esperar que se abra el navegador
    - Iniciar sesión
 
 2. **Trabajar todo el día:**
-   - Las ventanas negras deben permanecer abiertas
+   - Las 2 ventanas negras deben permanecer abiertas
    - Si cierras una por error → ejecutar `REINICIAR_SISTEMA.bat`
 
+3. **Al salir:**
+   - Doble clic en `DETENER_SISTEMA.bat`
+   - En XAMPP Control Panel: Stop → Apache y MySQL
 3. **Al salir:**
    - Doble clic en `DETENER_SISTEMA.bat`
    - Apagar la computadora
@@ -130,11 +143,15 @@ Cuando ejecutes `INICIAR_SISTEMA.bat` verás **3 ventanas**:
 ### Ventana 1: Principal (Verde)
 ```
 ========================================================================
-  SISTEMA DE CONTROL DE ASISTENCIAS
-  Poder Judicial de Puno
+  IMPORTANTE: Asegurate de que Apache y MySQL esten corriendo
+              en XAMPP Control Panel antes de continuar.
+
 ========================================================================
 
-[1/5] XAMPP encontrado
+Presione una tecla para continuar . . .
+
+[1/2] Iniciando Backend... OK
+[2/2] XAMPP encontrado
 [2/5] Iniciando Apache... OK
 [3/5] Iniciando MySQL... OK
 [4/5] Iniciando Backend... OK

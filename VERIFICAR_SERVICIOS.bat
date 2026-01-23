@@ -1,7 +1,7 @@
 @echo off
 title VERIFICAR SERVICIOS - PODER JUDICIAL DE PUNO
 color 0B
-mode con: cols=80 lines=25
+mode con: cols=80 lines=20
 
 echo.
 echo ========================================================================
@@ -11,28 +11,26 @@ echo ========================================================================
 echo.
 
 REM ============================================================
-REM VERIFICAR APACHE
+REM VERIFICAR APACHE (Manual - XAMPP)
 REM ============================================================
-echo [Apache]
+echo [Apache - XAMPP Control Panel]
 tasklist /FI "IMAGENAME eq httpd.exe" 2>NUL | find /I /N "httpd.exe">NUL
 if "%ERRORLEVEL%"=="0" (
     echo   Estado: CORRIENDO
-    echo   Puerto: 80
 ) else (
-    echo   Estado: DETENIDO
+    echo   Estado: DETENIDO - Iniciar desde XAMPP Control Panel
 )
 echo.
 
 REM ============================================================
-REM VERIFICAR MYSQL
+REM VERIFICAR MYSQL (Manual - XAMPP)
 REM ============================================================
-echo [MySQL]
+echo [MySQL - XAMPP Control Panel]
 tasklist /FI "IMAGENAME eq mysqld.exe" 2>NUL | find /I /N "mysqld.exe">NUL
 if "%ERRORLEVEL%"=="0" (
     echo   Estado: CORRIENDO
-    echo   Puerto: 3306
 ) else (
-    echo   Estado: DETENIDO
+    echo   Estado: DETENIDO - Iniciar desde XAMPP Control Panel
 )
 echo.
 
@@ -45,7 +43,7 @@ if "%ERRORLEVEL%"=="0" (
     echo   Estado: CORRIENDO
     echo   URL: http://localhost:8000
 ) else (
-    echo   Estado: DETENIDO
+    echo   Estado: DETENIDO - Ejecutar INICIAR_SISTEMA.bat
 )
 echo.
 
@@ -58,14 +56,10 @@ if "%ERRORLEVEL%"=="0" (
     echo   Estado: CORRIENDO
     echo   URL: http://localhost:5173
 ) else (
-    echo   Estado: DETENIDO
+    echo   Estado: DETENIDO - Ejecutar INICIAR_SISTEMA.bat
 )
 echo.
 
-echo ========================================================================
-echo.
-echo   Si algun servicio esta DETENIDO, ejecuta: INICIAR_SISTEMA.bat
-echo.
 echo ========================================================================
 echo.
 pause

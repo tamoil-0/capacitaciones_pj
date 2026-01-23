@@ -1,0 +1,676 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "MILA API",
+        "description": "Documentación de la API para la app MILA (registro y búsqueda de pacientes para prácticas universitarias)",
+        "contact": {
+            "name": "Rusman",
+            "email": "rusman@ejemplo.com"
+        },
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Autenticación"
+                ],
+                "summary": "Login de usuario",
+                "operationId": "a3b306d14572d1f4bd6c064b3233e7b8",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nickname",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "nickname": {
+                                        "type": "string",
+                                        "example": "rusman7"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "clave123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login exitoso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Login exitoso"
+                                        },
+                                        "token": {
+                                            "type": "string",
+                                            "example": "1|Xyz12345..."
+                                        },
+                                        "user": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "dni": {
+                                                    "type": "string",
+                                                    "example": "12345678"
+                                                },
+                                                "nickname": {
+                                                    "type": "string",
+                                                    "example": "rusman7"
+                                                },
+                                                "id_tipo_usuario": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Credenciales inválidas"
+                    }
+                }
+            }
+        },
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "Autenticación"
+                ],
+                "summary": "Registrar nuevo usuario (Estudiante o Paciente)",
+                "operationId": "8a56853624e025573120a09a4c75d468",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "dni",
+                                    "nickname",
+                                    "password",
+                                    "password_confirmation",
+                                    "id_tipo_usuario"
+                                ],
+                                "properties": {
+                                    "dni": {
+                                        "type": "string",
+                                        "example": "12345678"
+                                    },
+                                    "nickname": {
+                                        "type": "string",
+                                        "example": "rusman7"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "clave123"
+                                    },
+                                    "password_confirmation": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "clave123"
+                                    },
+                                    "id_tipo_usuario": {
+                                        "description": "1 = Estudiante, 2 = Paciente",
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "codigo": {
+                                        "type": "string",
+                                        "example": "2023001(Solo si es estudiante)"
+                                    },
+                                    "nombres": {
+                                        "type": "string",
+                                        "example": "Rusman"
+                                    },
+                                    "ap_paterno": {
+                                        "type": "string",
+                                        "example": "Torres"
+                                    },
+                                    "ap_materno": {
+                                        "type": "string",
+                                        "example": "Huanca"
+                                    },
+                                    "universidad": {
+                                        "type": "string",
+                                        "example": "UNAP (Solo si es estudiante)"
+                                    },
+                                    "carrera": {
+                                        "type": "string",
+                                        "example": "Odontología (Solo si es estudiante)"
+                                    },
+                                    "tipo_nivel": {
+                                        "type": "string",
+                                        "example": "Semestre (Solo si es estudiante)"
+                                    },
+                                    "numero_nivel": {
+                                        "description": "Solo si es estudiante",
+                                        "type": "integer",
+                                        "example": 8
+                                    },
+                                    "telefono": {
+                                        "description": "Opcional",
+                                        "type": "string",
+                                        "example": "987654321"
+                                    },
+                                    "direccion": {
+                                        "description": "Opcional",
+                                        "type": "string",
+                                        "example": "Av. Perú"
+                                    },
+                                    "correo": {
+                                        "type": "string",
+                                        "example": "rusman@correo.com"
+                                    },
+                                    "edad": {
+                                        "type": "integer",
+                                        "example": 22
+                                    },
+                                    "ciudad": {
+                                        "type": "string",
+                                        "example": "Puno"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Registro exitoso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Registro exitoso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Error de validación"
+                    }
+                }
+            }
+        },
+        "/api/perfil": {
+            "get": {
+                "tags": [
+                    "Perfil"
+                ],
+                "summary": "Obtener perfil del usuario autenticado",
+                "description": "Devuelve la información del usuario autenticado, incluyendo su perfil como estudiante o paciente.",
+                "operationId": "obtenerPerfil",
+                "responses": {
+                    "200": {
+                        "description": "Perfil obtenido correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "usuario": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "dni": {
+                                                    "type": "string",
+                                                    "example": "12345678"
+                                                },
+                                                "nickname": {
+                                                    "type": "string",
+                                                    "example": "rusman23"
+                                                },
+                                                "tipo_usuario": {
+                                                    "type": "string",
+                                                    "example": "Estudiante"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "perfil": {
+                                            "properties": {
+                                                "nombres": {
+                                                    "type": "string",
+                                                    "example": "Rusman"
+                                                },
+                                                "ap_paterno": {
+                                                    "type": "string",
+                                                    "example": "López"
+                                                },
+                                                "ap_materno": {
+                                                    "type": "string",
+                                                    "example": "Vera"
+                                                },
+                                                "correo": {
+                                                    "type": "string",
+                                                    "example": "rusman@email.com"
+                                                },
+                                                "edad": {
+                                                    "type": "integer",
+                                                    "example": 25
+                                                },
+                                                "telefono": {
+                                                    "type": "string",
+                                                    "example": "987654321"
+                                                },
+                                                "ciudad": {
+                                                    "type": "string",
+                                                    "example": "Puno"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "404": {
+                        "description": "Perfil no encontrado"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Perfil"
+                ],
+                "summary": "Editar perfil del usuario autenticado",
+                "operationId": "da23d108b99f091cce0cd0100135fc33",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nombres",
+                                    "ap_paterno",
+                                    "ap_materno",
+                                    "correo",
+                                    "edad",
+                                    "telefono",
+                                    "ciudad"
+                                ],
+                                "properties": {
+                                    "nombres": {
+                                        "type": "string",
+                                        "example": "Rusman"
+                                    },
+                                    "ap_paterno": {
+                                        "type": "string",
+                                        "example": "López"
+                                    },
+                                    "ap_materno": {
+                                        "type": "string",
+                                        "example": "Vera"
+                                    },
+                                    "correo": {
+                                        "type": "string",
+                                        "example": "rusman@email.com"
+                                    },
+                                    "edad": {
+                                        "type": "integer",
+                                        "example": 25
+                                    },
+                                    "telefono": {
+                                        "type": "string",
+                                        "example": "987654321"
+                                    },
+                                    "ciudad": {
+                                        "type": "string",
+                                        "example": "Puno"
+                                    },
+                                    "universidad": {
+                                        "type": "string",
+                                        "example": "UNAP"
+                                    },
+                                    "carrera": {
+                                        "type": "string",
+                                        "example": "Ingeniería de Sistemas"
+                                    },
+                                    "tipo_nivel": {
+                                        "type": "string",
+                                        "example": "Ciclo"
+                                    },
+                                    "numero_nivel": {
+                                        "type": "integer",
+                                        "example": 8
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Perfil actualizado correctamente"
+                    },
+                    "404": {
+                        "description": "Perfil no encontrado"
+                    },
+                    "422": {
+                        "description": "Error de validación"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/cambiar-password": {
+            "post": {
+                "tags": [
+                    "Perfil"
+                ],
+                "summary": "Cambiar contraseña del usuario autenticado",
+                "operationId": "8b8a675700022270d0b35f7a58926a73",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "password_actual",
+                                    "password_nuevo",
+                                    "password_nuevo_confirmacion"
+                                ],
+                                "properties": {
+                                    "password_actual": {
+                                        "type": "string",
+                                        "example": "miClaveAnterior"
+                                    },
+                                    "password_nuevo": {
+                                        "type": "string",
+                                        "example": "nuevaClave123"
+                                    },
+                                    "password_nuevo_confirmacion": {
+                                        "type": "string",
+                                        "example": "nuevaClave123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Contraseña actualizada correctamente"
+                    },
+                    "400": {
+                        "description": "La contraseña actual no es correcta"
+                    },
+                    "422": {
+                        "description": "Error de validación"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/publicaciones": {
+            "get": {
+                "tags": [
+                    "Publicaciones"
+                ],
+                "summary": "Listar todas las publicaciones",
+                "description": "Devuelve todas las publicaciones junto con la información del estudiante que las publicó.",
+                "operationId": "a9c21f8c6e0b662b1bb2d7a99d16d562",
+                "responses": {
+                    "200": {
+                        "description": "Lista de publicaciones con datos del autor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "descripcion": {
+                                                "type": "string",
+                                                "example": "Busco pacientes para prácticas"
+                                            },
+                                            "cant_pacientes": {
+                                                "type": "integer",
+                                                "example": 3
+                                            },
+                                            "estudiante": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "nombres": {
+                                                        "type": "string",
+                                                        "example": "Carlos"
+                                                    },
+                                                    "ap_paterno": {
+                                                        "type": "string",
+                                                        "example": "Perez"
+                                                    },
+                                                    "ap_materno": {
+                                                        "type": "string",
+                                                        "example": "Lopez"
+                                                    },
+                                                    "universidad": {
+                                                        "type": "string",
+                                                        "example": "UNAP"
+                                                    },
+                                                    "carrera": {
+                                                        "type": "string",
+                                                        "example": "Medicina Humana"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Publicaciones"
+                ],
+                "summary": "Crear nueva publicación",
+                "description": "Permite a un estudiante crear una publicación para solicitar pacientes.",
+                "operationId": "005929fd2ed21c344c825ebde21a6991",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "descripcion",
+                                    "cant_pacientes"
+                                ],
+                                "properties": {
+                                    "descripcion": {
+                                        "type": "string",
+                                        "example": "Busco 2 pacientes para práctica de endodoncia."
+                                    },
+                                    "cant_pacientes": {
+                                        "type": "integer",
+                                        "example": 2
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Publicación creada exitosamente"
+                    },
+                    "403": {
+                        "description": "Solo los estudiantes pueden crear publicaciones"
+                    },
+                    "422": {
+                        "description": "Error de validación"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/publicaciones/{id}": {
+            "put": {
+                "tags": [
+                    "Publicaciones"
+                ],
+                "summary": "Editar una publicación",
+                "description": "Permite modificar una publicación existente creada por un estudiante.",
+                "operationId": "121528a8b30bb3843feec2421676d9f4",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la publicación",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "descripcion",
+                                    "cant_pacientes"
+                                ],
+                                "properties": {
+                                    "descripcion": {
+                                        "type": "string",
+                                        "example": "Cambio de descripción"
+                                    },
+                                    "cant_pacientes": {
+                                        "type": "integer",
+                                        "example": 3
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Publicación actualizada correctamente"
+                    },
+                    "404": {
+                        "description": "Publicación no encontrada"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Publicaciones"
+                ],
+                "summary": "Eliminar una publicación",
+                "description": "Permite eliminar una publicación específica.",
+                "operationId": "35d1d2a106a0d985753c9426fbf31900",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la publicación a eliminar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Publicación eliminada con éxito"
+                    },
+                    "404": {
+                        "description": "Publicación no encontrada"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Autenticación",
+            "description": "Autenticación"
+        },
+        {
+            "name": "Perfil",
+            "description": "Perfil"
+        },
+        {
+            "name": "Publicaciones",
+            "description": "Publicaciones"
+        }
+    ]
+}

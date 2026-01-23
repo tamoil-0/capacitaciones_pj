@@ -192,7 +192,33 @@ Acceder desde navegador:
 http://192.168.1.100:5173
 ```
 
-## 📊 Uso del Sistema
+## �️ Sistema OCR de Calificación de Exámenes (Ejecutable)
+
+El sistema incluye un script Python (`completo.py`) que puede convertirse en un ejecutable standalone (.exe) para usarse en máquinas sin Python instalado.
+
+### Crear Ejecutable:
+
+**Requisitos:**
+- Python 3.10
+- PyInstaller 6.3.0+
+
+**Comando:**
+```bash
+python -m PyInstaller --onefile --windowed --name="Sistema_Calificacion_Examenes" --add-data="poppler;poppler" --hidden-import=PIL --hidden-import=PIL.Image --hidden-import=cv2 --hidden-import=numpy --hidden-import=customtkinter --hidden-import=pdf2image --hidden-import=reportlab --hidden-import=requests --collect-all customtkinter --exclude-module=torch --exclude-module=tensorflow --exclude-module=matplotlib --exclude-module=ultralytics --exclude-module=pygame --exclude-module=scipy --exclude-module=pandas --clean completo.py
+```
+
+**Resultado:**
+- Ejecutable en: `dist/Sistema_Calificacion_Examenes.exe` (~100 MB)
+- Archivos de soporte copiados automáticamente: `api_client.py`, `config.py`
+
+**Distribución:**
+Para usar en otra máquina, copiar toda la carpeta `dist/` que incluye:
+- `Sistema_Calificacion_Examenes.exe`
+- `api_client.py` (conexión con Laravel)
+- `config.py` (configuración)
+- `poppler/` (procesamiento PDF - incluido automáticamente)
+
+## �📊 Uso del Sistema
 
 ### Registro de Asistencias:
 

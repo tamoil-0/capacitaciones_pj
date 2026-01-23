@@ -70,18 +70,35 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-### 3️⃣ Crear Base de Datos
+### 3️⃣ Crear Base de Datos (OBLIGATORIO - HACER PRIMERO)
 
-Abrir phpMyAdmin: `http://localhost/phpmyadmin`
-- Crear base de datos: `capacitaciones`
-- Charset: `utf8mb4_unicode_ci`
+⚠️ **MUY IMPORTANTE:** Laravel NO crea la base de datos automáticamente. Debes crearla MANUALMENTE antes de ejecutar migraciones.
+
+**Abrir phpMyAdmin:** `http://localhost/phpmyadmin`
+
+1. Clic en "Nueva" (lado izquierdo)
+2. Nombre de la base de datos: `capacitaciones`
+3. Cotejamiento: `utf8mb4_unicode_ci`
+4. Clic en "Crear"
+
+![Crear BD](https://i.imgur.com/placeholder.png)
 
 ### 4️⃣ Ejecutar Migraciones y Seeders
 
+⚠️ **SOLO después de crear la base de datos**, ejecutar:
+
 ```bash
-# Crear estructura de tablas e insertar datos esenciales
+cd backend
+
+# Crear TABLAS y datos iniciales dentro de la BD
 php artisan migrate:fresh --seed
 ```
+
+**¿Qué hace este comando?**
+- ✅ Crea todas las tablas (usuarios, eventos, personas, inscripciones, etc.)
+- ✅ Inserta datos iniciales (usuario admin, tipos de eventos, opciones)
+- ✅ Configura relaciones entre tablas
+- ❌ NO crea la base de datos (debes hacerlo en paso 3️⃣)
 
 **Datos creados automáticamente:**
 - Usuario: `pjudicial`
@@ -241,10 +258,23 @@ Para usar en otra máquina, copiar toda la carpeta `dist/` que incluye:
 
 ## 🐛 Solución de Problemas
 
-**Error: "Base de datos no existe"**
-```bash
-# Crear manualmente en phpMyAdmin
-CREATE DATABASE capacitaciones CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+**Error: "Base de datos no existe" o "Unknown database 'capacitaciones'"**
+```
+CAUSA: No creaste la base de datos manualmente
+SOLUCIÓN:
+1. Abrir http://localhost/phpmyadmin
+2. Crear base de datos: capacitaciones
+3. Cotejamiento: utf8mb4_unicode_ci
+4. Luego ejecutar: php artisan migrate:fresh --seed
+```
+
+**Error: "SQLSTATE[HY000] [1045] Access denied for user..."**
+```
+CAUSA: Credenciales incorrectas en .env
+SOLUCIÓN:
+1. Editar backend/.env
+2. Verificar: DB_USERNAME=root y DB_PASSWORD= (vacío para XAMPP)
+3. Ejecutar: php artisan config:clear
 ```
 
 **Error: "composer no reconocido"**

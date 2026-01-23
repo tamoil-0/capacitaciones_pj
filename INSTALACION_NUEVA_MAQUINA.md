@@ -249,6 +249,26 @@ Contraseña: Corte2026
 
 ---
 
+### 🔵 PASO 11 (OPCIONAL): Crear Ejecutable del Sistema OCR
+
+⚠️ **IMPORTANTE:** Las carpetas `dist/` y `build/` NO están en Git porque son archivos generados muy pesados (100+ MB).
+
+**Si necesitas el ejecutable del sistema OCR:**
+
+```bash
+# Método 1: Usar el script automatizado
+crear_ejecutable.bat
+
+# Método 2: Comando manual
+python -m PyInstaller --onefile --windowed --name="Sistema_Calificacion_Examenes" --add-data="poppler;poppler" --hidden-import=PIL --hidden-import=cv2 --hidden-import=numpy --hidden-import=customtkinter --hidden-import=pdf2image --hidden-import=reportlab --hidden-import=requests --collect-all customtkinter --exclude-module=torch --exclude-module=tensorflow --exclude-module=matplotlib --clean completo.py
+```
+
+**Resultado:**
+- Se creará: `dist\Sistema_Calificacion_Examenes.exe` (~100 MB)
+- Tiempo: 2-3 minutos
+
+---
+
 ## ✅ RESUMEN - COMANDOS COMPLETOS
 
 ```bash

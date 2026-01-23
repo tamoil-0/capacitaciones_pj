@@ -1,37 +1,9 @@
 # -*- mode: python ; coding: utf-8 -*-
 from PyInstaller.utils.hooks import collect_all
 
-# Archivos de datos que deben incluirse en el EXE
-datas = [
-    ('poppler', 'poppler'),           # Poppler para procesar PDFs
-    ('config.py', '.'),               # Configuración de la API
-    ('api_client.py', '.'),           # Cliente de API Laravel
-]
-
+datas = [('poppler', 'poppler')]
 binaries = []
-
-# Imports ocultos necesarios
-hiddenimports = [
-    'PIL._tkinter_finder',
-    'customtkinter',
-    'cv2',
-    'numpy',
-    'pdf2image',
-    'reportlab',
-    'reportlab.pdfgen',
-    'reportlab.lib',
-    'reportlab.lib.pagesizes',
-    'reportlab.lib.units',
-    'reportlab.lib.colors',
-    'reportlab.lib.utils',
-    'reportlab.pdfbase',
-    'requests',
-    'urllib3',
-    'json',
-    'datetime',
-]
-
-# Recolectar todos los archivos de customtkinter
+hiddenimports = ['PIL', 'PIL.Image', 'cv2', 'numpy', 'customtkinter', 'pdf2image', 'reportlab', 'requests']
 tmp_ret = collect_all('customtkinter')
 datas += tmp_ret[0]; binaries += tmp_ret[1]; hiddenimports += tmp_ret[2]
 
@@ -45,9 +17,8 @@ a = Analysis(
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
-    excludes=['torch', 'tensorflow', 'tensorboard', 'ultralytics', 'pygame', 'matplotlib', 'scipy', 'pandas', 'sklearn', 'jinja2', 'notebook', 'IPython', 'jupyter'],
+    excludes=['torch', 'tensorflow', 'matplotlib', 'ultralytics', 'pygame', 'scipy', 'pandas'],
     noarchive=False,
-    optimize=0,
 )
 pyz = PYZ(a.pure)
 

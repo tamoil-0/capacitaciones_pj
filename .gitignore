@@ -10,11 +10,12 @@ frontend/node_modules/
 vendor/
 backend/vendor/
 
-# Build outputs
+# Build outputs (temporales de PyInstaller)
 build/
-dist/
-*.exe
 *.spec
+
+# NOTA: dist/ con el .exe SÍ se sube a Git para que otras máquinas
+# puedan usar el ejecutable sin necesidad de instalar Python
 
 # Python
 __pycache__/

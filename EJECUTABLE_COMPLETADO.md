@@ -16,17 +16,39 @@ dist/
 └── poppler/                           (incluido en .exe)
 ```
 
+## ⚠️ IMPORTANTE: dist/ NO ESTÁ EN GIT
+
+**Las carpetas `dist/` y `build/` NO se suben a Git porque:**
+- Son archivos generados (no código fuente)
+- Son muy pesados (~100 MB)
+- Están en `.gitignore`
+
+**En cada máquina nueva debes:**
+1. Clonar el repositorio
+2. Ejecutar `crear_ejecutable.bat` (2-3 minutos)
+3. Usar el ejecutable generado
+
+---
+
 ## 📦 CÓMO DISTRIBUIR A OTRAS MÁQUINAS
 
-### Opción 1: Copiar Solo el Ejecutable (RECOMENDADO)
-Si solo necesitas el OCR sin conexión al sistema web:
-1. Copiar `Sistema_Calificacion_Examenes.exe` a la máquina destino
-2. Ejecutar directamente (doble clic)
-3. El programa incluye todo lo necesario
+### Opción 1: Clonar y Compilar (RECOMENDADO)
+**En cada máquina nueva:**
+```bash
+git clone https://github.com/tamoil-0/capacitaciones_pj.git
+cd capacitaciones_pj
+crear_ejecutable.bat
+```
 
-### Opción 2: Con Integración Laravel (Sistema Completo)
+### Opción 2: Copiar el Ejecutable Ya Compilado
+**Si ya tienes el .exe en una máquina:**
+1. Copiar TODA la carpeta `dist\` a USB
+2. Copiar `dist\` a la máquina destino
+3. Ejecutar `dist\Sistema_Calificacion_Examenes.exe`
+
+### Opción 3: Con Integración Laravel (Sistema Completo)
 Si necesitas que el OCR se conecte al sistema web:
-1. Copiar TODA la carpeta `dist\` a la máquina destino
+1. Copiar TODA la carpeta `dist\`
 2. Editar `config.py` con la URL del backend Laravel
 3. Ejecutar `Sistema_Calificacion_Examenes.exe`
 

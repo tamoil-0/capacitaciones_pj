@@ -84,8 +84,8 @@ php artisan migrate:fresh --seed
 ```
 
 **Datos creados automáticamente:**
-- Usuario: `admin`
-- Contraseña: `admin123`
+- Usuario: `pjudicial`
+- Contraseña: `Corte2026`
 - Tipos de evento (Convocatorias, Cursos, Otros)
 - Opciones de menú
 
@@ -123,8 +123,8 @@ Acceder a: `http://localhost:5173`
 ## 🔐 Credenciales Iniciales
 
 ```
-Usuario: admin
-Contraseña: admin123
+Usuario: pjudicial
+Contraseña: Corte2026
 ```
 
 ## 📂 Estructura del Proyecto

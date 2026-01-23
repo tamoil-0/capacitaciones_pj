@@ -1,19 +1,86 @@
-# Laravel / PHP
-/vendor
-/node_modules
-.env
-.env.*
-/storage/*.key
-/storage/logs
-/storage/framework/cache
-/storage/framework/sessions
-/storage/framework/views
-/public/storage
+# ============================================
+# ARCHIVOS PESADOS Y GENERADOS - NO SUBIR
+# ============================================
 
-# IDEs
-/.vscode
-/.idea
+# Node modules (Frontend)
+node_modules/
+frontend/node_modules/
+
+# Vendor PHP (Backend)
+vendor/
+backend/vendor/
+
+# Build outputs
+build/
+dist/
+*.exe
+*.spec
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Logs
+*.log
+storage/logs/*
+!storage/logs/.gitkeep
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables (contiene contraseñas)
+.env
+.env.local
+.env.*.local
+backend/.env
 
 # OS
-Thumbs.db
 .DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Laravel específico
+backend/storage/framework/cache/*
+backend/storage/framework/sessions/*
+backend/storage/framework/views/*
+backend/storage/app/*
+!backend/storage/app/.gitkeep
+!backend/storage/app/public
+backend/public/storage
+backend/public/hot
+backend/bootstrap/cache/*
+!backend/bootstrap/cache/.gitkeep
+
+# Excel exports
+backend/public/excel/*
+!backend/public/excel/.gitkeep
+
+# Backups SQL (solo estructura, no datos)
+*.sql
+
+# Vue/Vite
+.vite/
+frontend/.vite/
+frontend/dist/
+
+# Composer
+composer.phar
+composer.lock
+
+# Package locks (opcional)
+package-lock.json
+yarn.lock
+
+# Test files
+test_*.php
+prueba*.php

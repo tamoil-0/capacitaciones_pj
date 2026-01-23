@@ -857,7 +857,8 @@ def dibujar_tabla_respuestas_elegante(c, respuestas, x_start, y_start, col_width
     
     # Calcular porcentaje
     porcentaje = (puntaje_obtenido / puntaje_maximo * 100) if puntaje_maximo > 0 else 0
-    aprobado = porcentaje >= 60
+    # Aprobado si puntaje >= 20 (no porcentaje, sino puntaje absoluto)
+    aprobado = puntaje_obtenido >= 20
     
     # Cuadro más compacto de estado
     estado_box_height = 1.8 * cm  # Reducido
@@ -1386,7 +1387,8 @@ def procesar_documento_completo(path: str, progress_callback=None,
                     
                     # Calcular porcentaje basado en puntaje obtenido vs máximo
                     porcentaje = (puntaje_obtenido / puntaje_maximo * 100) if puntaje_maximo > 0 else 0
-                    aprobado = porcentaje >= 60
+                    # Aprobado si puntaje >= 20 (no porcentaje, sino puntaje absoluto)
+                    aprobado = puntaje_obtenido >= 20
                     
                     # Preparar respuestas para API
                     respuestas_api = []

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba Sistema de Asistencias - Validación 30 Minutos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            color: #9A1413;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        
+        .info-box h3 {
+            color: #1976d2;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+        
+        .info-box ul {
+            margin-left: 20px;
+            color: #555;
+            font-size: 14px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: #9A1413;
+        }
+        
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #9A1413;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        button:hover {
+            background: #7a0f0e;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(154, 20, 19, 0.3);
+        }
+        
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 6px;
+            display: none;
+        }
+        
+        .result.success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            display: block;
+        }
+        
+        .result.error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+            display: block;
+        }
+        
+        .result.warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            display: block;
+        }
+        
+        .result-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+        
+        .result-details {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .loading {
+            text-align: center;
+            color: #666;
+            padding: 20px;
+        }
+        
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #9A1413;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .test-scenarios {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+        
+        .test-scenarios h3 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        
+        .test-scenarios ul {
+            margin-left: 20px;
+            color: #666;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>🎯 Sistema de Validación de Asistencias</h1>
+            <p class="subtitle">Validación automática de 30 minutos</p>
+            
+            <div class="info-box">
+                <h3>📋 Criterios de Validación</h3>
+                <ul>
+                    <li><strong>A TIEMPO:</strong> Registro de entrada dentro de 30 minutos del inicio del evento</li>
+                    <li><strong>TARDANZA:</strong> Registro de entrada después de 30 minutos del inicio</li>
+                    <li>Solo se aplica a registros de tipo "entrada"</li>
+                </ul>
+            </div>
+            
+            <form id="registroForm">
+                <div class="form-group">
+                    <label for="idEvento">ID del Evento</label>
+                    <input type="number" id="idEvento" required placeholder="Ej: 1">
+                </div>
+                
+                <div class="form-group">
+                    <label for="dni">DNI del Participante</label>
+                    <input type="text" id="dni" required placeholder="Ej: 12345678" maxlength="8">
+                </div>
+                
+                <div class="form-group">
+                    <label for="tipo">Tipo de Registro</label>
+                    <select id="tipo" required>
+                        <option value="entrada">Entrada</option>
+                        <option value="salida">Salida</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
+                
+                <button type="submit">Registrar Asistencia</button>
+            </form>
+            
+            <div id="loading" class="loading" style="display: none;">
+                <div class="spinner"></div>
+                <div>Procesando registro...</div>
+            </div>
+            
+            <div id="result" class="result"></div>
+            
+            <div class="test-scenarios">
+                <h3>🧪 Escenarios de Prueba</h3>
+                <ul>
+                    <li>Crear un evento con fecha/hora pasada (hace más de 30 min) → TARDANZA</li>
+                    <li>Crear un evento con fecha/hora reciente (hace menos de 30 min) → A TIEMPO</li>
+                    <li>Registrar "salida" u "otro" → No aplica validación de tiempo</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const API_BASE_URL = 'http://localhost:8000/api';
+        
+        document.getElementById('registroForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const idEvento = document.getElementById('idEvento').value;
+            const dni = document.getElementById('dni').value;
+            const tipo = document.getElementById('tipo').value;
+            
+            // Obtener token del localStorage (si existe)
+            const token = localStorage.getItem('token');
+            
+            // Mostrar loading
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('result').style.display = 'none';
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/registros/${idEvento}/${dni}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        ...(token && { 'Authorization': `Bearer ${token}` })
+                    },
+                    body: JSON.stringify({ tipo })
+                });
+                
+                const data = await response.json();
+                
+                document.getElementById('loading').style.display = 'none';
+                
+                const resultDiv = document.getElementById('result');
+                
+                if (response.ok) {
+                    // Éxito
+                    const estado = data.estado || data.registro?.estado || 'N/A';
+                    const esATiempo = estado === 'A TIEMPO';
+                    
+                    resultDiv.className = esATiempo ? 'result success' : 'result warning';
+                    resultDiv.innerHTML = `
+                        <div class="result-title">
+                            ${esATiempo ? '✅ Registro exitoso - A TIEMPO' : '⚠️ Registro exitoso - TARDANZA'}
+                        </div>
+                        <div class="result-details">
+                            <strong>Mensaje:</strong> ${data.message}<br>
+                            <strong>Estado:</strong> ${estado}<br>
+                            <strong>Persona:</strong> ${data.persona?.nombre || 'N/A'} ${data.persona?.apellidos || ''}<br>
+                            <strong>DNI:</strong> ${data.persona?.dni || dni}<br>
+                            <strong>Evento:</strong> ${data.evento || 'N/A'}<br>
+                            <strong>Tipo:</strong> ${tipo.toUpperCase()}<br>
+                            <strong>ID Registro:</strong> ${data.registro?.id_registro || 'N/A'}
+                        </div>
+                    `;
+                } else {
+                    // Error
+                    resultDiv.className = 'result error';
+                    resultDiv.innerHTML = `
+                        <div class="result-title">❌ Error al registrar</div>
+                        <div class="result-details">
+                            <strong>Mensaje:</strong> ${data.message || 'Error desconocido'}<br>
+                            ${data.error ? `<strong>Detalle:</strong> ${data.error}` : ''}
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                document.getElementById('loading').style.display = 'none';
+                
+                const resultDiv = document.getElementById('result');
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = `
+                    <div class="result-title">❌ Error de Conexión</div>
+                    <div class="result-details">
+                        No se pudo conectar con el servidor.<br>
+                        <strong>Detalle:</strong> ${error.message}
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>

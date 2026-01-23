@@ -122,11 +122,34 @@ baseURL: "http://localhost/capacitaciones_pj/backend/api",
 
 ### 6️⃣ Iniciar Servicios
 
+#### 🎯 MÉTODO FÁCIL (Recomendado - Un solo clic):
+
+**Hacer doble clic en:**
+```
+INICIAR_SISTEMA.bat
+```
+
+✅ **Esto iniciará AUTOMÁTICAMENTE:**
+- Apache + MySQL
+- Backend (Laravel)
+- Frontend (Vue)
+- Navegador en `http://localhost:5173`
+
+**Para detener todo:**
+```
+DETENER_SISTEMA.bat
+```
+
+📖 **Ver guía completa:** [COMO_USAR_LOS_BAT.md](COMO_USAR_LOS_BAT.md)
+
+---
+
+#### 🔧 MÉTODO MANUAL (Avanzado):
+
 **Backend:**
 ```bash
 cd backend
 php artisan serve
-# O usar XAMPP (Apache debe estar corriendo)
 ```
 
 **Frontend:**

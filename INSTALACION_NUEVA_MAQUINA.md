@@ -199,6 +199,27 @@ npm install
 
 ### 🔵 PASO 9: Iniciar el Sistema
 
+#### 🎯 MÉTODO FÁCIL (Recomendado):
+
+**Hacer DOBLE CLIC en:**
+```
+INICIAR_SISTEMA.bat
+```
+
+✅ **Esto hará TODO automáticamente:**
+- Inicia Apache y MySQL
+- Inicia Backend (Laravel)
+- Inicia Frontend (Vue)
+- Abre el navegador automáticamente
+
+**¡LISTO!** No necesitas hacer nada más.
+
+📖 **Ver guía completa:** [COMO_USAR_LOS_BAT.md](COMO_USAR_LOS_BAT.md)
+
+---
+
+#### 🔧 MÉTODO MANUAL (Solo si el .bat falla):
+
 **Terminal 1 - Backend (Laravel):**
 ```bash
 cd C:\xampp\htdocs\capacitaciones_pj\backend

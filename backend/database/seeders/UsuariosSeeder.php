@@ -18,7 +18,7 @@ class UsuariosSeeder extends Seeder
                 'id_usuario' => 1,
                 'nombres_apellidos' => 'Corte Superior de Justicia de Puno',
                 'nickname' => 'pjudicial',
-                'contrasena' => '$2y$10$Ar9Xn6hh.gEaa1dk1.DbJ.jVN56Ni0LFf3v1UmPtU82s49EY/q7rG', // Contraseña: Corte2026
+                'contrasena' => '$2y$12$GzvSjfoHaxucVLmqInhFCujMpdTJxHPgrE3Oca/cBX.GDdizY9qF.', // Contraseña: Corte2026
                 'tipo_usuario' => 1,
                 'asignado' => null,
                 'habilitado' => 1,

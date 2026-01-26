@@ -160,10 +160,12 @@ const deleteInscrito = async () => {
         loading.value = true;
         await api.delete(`/inscritos/${selectedInscrito.value.id}`);
         
+        // Eliminar del array local
+        inscritos.value = inscritos.value.filter(i => i.id !== selectedInscrito.value.id);
+        
         showSnackbar("Inscrito eliminado correctamente", "success");
         deleteDialog.value = false;
         selectedInscrito.value = null;
-        await fetchInscritos();
     } catch (error) {
         console.error("Error al eliminar inscrito:", error);
         showSnackbar("Error al eliminar inscrito", "error");
@@ -184,10 +186,12 @@ const saveInscrito = async () => {
         loading.value = true;
         errors.value = {};
 
-        await api.post(`/inscritos/${idEvento}`, formData.value);
+        const { data } = await api.post(`/inscritos/${idEvento}`, formData.value);
+        
+        // Agregar nuevo inscrito al inicio de la lista
+        inscritos.value.unshift(data);
 
         dialog.value = false;
-        fetchInscritos();
     } catch (err) {
         errors.value = err.response?.data?.errors || {};
     } finally {

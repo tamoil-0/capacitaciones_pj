@@ -27,4 +27,13 @@ class Usuario extends Authenticatable
     protected $hidden = [
         'contrasena',
     ];
+
+    /**
+     * Get the password for the user.
+     * Laravel Sanctum necesita que el campo se llame 'password'
+     */
+    public function getAuthPassword()
+    {
+        return $this->contrasena;
+    }
 }

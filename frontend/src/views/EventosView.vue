@@ -113,9 +113,19 @@ const openCreateDialog = () => {
 const openEditDialog = (evento) => {
     editMode.value = true;
     selectedEvento.value = evento;
-    form.value = { ...evento };
+    
+    // Formatear fecha correctamente para datetime-local input
+    const fechaEvento = new Date(evento.fecha_evento);
+    const fechaFormatted = fechaEvento.toISOString().slice(0, 16);
+    
+    form.value = {
+        ...evento,
+        fecha_evento: fechaFormatted
+    };
+    
     console.log('🔍 Estado del evento al abrir diálogo:', evento.estado);
-    console.log('🔍 Estado en form después de copiar:', form.value.estado);
+    console.log('🔍 Fecha original:', evento.fecha_evento);
+    console.log('🔍 Fecha formateada:', fechaFormatted);
     dialog.value = true;
 };
 
@@ -134,13 +144,19 @@ const saveEvento = async () => {
         console.log('💾 Datos completos del form:', JSON.stringify(form.value, null, 2));
 
         if (editMode.value) {
-            await api.put(`/eventos/${selectedEvento.value.id_evento}`, form.value);
+            const { data } = await api.put(`/eventos/${selectedEvento.value.id_evento}`, form.value);
+            // Actualizar el evento en la lista local sin recargar todo
+            const index = eventos.value.findIndex(e => e.id_evento === selectedEvento.value.id_evento);
+            if (index !== -1) {
+                eventos.value[index] = data;
+            }
         } else {
-            await api.post(`/eventos/${idTipoEvento}`, form.value);
+            const { data } = await api.post(`/eventos/${idTipoEvento}`, form.value);
+            // Agregar el nuevo evento al inicio de la lista
+            eventos.value.unshift(data);
         }
 
         dialog.value = false;
-        fetchEventos();
     } catch (err) {
         errors.value = err.response?.data?.errors || {};
     } finally {
@@ -153,10 +169,12 @@ const deleteEvento = async () => {
         loading.value = true;
         await api.delete(`/eventos/${selectedEvento.value.id_evento}`);
 
+        // Eliminar del array local sin recargar
+        eventos.value = eventos.value.filter(e => e.id_evento !== selectedEvento.value.id_evento);
+        
         showAlert("Evento eliminado correctamente", "success");
         deleteDialog.value = false;
-        selectedUser.value = null;
-        await fetchEventos();
+        selectedEvento.value = null;
     } catch (error) {
         console.error("Error al eliminar evento:", error);
         showAlert("Error al eliminar evento", "error");

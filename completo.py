@@ -55,7 +55,13 @@ except ImportError as e:
 # ============================================================
 #  CONFIGURACIÓN DE CARPETA DE RESULTADOS Y GABARITO
 # ============================================================
-OUTPUT_FOLDER = os.path.join(os.path.dirname(__file__), "backend", "public", "resultados_omr")
+# Ruta absoluta para que funcione tanto como script como ejecutable
+if getattr(sys, 'frozen', False):
+    # Si es ejecutable, usar ruta fija de XAMPP
+    OUTPUT_FOLDER = r"C:\xampp82\htdocs\capacitaciones_pj\backend\public\resultados_omr"
+else:
+    # Si es script, usar ruta relativa desde el archivo
+    OUTPUT_FOLDER = os.path.join(os.path.dirname(__file__), "backend", "public", "resultados_omr")
 
 # Gabarito global (respuestas correctas)
 GABARITO = {}  # {1: 'A', 2: 'B', ...}
@@ -681,7 +687,14 @@ def dibujar_encabezado_profesional(c, page_width, page_height, dni_str,
     c.rect(0, page_height - 3.7*cm, page_width, 0.2*cm, fill=True, stroke=False)
     
     # ========== LOGO INSTITUCIONAL ==========
-    logo_path = "pj.jpg"
+    # Buscar logo en múltiples ubicaciones
+    if getattr(sys, 'frozen', False):
+        # Ejecutable: buscar en el mismo directorio del .exe
+        logo_path = os.path.join(os.path.dirname(sys.executable), "pj.jpg")
+    else:
+        # Script: buscar en el directorio del script
+        logo_path = os.path.join(os.path.dirname(__file__), "pj.jpg")
+    
     logo_size = 2.5 * cm
     logo_x = margin + 0.3*cm
     logo_y = page_height - 3*cm
@@ -692,8 +705,11 @@ def dibujar_encabezado_profesional(c, page_width, page_height, dni_str,
             c.drawImage(logo_path, logo_x, logo_y, 
                        width=logo_size, height=logo_size, 
                        preserveAspectRatio=True, mask='auto')
-        except:
-            pass  # Si falla, continuar sin logo
+            print(f"[INFO] Logo cargado desde: {logo_path}")
+        except Exception as e:
+            print(f"[WARN] No se pudo cargar logo: {e}")
+    else:
+        print(f"[WARN] Logo no encontrado en: {logo_path}")
     
     # ========== TÍTULO PRINCIPAL ==========
     text_start_x = logo_x + logo_size + 0.8*cm
@@ -793,7 +809,7 @@ def dibujar_pie_pagina_profesional(c, page_width, page_height):
     c.setFillColor(colors.HexColor("#2C3E50"))  # Azul oscuro
     c.setFont("Helvetica-Bold", 9)
     c.drawCentredString(page_width/2, footer_y, 
-                       "Desarrollado por el Área de Informática - Subárea de Expotados")
+                       "Desarrollado por el Área de Informática")
     
     # Línea decorativa
     c.setStrokeColor(colors.HexColor("#8B0000"))

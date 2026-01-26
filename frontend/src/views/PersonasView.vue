@@ -104,13 +104,19 @@ const savePersona = async () => {
         errors.value = {};
 
         if (editMode.value) {
-            await api.put(`/personas/${selectedPersona.value.id_persona}`, form.value);
+            const { data } = await api.put(`/personas/${selectedPersona.value.id_persona}`, form.value);
+            // Actualizar en la lista local
+            const index = personas.value.findIndex(p => p.id_persona === selectedPersona.value.id_persona);
+            if (index !== -1) {
+                personas.value[index] = data;
+            }
         } else {
-            await api.post(`/personas`, form.value);
+            const { data } = await api.post(`/personas`, form.value);
+            // Agregar al inicio de la lista
+            personas.value.unshift(data);
         }
 
         dialog.value = false;
-        fetchPersonas();
     } catch (err) {
         errors.value = err.response?.data?.errors || {};
     } finally {
@@ -123,10 +129,12 @@ const deletePersona = async () => {
         loading.value = true;
         await api.delete(`/personas/${selectedPersona.value.id_persona}`);
 
-        showAlert("Persona eliminado correctamente", "success");
+        // Eliminar del array local
+        personas.value = personas.value.filter(p => p.id_persona !== selectedPersona.value.id_persona);
+        
+        showAlert("Persona eliminada correctamente", "success");
         deleteDialog.value = false;
         selectedPersona.value = null;
-        await fetchEventos();
     } catch (error) {
         console.error("Error al eliminar persona:", error);
         showAlert("Error al eliminar persona", "error");

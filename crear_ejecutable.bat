@@ -27,6 +27,7 @@ echo [3/4] Creando ejecutable... (esto puede tomar 2-3 minutos)
 python -m PyInstaller --onefile --windowed ^
     --name="Sistema_Calificacion_Examenes" ^
     --add-data="poppler;poppler" ^
+    --add-data="pj.jpg;." ^
     --hidden-import=PIL ^
     --hidden-import=PIL.Image ^
     --hidden-import=cv2 ^
@@ -57,6 +58,7 @@ echo.
 echo [4/4] Copiando archivos de soporte...
 copy /y api_client.py dist\ >nul 2>&1
 if exist config.py copy /y config.py dist\ >nul 2>&1
+copy /y pj.jpg dist\ >nul 2>&1
 echo       OK - Archivos copiados
 
 echo.
@@ -68,7 +70,7 @@ echo Ejecutable creado en: dist\Sistema_Calificacion_Examenes.exe
 echo.
 echo Para distribuir:
 echo   - Copiar toda la carpeta dist\ a la maquina destino
-echo   - Incluye: .exe + api_client.py + config.py + poppler\
+echo   - Incluye: .exe + api_client.py + config.py + pj.jpg + poppler\
 echo.
 dir dist\*.exe
 echo.

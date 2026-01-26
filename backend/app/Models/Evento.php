@@ -24,9 +24,17 @@ class Evento extends Model
 
     // Si quieres que fecha_evento y fecha_creacion se manejen como fechas
     protected $casts = [
-        'fecha_evento'   => 'datetime',
-        'fecha_creacion' => 'datetime',
+        'fecha_evento'   => 'datetime:Y-m-d H:i:s',
+        'fecha_creacion' => 'datetime:Y-m-d H:i:s',
     ];
+
+    /**
+     * Preparar fecha para almacenamiento (sin conversión de zona horaria)
+     */
+    public function setFechaEventoAttribute($value)
+    {
+        $this->attributes['fecha_evento'] = $value;
+    }
 
     // Relaciones
     public function tipoEvento()

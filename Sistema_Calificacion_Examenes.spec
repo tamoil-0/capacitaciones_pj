@@ -1,7 +1,7 @@
 # -*- mode: python ; coding: utf-8 -*-
 from PyInstaller.utils.hooks import collect_all
 
-datas = [('poppler', 'poppler')]
+datas = [('poppler', 'poppler'), ('pj.jpg', '.')]
 binaries = []
 hiddenimports = ['PIL', 'PIL.Image', 'cv2', 'numpy', 'customtkinter', 'pdf2image', 'reportlab', 'requests']
 tmp_ret = collect_all('customtkinter')

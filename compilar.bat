@@ -53,6 +53,14 @@ if exist "dist\Sistema_Calificacion_Examenes.exe" (
     pause
     exit /b 1
 )
+
+REM Copiar logo al directorio dist
+if exist "pj.jpg" (
+    copy /Y "pj.jpg" "dist\pj.jpg" >nul
+    echo      ✓ Logo copiado a dist\
+) else (
+    echo      ⚠ Logo pj.jpg no encontrado
+)
 echo.
 
 echo ════════════════════════════════════════════════════════
@@ -64,5 +72,6 @@ echo.
 echo IMPORTANTE: Para usar en otra máquina, necesitas copiar:
 echo   1. Sistema_Calificacion_Examenes.exe
 echo   2. La carpeta _internal (que está junto al .exe)
+echo   3. pj.jpg (logo institucional)
 echo.
 pause

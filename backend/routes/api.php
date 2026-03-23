@@ -34,6 +34,9 @@ Route::prefix('omr')->group(function () {
     // 5. POST /api/omr/respuestas - Guardar respuestas OMR detalladas
     Route::post('/respuestas', [EvaluacionController::class, 'guardarRespuestasOmr']);
     
+    // 6. GET /api/omr/registros/{id_inscripcion} - Entrada/salida para PDF (público)
+    Route::get('/registros/{id_inscripcion}', [RegistroController::class, 'index_x_persona']);
+    
     // LEGACY: Mantener compatibilidad con endpoint anterior
     Route::post('/resultado', [EvaluacionController::class, 'guardarResultadoOMR']);
 });

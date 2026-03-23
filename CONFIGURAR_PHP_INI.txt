@@ -1,0 +1,127 @@
+═══════════════════════════════════════════════════════════
+CONFIGURACIÓN PHP.INI PARA XAMPP 8.2
+═══════════════════════════════════════════════════════════
+
+⚠️ IMPORTANTE: Ejecutar estos pasos en la otra computadora
+después de instalar XAMPP 8.2
+
+═══════════════════════════════════════════════════════════
+PASO 1: UBICAR EL ARCHIVO php.ini
+═══════════════════════════════════════════════════════════
+
+1. Abrir XAMPP Control Panel
+2. Clic en "Config" al lado de "Apache"
+3. Seleccionar "PHP (php.ini)"
+   
+   O buscar manualmente en:
+   C:\xampp\php\php.ini
+
+═══════════════════════════════════════════════════════════
+PASO 2: HABILITAR EXTENSIONES NECESARIAS
+═══════════════════════════════════════════════════════════
+
+Buscar las siguientes líneas en php.ini y QUITAR el punto y coma (;)
+al inicio de cada línea:
+
+✅ OBLIGATORIAS PARA LARAVEL:
+;extension=openssl          → extension=openssl
+;extension=pdo_mysql        → extension=pdo_mysql
+;extension=mbstring         → extension=mbstring
+;extension=tokenizer        → extension=tokenizer (puede no existir, está habilitado por defecto)
+;extension=xml              → extension=xml
+;extension=ctype            → extension=ctype (puede no existir, está habilitado por defecto)
+;extension=json             → extension=json (puede no existir, está habilitado por defecto)
+;extension=bcmath           → extension=bcmath
+;extension=fileinfo         → extension=fileinfo
+
+✅ OBLIGATORIAS PARA EXCEL (maatwebsite/excel):
+;extension=zip              → extension=zip
+;extension=gd               → extension=gd
+;extension=xmlreader        → extension=xmlreader (incluido en xml)
+;extension=xmlwriter        → extension=xmlwriter (incluido en xml)
+
+✅ OBLIGATORIAS PARA SWAGGER:
+;extension=curl             → extension=curl
+
+✅ OBLIGATORIAS PARA LARAVEL SANCTUM:
+;extension=pdo_sqlite       → extension=pdo_sqlite (opcional, solo para testing)
+
+═══════════════════════════════════════════════════════════
+PASO 3: CONFIGURACIONES ADICIONALES
+═══════════════════════════════════════════════════════════
+
+Buscar y MODIFICAR estos valores en php.ini:
+
+1. LÍMITES DE MEMORIA Y TIEMPO (para importar Excel grandes):
+
+memory_limit = 512M              (cambiar de 128M a 512M)
+max_execution_time = 300         (cambiar de 30 a 300)
+max_input_time = 300             (cambiar de 60 a 300)
+post_max_size = 100M             (cambiar de 8M a 100M)
+upload_max_filesize = 100M       (cambiar de 2M a 100M)
+
+2. TIMEZONE (zona horaria de Perú):
+
+date.timezone = America/Lima
+
+═══════════════════════════════════════════════════════════
+PASO 4: VERIFICAR CAMBIOS
+═══════════════════════════════════════════════════════════
+
+1. Guardar el archivo php.ini
+2. Reiniciar Apache desde XAMPP Control Panel:
+   - Clic en "Stop"
+   - Esperar 2 segundos
+   - Clic en "Start"
+
+3. Verificar que las extensiones están activas:
+   - Abrir: http://localhost/dashboard/phpinfo.php
+   - Buscar cada extensión en la página
+   - O crear archivo: C:\xampp\htdocs\info.php
+     Contenido:
+     <?php
+     phpinfo();
+     ?>
+     Abrir: http://localhost/info.php
+
+═══════════════════════════════════════════════════════════
+RESUMEN: EXTENSIONES A HABILITAR (QUITAR ;)
+═══════════════════════════════════════════════════════════
+
+extension=openssl
+extension=pdo_mysql
+extension=mbstring
+extension=xml
+extension=bcmath
+extension=fileinfo
+extension=zip
+extension=gd
+extension=curl
+
+Y configurar:
+memory_limit = 512M
+max_execution_time = 300
+post_max_size = 100M
+upload_max_filesize = 100M
+date.timezone = America/Lima
+
+═══════════════════════════════════════════════════════════
+SOLUCIÓN DE PROBLEMAS
+═══════════════════════════════════════════════════════════
+
+❌ Error: "Class 'ZipArchive' not found"
+   → Habilitar: extension=zip
+
+❌ Error: "GD Library extension not available"
+   → Habilitar: extension=gd
+
+❌ Error: "mbstring extension is missing"
+   → Habilitar: extension=mbstring
+
+❌ Error al importar Excel grandes:
+   → Aumentar: memory_limit, max_execution_time, post_max_size
+
+❌ Error: "Maximum execution time exceeded"
+   → Aumentar: max_execution_time = 300
+
+═══════════════════════════════════════════════════════════

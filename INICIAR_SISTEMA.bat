@@ -21,11 +21,22 @@ echo   Iniciando Backend y Frontend...
 echo.
 
 REM ============================================================
+REM DETECTAR RUTA DE PHP
+REM ============================================================
+set "PHP_PATH=C:\xampp\php\php.exe"
+if not exist "%PHP_PATH%" set "PHP_PATH=C:\xampp82\php\php.exe"
+if not exist "%PHP_PATH%" (
+    echo ERROR: No se encontro PHP en C:\xampp ni en C:\xampp82
+    pause
+    exit /b 1
+)
+
+REM ============================================================
 REM INICIAR BACKEND (Laravel)
 REM ============================================================
 echo [1/2] Iniciando Backend (Laravel)...
 cd /d "%~dp0backend"
-start "BACKEND - Laravel API" cmd /k "color 0B && echo BACKEND CORRIENDO - NO CERRAR ESTA VENTANA && echo. && php artisan serve"
+start "BACKEND - Laravel API" cmd /k "color 0B && echo BACKEND CORRIENDO - NO CERRAR ESTA VENTANA && echo. && "%PHP_PATH%" artisan serve"
 timeout /t 2 /nobreak >nul
 echo       OK - Backend iniciado en http://localhost:8000
 
@@ -34,7 +45,7 @@ REM INICIAR FRONTEND (Vue)
 REM ============================================================
 echo [2/2] Iniciando Frontend (Vue)...
 cd /d "%~dp0frontend"
-start "FRONTEND - Vue + Vuetify" cmd /k "color 0E && echo FRONTEND CORRIENDO - NO CERRAR ESTA VENTANA && echo. && npm run dev"
+start "FRONTEND - Vue + Vuetify" cmd /k "color 0E && echo FRONTEND CORRIENDO - NO CERRAR ESTA VENTANA && echo. && call npm run dev"
 timeout /t 3 /nobreak >nul
 echo       OK - Frontend iniciando en http://localhost:5173
 

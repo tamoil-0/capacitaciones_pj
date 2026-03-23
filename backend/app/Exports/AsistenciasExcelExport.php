@@ -131,10 +131,10 @@ class AsistenciasExcelExport
             'C' => 'APELLIDOS Y NOMBRES',
             'D' => 'TIPO EVENTO',
             'E' => 'EVENTO',
-            'F' => 'TIPO REGISTRO',
-            'G' => 'FECHA',
-            'H' => 'HORA',
-            'I' => 'ESTADO',
+            'F' => 'FECHA',
+            'G' => 'HORA ENTRADA',
+            'H' => 'HORA SALIDA',
+            'I' => 'ASISTIÓ',
             'J' => 'OBSERVACIONES',
         ];
         
@@ -168,20 +168,41 @@ class AsistenciasExcelExport
         $this->sheet->getRowDimension($filaInicio)->setRowHeight(25);
         
         // ═══════════════════════════════════════════════════════════
-        // 📝 DATOS DE LOS REGISTROS
+        // 📝 DATOS DE LOS REGISTROS - AGRUPADOS POR PERSONA
         // ═══════════════════════════════════════════════════════════
         
         $fila = $filaInicio + 1;
         $totalEntradas = 0;
         $totalSalidas = 0;
-        $totalOtros = 0;
+        
+        // Agrupar registros por inscripción (persona)
+        $registrosAgrupados = [];
+        foreach ($this->registros as $registro) {
+            $inscripcionId = $registro->inscripcion;
+            if (!isset($registrosAgrupados[$inscripcionId])) {
+                $registrosAgrupados[$inscripcionId] = [
+                    'inscripcion' => $inscripcionId,
+                    'entradas' => [],
+                    'salidas' => [],
+                ];
+            }
+            
+            $tipoRegistro = strtolower($registro->tipo ?? '');
+            if ($tipoRegistro === 'entrada') {
+                $registrosAgrupados[$inscripcionId]['entradas'][] = $registro;
+                $totalEntradas++;
+            } elseif ($tipoRegistro === 'salida') {
+                $registrosAgrupados[$inscripcionId]['salidas'][] = $registro;
+                $totalSalidas++;
+            }
+        }
         
         $numeroFila = 1;
-        foreach ($this->registros as $registro) {
+        foreach ($registrosAgrupados as $inscripcionId => $datos) {
             try {
                 // Cargar inscripción con sus relaciones
                 $inscripcionObj = Inscripcion::with(['personaRel', 'eventoRel.tipoEvento'])
-                    ->find($registro->inscripcion);
+                    ->find($inscripcionId);
                 
                 if (!$inscripcionObj) {
                     continue;
@@ -190,35 +211,18 @@ class AsistenciasExcelExport
                 $persona = $inscripcionObj->personaRel;
                 $evento = $inscripcionObj->eventoRel;
                 
-                // Si no hay datos esenciales, saltar este registro
+                // Si no hay datos esenciales, saltar
                 if (!$persona || !$evento) {
                     continue;
                 }
                 
-                // Contar por tipo
-                $tipoRegistro = $registro->tipo ?? 'otros';
-                if (strtolower($tipoRegistro) === 'entrada') {
-                    $totalEntradas++;
-                } elseif (strtolower($tipoRegistro) === 'salida') {
-                    $totalSalidas++;
-                } else {
-                    $totalOtros++;
-                }
+                // Obtener última entrada y última salida
+                $ultimaEntrada = !empty($datos['entradas']) ? end($datos['entradas']) : null;
+                $ultimaSalida = !empty($datos['salidas']) ? end($datos['salidas']) : null;
                 
-                // Validar si llegó a tiempo (dentro de 30 min desde inicio del evento)
-                $fechaEvento = $evento->fecha_evento ?? null;
-                $fechaRegistro = $registro->created_at;
-                
-                $estado = 'A TIEMPO';
-                $estadoColor = '00B050'; // Verde
-                
-                if ($fechaEvento && $fechaRegistro) {
-                    $diffMinutos = $fechaRegistro->diffInMinutes($fechaEvento);
-                    if ($diffMinutos > 30 && strtolower($tipoRegistro) === 'entrada') {
-                        $estado = 'TARDANZA';
-                        $estadoColor = 'FF6B00'; // Naranja
-                    }
-                }
+                // Determinar si asistió (tiene entrada o salida)
+                $asistio = ($ultimaEntrada || $ultimaSalida) ? 'SÍ' : 'NO';
+                $asistioColor = '00B050'; // Verde siempre
                 
                 // Datos de la fila
                 $this->sheet->setCellValue("A{$fila}", $numeroFila);
@@ -235,10 +239,20 @@ class AsistenciasExcelExport
                 
                 $this->sheet->setCellValue("D{$fila}", $evento->tipoEvento->nombre ?? 'N/A');
                 $this->sheet->setCellValue("E{$fila}", $evento->nombre ?? 'N/A');
-                $this->sheet->setCellValue("F{$fila}", strtoupper($tipoRegistro));
-                $this->sheet->setCellValue("G{$fila}", $fechaRegistro->format('d/m/Y'));
-                $this->sheet->setCellValue("H{$fila}", $fechaRegistro->format('H:i:s'));
-                $this->sheet->setCellValue("I{$fila}", $estado);
+                
+                // Obtener fecha (de entrada o salida, lo que esté disponible)
+                $fechaRegistro = $ultimaEntrada ? $ultimaEntrada->created_at : ($ultimaSalida ? $ultimaSalida->created_at : null);
+                $this->sheet->setCellValue("F{$fila}", $fechaRegistro ? $fechaRegistro->format('d/m/Y') : 'N/A');
+                
+                // HORA DE ENTRADA
+                $horaEntrada = $ultimaEntrada ? $ultimaEntrada->created_at->format('H:i:s') : '-';
+                $this->sheet->setCellValue("G{$fila}", $horaEntrada);
+                
+                // HORA DE SALIDA
+                $horaSalida = $ultimaSalida ? $ultimaSalida->created_at->format('H:i:s') : '-';
+                $this->sheet->setCellValue("H{$fila}", $horaSalida);
+                
+                $this->sheet->setCellValue("I{$fila}", $asistio);
                 $this->sheet->setCellValue("J{$fila}", '-');
             
             // Estilo de datos - Filas alternadas
@@ -256,33 +270,46 @@ class AsistenciasExcelExport
                 ],
             ]);
             
-            // Estilo de la columna Estado con color
+            // Estilo de la columna Asistió con color verde
             $this->sheet->getStyle("I{$fila}")->applyFromArray([
                 'font' => [
                     'bold' => true,
-                    'color' => ['rgb' => $estadoColor],
+                    'color' => ['rgb' => $asistioColor],
                 ],
                 'alignment' => [
                     'horizontal' => Alignment::HORIZONTAL_CENTER,
                 ],
             ]);
             
-            // Estilo de tipo de registro
-            $tipoColor = strtolower($tipoRegistro) === 'entrada' ? '4CAF50' : (strtolower($tipoRegistro) === 'salida' ? 'FF9800' : '9E9E9E');
-            $this->sheet->getStyle("F{$fila}")->applyFromArray([
-                'font' => [
-                    'bold' => true,
-                    'color' => ['rgb' => $tipoColor],
-                ],
-                'alignment' => [
-                    'horizontal' => Alignment::HORIZONTAL_CENTER,
-                ],
-            ]);
+            // Estilo para horas - Verde para entrada, Naranja para salida
+            if ($horaEntrada !== '-') {
+                $this->sheet->getStyle("G{$fila}")->applyFromArray([
+                    'font' => [
+                        'bold' => true,
+                        'color' => ['rgb' => '4CAF50'], // Verde
+                    ],
+                    'alignment' => [
+                        'horizontal' => Alignment::HORIZONTAL_CENTER,
+                    ],
+                ]);
+            }
+            
+            if ($horaSalida !== '-') {
+                $this->sheet->getStyle("H{$fila}")->applyFromArray([
+                    'font' => [
+                        'bold' => true,
+                        'color' => ['rgb' => 'FF9800'], // Naranja
+                    ],
+                    'alignment' => [
+                        'horizontal' => Alignment::HORIZONTAL_CENTER,
+                    ],
+                ]);
+            }
             
             // Centrar columnas
             $this->sheet->getStyle("A{$fila}")->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
             $this->sheet->getStyle("B{$fila}")->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
-            $this->sheet->getStyle("G{$fila}:H{$fila}")->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
+            $this->sheet->getStyle("F{$fila}")->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
             
             $fila++;
             $numeroFila++;
@@ -296,7 +323,7 @@ class AsistenciasExcelExport
         $this->filaFinalDatos = $fila - 1;
         $this->totalEntradas = $totalEntradas;
         $this->totalSalidas = $totalSalidas;
-        $this->totalOtros = $totalOtros;
+        $this->totalOtros = 0;
         
         // Aplicar filtros automáticos
         $this->sheet->setAutoFilter("A{$filaInicio}:J{$this->filaFinalDatos}");

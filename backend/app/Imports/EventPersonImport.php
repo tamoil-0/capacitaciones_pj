@@ -21,15 +21,20 @@ class EventPersonImport implements ToCollection, WithHeadingRow
 
     public function collection(Collection $rows)
     {
-        // Normalizamos cabeceras a minúsculas sin espacios
-        $firstRow = $rows->first();
-        $headers = collect($firstRow)->keys()->map(fn($h) => strtolower(trim($h)));
+        // Normalizar las claves de las filas a minúsculas
+        $rows = $rows->map(function ($row) {
+            $normalized = [];
+            foreach ($row as $key => $value) {
+                $normalized[strtolower(trim($key))] = $value;
+            }
+            return $normalized;
+        });
 
-        // Detectamos si hay columnas PLAZA y DEPENDENCIA
-        $hasPlaza = $headers->contains('plaza');
-        $hasDependencia = $headers->contains('dependencia');
+        // Detectamos si hay columnas plaza y dependencia
+        $hasPlaza = isset($rows->first()['plaza']);
+        $hasDependencia = isset($rows->first()['dependencia']);
 
-        // Agrupamos filas por evento (PLAZA + DEPENDENCIA)
+        // Agrupamos filas por evento (plaza + dependencia)
         $eventGroups = [];
 
         foreach ($rows as $row) {

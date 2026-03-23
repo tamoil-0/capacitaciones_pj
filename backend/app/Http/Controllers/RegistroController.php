@@ -183,46 +183,41 @@ class RegistroController extends Controller
                 'tipo' => 'required|string|max:50',
             ]);
 
-            // 5️⃣ Obtener el evento para validar tiempo
-            $evento = Evento::find($id_evento);
+            // 5️⃣ Obtener el evento para validar tiempo SOLO para Convocatorias
+            $evento = Evento::with('tipoEvento')->find($id_evento);
             
-            // 6️⃣ Calcular estado según validación de 30 minutos (solo para tipo 'entrada')
-            $estado = 'A TIEMPO'; // Por defecto
-            $mensaje_adicional = '';
-            
+            // 6️⃣ Para Convocatorias: bloquear entrada después de 30 min
             if ($request->tipo === 'entrada' && $evento && $evento->fecha_evento) {
-                $fechaEvento = \Carbon\Carbon::parse($evento->fecha_evento);
-                $ahora = \Carbon\Carbon::now();
-                $diffMinutos = $fechaEvento->diffInMinutes($ahora, false); // false = puede ser negativo
-                
-                // Si han pasado más de 30 minutos desde el inicio del evento
-                if ($diffMinutos > 30) {
-                    $estado = 'TARDANZA';
-                    $horasTarde = floor($diffMinutos / 60);
-                    $minutosTarde = $diffMinutos % 60;
+                // SOLO validar tiempo para tipo Convocatoria (id = 1)
+                if ($evento->tipo_evento == 1) {
+                    $fechaEvento = \Carbon\Carbon::parse($evento->fecha_evento);
+                    $ahora = \Carbon\Carbon::now();
+                    $diffMinutos = $fechaEvento->diffInMinutes($ahora, false);
                     
-                    if ($horasTarde > 0) {
-                        $mensaje_adicional = " (Llegó {$horasTarde}h {$minutosTarde}min tarde)";
-                    } else {
-                        $mensaje_adicional = " (Llegó {$minutosTarde} minutos tarde)";
+                    // Bloquear entrada si pasaron más de 30 minutos
+                    if ($diffMinutos > 30) {
+                        return response()->json([
+                            'message' => 'Tiempo de entrada vencido. El evento inició hace más de 30 minutos.',
+                            'error' => 'TIEMPO_VENCIDO',
+                            'minutos_transcurridos' => $diffMinutos
+                        ], 403);
                     }
                 }
             }
 
-            // 7️⃣ Crear el registro con el estado calculado
+            // 7️⃣ Crear el registro (estado usa default 'A TIEMPO' de la BD)
             $registro = Registro::create([
                 'inscripcion' => $inscripcion->id_inscripcion,
                 'tipo' => $request->tipo,
-                'estado' => $estado,
             ]);
 
             return response()->json([
-                'message' => 'Registro guardado correctamente.' . $mensaje_adicional,
+                'message' => 'Registro guardado correctamente.',
                 'registro' => $registro,
-                'estado' => $estado,
                 'persona' => [
-                    'nombre' => $persona->nombre,
-                    'apellidos' => $persona->apellidos,
+                    'nombres' => $persona->nombres,
+                    'apPaterno' => $persona->apPaterno,
+                    'apMaterno' => $persona->apMaterno,
                     'dni' => $persona->dni
                 ],
                 'evento' => $evento ? $evento->nombre : null

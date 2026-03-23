@@ -84,6 +84,10 @@ const fetchEvaluaciones = async () => {
         const { data } = await api.get('/evaluaciones');
         evaluaciones.value = data.data;
         
+        // DEBUG: Ver estructura de datos
+        console.log('📊 Evaluaciones recibidas:', data.data);
+        console.log('📄 Primera evaluación archivos:', data.data[0]?.archivos);
+        
         // Extraer eventos únicos para el filtro
         const eventosUnicos = new Map();
         data.data.forEach(e => {

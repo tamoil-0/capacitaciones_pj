@@ -22,19 +22,21 @@ class EventoController extends Controller
         return response()->json($eventos, 200);
     }
 
-    // CREAR
+    // CREAR — fecha_evento por defecto: ahora (se puede cambiar)
     public function store(Request $request, $id_tipo_evento)
     {
-        $request->merge([
-            'tipo_evento' => $id_tipo_evento
-        ]);
+        $request->merge(['tipo_evento' => $id_tipo_evento]);
 
-        $evento = Evento::create($request->all());
+        $data = $request->only(['nombre', 'fecha_evento', 'tipo_evento', 'estado']);
+        if (empty($data['fecha_evento'])) {
+            $data['fecha_evento'] = now()->format('Y-m-d H:i:s');
+        }
 
+        $evento = Evento::create($data);
         return response()->json($evento, 201);
     }
 
-    // EDITAR
+    // EDITAR — al pasar a Finalizado, fecha_fin por defecto: ahora
     public function update(Request $request, $id_evento)
     {
         $evento = Evento::find($id_evento);
@@ -43,8 +45,17 @@ class EventoController extends Controller
             return response()->json(['message' => 'Evento no encontrado'], 404);
         }
 
-        $evento->update($request->all());
+        $data = $request->only(['nombre', 'fecha_evento', 'fecha_fin', 'estado']);
+        $nuevoEstado = isset($data['estado']) ? (int) $data['estado'] : $evento->estado;
 
+        if ($nuevoEstado === 1 && empty($data['fecha_fin'])) {
+            $data['fecha_fin'] = now()->format('Y-m-d H:i:s');
+        }
+        if ($nuevoEstado === 0) {
+            $data['fecha_fin'] = null;
+        }
+
+        $evento->update($data);
         return response()->json($evento, 200);
     }
 

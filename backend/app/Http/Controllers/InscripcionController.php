@@ -23,7 +23,30 @@ public function index($id_evento)
                 $q->where('tipo', 'Salida');
             },
         ])
-        ->get();
+        ->get()
+        ->map(function ($inscripcion) {
+            // Obtener última entrada y última salida
+            $ultimaEntrada = $inscripcion->registros()
+                ->where('tipo', 'Entrada')
+                ->latest('created_at')
+                ->first();
+            
+            $ultimaSalida = $inscripcion->registros()
+                ->where('tipo', 'Salida')
+                ->latest('created_at')
+                ->first();
+            
+            // Agregar las horas al objeto
+            $inscripcion->ultima_entrada = $ultimaEntrada 
+                ? $ultimaEntrada->created_at->format('H:i:s') 
+                : null;
+            
+            $inscripcion->ultima_salida = $ultimaSalida 
+                ? $ultimaSalida->created_at->format('H:i:s') 
+                : null;
+            
+            return $inscripcion;
+        });
 
     return response()->json($inscripciones);
 }

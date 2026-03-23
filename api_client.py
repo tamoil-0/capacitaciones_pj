@@ -21,6 +21,8 @@ import json
 import time
 from typing import List, Dict, Optional, Tuple
 from datetime import datetime, timedelta
+from datetime import timezone
+import pytz
 
 # Importar configuración
 from config import (
@@ -393,6 +395,59 @@ class OMRApiClient:
         
         return True, f"Evaluación completa guardada (ID: {id_evaluacion})"
     
+    def obtener_registros_asistencia(self, id_inscripcion: int):
+        endpoint = f'/omr/registros/{id_inscripcion}'
+        success, response = self._make_request('GET', endpoint)
+
+        if success and response.get('registros'):
+            registros = response.get('registros', [])
+
+            ultima_entrada = None
+            ultima_salida = None
+            fecha = None
+
+            lima_tz = pytz.timezone("America/Lima")
+
+            for registro in registros:
+                tipo = registro.get('tipo', '').lower()
+                created_at = registro.get('created_at')
+
+                if not created_at:
+                    continue
+
+                try:
+                    if 'T' in created_at:
+                        fecha_hora_utc = datetime.fromisoformat(
+                            created_at.replace('Z', '+00:00')
+                        )
+                        fecha_hora = fecha_hora_utc.astimezone(lima_tz)
+                    else:
+                        fecha_hora = datetime.strptime(created_at, '%Y-%m-%d %H:%M:%S')
+                        fecha_hora = lima_tz.localize(fecha_hora)
+
+                    fecha_hora_str = fecha_hora.strftime('%d/%m/%Y %H:%M:%S')
+
+                    if not fecha:
+                        fecha = fecha_hora.strftime('%d/%m/%Y')
+
+                    if tipo == 'entrada' and not ultima_entrada:
+                        ultima_entrada = fecha_hora_str
+
+                    elif tipo == 'salida' and not ultima_salida:
+                        ultima_salida = fecha_hora_str
+
+                except Exception as e:
+                    self._log(f"Error parseando fecha {created_at}: {e}", "WARNING")
+
+            return True, {
+                'hora_entrada': ultima_entrada,
+                'hora_salida': ultima_salida,
+                'fecha': fecha
+            }
+
+        return False, None
+
+    
     def test_conexion(self) -> Tuple[bool, str]:
         """
         Prueba la conexión con la API
@@ -447,6 +502,16 @@ def validar_dni_inscrito(dni: str, inscritos_dict: Dict[str, Dict]) -> Optional[
                        {id_inscripcion, nombres, apellido_paterno, apellido_materno, nombre_completo}
     """
     return inscritos_dict.get(dni)
+
+def get_registros_asistencia(id_inscripcion: int) -> Optional[Dict]:
+    """
+    Obtiene las horas de entrada y salida de una inscripción
+    
+    Returns:
+        Optional[Dict]: {hora_entrada, hora_salida, fecha} o None si falla
+    """
+    success, registros = api_client.obtener_registros_asistencia(id_inscripcion)
+    return registros if success else None
 
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

@@ -70,7 +70,7 @@ class EvaluacionesExcelExport
         
         // Fila 1: Título principal (merger A1:N2)
         $this->sheet->mergeCells('A1:N2');
-        $this->sheet->setCellValue('A1', 'REPORTE DE EVALUACIONES - PODER JUDICIAL');
+        $this->sheet->setCellValue('A1', 'SISTEMA DE ASISTENCIA Y CALIFICACIÓN DE EXÁMENES - REPORTE DE EVALUACIONES');
         $this->sheet->getStyle('A1')->applyFromArray([
             'font' => [
                 'bold' => true,

@@ -479,11 +479,11 @@ onMounted(() => {
 }
 
 .primary--text {
-    color: #9A1413 !important;
+    color: #1565C0 !important;
 }
 
 .bg-primary {
-    background-color: #9A1413 !important;
+    background-color: #1565C0 !important;
 }
 
 /* Botón de exportar Excel - efecto hover */

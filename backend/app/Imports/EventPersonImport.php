@@ -38,7 +38,7 @@ class EventPersonImport implements ToCollection, WithHeadingRow
         $eventGroups = [];
 
         foreach ($rows as $row) {
-            
+
             $plaza = $row['plaza'] ?? null;
             $dependencia = $row['dependencia'] ?? null;
 

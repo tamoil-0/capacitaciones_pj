@@ -82,12 +82,12 @@ const emit = defineEmits(["crear"]);
     width: 64px;
     height: 64px;
     border-radius: 16px;
-    background: linear-gradient(135deg, #9A1413 0%, #c41d1c 100%);
+    background: linear-gradient(135deg, #0D47A1 0%, #1E88E5 100%);
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    box-shadow: 0 8px 20px rgba(154, 20, 19, 0.3);
+    box-shadow: 0 8px 20px rgba(13, 71, 161, 0.3);
 }
 
 .page-title {

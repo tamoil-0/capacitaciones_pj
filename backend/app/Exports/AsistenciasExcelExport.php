@@ -60,7 +60,7 @@ class AsistenciasExcelExport
         
         // Fila 1-2: Título principal
         $this->sheet->mergeCells('A1:L2');
-        $this->sheet->setCellValue('A1', 'REPORTE DE ASISTENCIAS - PODER JUDICIAL DE PUNO');
+        $this->sheet->setCellValue('A1', 'SISTEMA DE ASISTENCIA Y CALIFICACIÓN DE EXÁMENES - REPORTE DE ASISTENCIAS');
         $this->sheet->getStyle('A1')->applyFromArray([
             'font' => [
                 'bold' => true,

@@ -867,8 +867,8 @@ onBeforeUnmount(() => {
 
 .export-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 16px rgba(154, 20, 19, 0.3) !important;
-    border-color: #9A1413;
+    box-shadow: 0 8px 16px rgba(21, 101, 192, 0.3) !important;
+    border-color: #1565C0;
 }
 
 .export-card:active {
@@ -885,6 +885,6 @@ onBeforeUnmount(() => {
 }
 
 .bg-gradient-primary {
-    background: linear-gradient(135deg, #9A1413 0%, #c41d1c 100%);
+    background: linear-gradient(135deg, #0D47A1 0%, #1E88E5 100%);
 }
 </style>

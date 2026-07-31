@@ -85,3 +85,24 @@ yarn.lock
 # Test files
 test_*.php
 prueba*.php
+
+# Resultados y archivos generados durante la ejecución
+backend/public/resultados_omr/
+debug_*.png
+*.xlsx
+/nul
+
+# Temporales de generación y revisión documental
+/_*.png
+/revision*.png
+/rev*.png
+/*_portada_original.png
+/*_sin_PJ_v*.pdf
+/fuentes_sanitizadas/
+/imgs_manual_usuario/
+/scripts/
+/project_summary.md
+/latex_pdf.py
+
+# Configuración local de asistentes de desarrollo
+/.claude/

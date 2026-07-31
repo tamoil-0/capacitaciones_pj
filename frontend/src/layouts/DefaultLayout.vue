@@ -4,7 +4,7 @@ import { RouterView, useRouter } from 'vue-router'
 import { useDisplay } from "vuetify";
 import { useAuthStore } from '@/stores/auth'
 
-import icono_navbar from "@/assets/img/icono_blank.png";
+import icono_navbar from "@/assets/img/user.png";
 import sidebar from "@/assets/img/frontis.jpg";
 import fondo from "@/assets/img/fondo.png";
 
@@ -41,8 +41,8 @@ function logout() {
 
 <template>
     <v-app>
-        <!-- NAVBAR CON COLORES DEL PODER JUDICIAL -->
-        <v-app-bar app color="primary" elevation="4" class="pj-navbar">
+        <!-- NAVBAR -->
+        <v-app-bar app color="primary" elevation="4" class="app-navbar">
             <v-container fluid class="d-flex align-center justify-space-between">
                 <v-btn
                     icon="mdi-arrow-left"
@@ -52,7 +52,7 @@ function logout() {
                 />
                 <v-img
                     :src="icono_navbar"
-                    alt="Logo Poder Judicial"
+                    alt="Logo Sistema"
                     max-width="40"
                     max-height="40"
                     contain
@@ -65,8 +65,8 @@ function logout() {
                 >
                     {{
                         smAndDown
-                            ? "CSJP"
-                            : "Corte Superior de Justicia de Puno"
+                            ? "SACE"
+                            : "Sistema de Asistencia y Calificación de Exámenes"
                     }}
                 </v-app-bar-title>
 
@@ -177,7 +177,7 @@ function logout() {
 
         <VFooter app class="modern-footer" elevation="2">
             <v-container class="text-center">
-                <span class="footer-text">&copy; {{ new Date().getFullYear() }} Corte Superior de Justicia de Puno - Todos los derechos reservados</span>
+                <span class="footer-text">&copy; {{ new Date().getFullYear() }} Sistema de Asistencia y Calificación de Exámenes - Todos los derechos reservados</span>
             </v-container>
         </VFooter>
     </v-app>
@@ -186,14 +186,14 @@ function logout() {
 
 <style scoped>
 /* ════════════════════════════════════════════════════════════════════════════════
-   🎨 NAVBAR PODER JUDICIAL - ROJO Y PLOMO
+   🎨 NAVBAR - PALETA AZUL CORPORATIVA
    ════════════════════════════════════════════════════════════════════════════════ */
-.pj-navbar {
-    background: linear-gradient(135deg, #9A1413 0%, #7d100f 100%) !important;
+.app-navbar {
+    background: linear-gradient(135deg, #0D47A1 0%, #1565C0 100%) !important;
 }
 
 /* ════════════════════════════════════════════════════════════════════════════════
-   📱 SIDEBAR PODER JUDICIAL
+   📱 SIDEBAR
    ════════════════════════════════════════════════════════════════════════════════ */
 .v-navigation-drawer {
     width: 280px;
@@ -220,7 +220,7 @@ function logout() {
     position: absolute;
     inset: 0;
     backdrop-filter: blur(3px);
-    background: linear-gradient(135deg, rgba(154, 20, 19, 0.85) 0%, rgba(196, 29, 28, 0.75) 100%);
+    background: linear-gradient(135deg, rgba(13, 71, 161, 0.85) 0%, rgba(30, 136, 229, 0.75) 100%);
     z-index: 1;
 }
 
@@ -252,14 +252,14 @@ function logout() {
     height: 44px;
     border-radius: 12px;
     color: white;
-    background: linear-gradient(135deg, #9A1413 0%, #c41d1c 100%);
-    box-shadow: 0 4px 8px rgba(154, 20, 19, 0.3);
+    background: linear-gradient(135deg, #0D47A1 0%, #1E88E5 100%);
+    box-shadow: 0 4px 8px rgba(13, 71, 161, 0.3);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .icon-wrapper:hover {
     transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 6px 12px rgba(154, 20, 19, 0.4);
+    box-shadow: 0 6px 12px rgba(13, 71, 161, 0.4);
 }
 
 /* Botones del sidebar */
@@ -270,7 +270,7 @@ function logout() {
 }
 
 .sidebar-btn:hover {
-    background: rgba(154, 20, 19, 0.08) !important;
+    background: rgba(13, 71, 161, 0.08) !important;
     transform: translateX(4px);
 }
 
@@ -285,7 +285,7 @@ function logout() {
 }
 
 .custom-btn:hover {
-    background: rgba(154, 20, 19, 0.08) !important;
+    background: rgba(13, 71, 161, 0.08) !important;
     transform: translateX(4px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
 }

@@ -57,13 +57,13 @@ const props = defineProps({
     cursor: pointer;
     transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     background: white !important;
-    border: 2px solid rgba(154, 20, 19, 0.1);
+    border: 2px solid rgba(21, 101, 192, 0.12);
 }
 
 .modern-card:hover {
     transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 16px 40px rgba(154, 20, 19, 0.2) !important;
-    border-color: #9A1413;
+    box-shadow: 0 16px 40px rgba(21, 101, 192, 0.22) !important;
+    border-color: #1565C0;
 }
 
 /* Contenido en columna */
@@ -82,17 +82,17 @@ const props = defineProps({
     width: 90px;
     height: 90px;
     border-radius: 20px;
-    background: linear-gradient(135deg, #9A1413 0%, #c41d1c 100%);
+    background: linear-gradient(135deg, #0D47A1 0%, #1E88E5 100%);
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 8px 20px rgba(154, 20, 19, 0.3);
+    box-shadow: 0 8px 20px rgba(13, 71, 161, 0.3);
     transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .modern-card:hover .icon-container {
     transform: scale(1.1) rotate(5deg);
-    box-shadow: 0 12px 28px rgba(154, 20, 19, 0.4);
+    box-shadow: 0 12px 28px rgba(13, 71, 161, 0.4);
 }
 
 .card-icon {
@@ -119,7 +119,7 @@ const props = defineProps({
 
 /* Flecha de acción */
 .arrow-icon {
-    color: #9A1413 !important;
+    color: #1565C0 !important;
     opacity: 0;
     transform: translateX(-10px);
     transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);

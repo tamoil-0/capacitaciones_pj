@@ -21,16 +21,16 @@ if (token) {
   axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 }
 
-// 1. Colores - Paleta Poder Judicial (Rojo y Plomo)
+// 1. Colores - Paleta del Sistema (Azul corporativo)
 const myCustomThemes = {
   light: {
     colors: {
       background: '#F8F9FA',
       surface: '#FFFFFF',
-      primary: '#9A1413',
-      secondary: '#2c3e50',
-      error: '#c41d1c',
-      info: '#34495e',
+      primary: '#1565C0',
+      secondary: '#0D47A1',
+      error: '#D32F2F',
+      info: '#1E88E5',
       success: '#27ae60',
       warning: '#f39c12',
     }

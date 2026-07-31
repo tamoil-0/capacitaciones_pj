@@ -109,7 +109,7 @@ onMounted(() => {
     <div class="pagina">
         <Header 
             titulo="Mi Perfil"
-            subtitulo="Mostrando los tipos de eventos los cuales existen en la CSJP"
+            subtitulo="Información personal y configuración de tu cuenta"
             icono="mdi-chart-bar"
         />
 

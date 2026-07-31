@@ -120,7 +120,7 @@
 }
 
 .v-data-table tbody tr:hover {
-    background: rgba(154, 20, 19, 0.04) !important;
+    background: rgba(21, 101, 192, 0.05) !important;
 }
 
 /* ════════════════════════════════════════════════════════════════════════════════
@@ -169,7 +169,7 @@
 }
 
 .dialog-title {
-    background: linear-gradient(135deg, #9A1413 0%, #c41d1c 100%);
+    background: linear-gradient(135deg, #0D47A1 0%, #1565C0 100%);
     color: white;
     font-weight: 700;
     font-size: 1.25rem;
@@ -181,10 +181,10 @@
 }
 
 /* ════════════════════════════════════════════════════════════════════════════════
-   🎨 GRADIENTES Y FONDOS - Poder Judicial
+   🎨 GRADIENTES Y FONDOS - Sistema
    ════════════════════════════════════════════════════════════════════════════════ */
 .bg-gradient-primary {
-    background: linear-gradient(135deg, #9A1413 0%, #c41d1c 100%);
+    background: linear-gradient(135deg, #0D47A1 0%, #1E88E5 100%);
 }
 
 .bg-gradient-success {
@@ -204,9 +204,9 @@
    ════════════════════════════════════════════════════════════════════════════════ */
 .user-info {
     padding: var(--spacing-md);
-    background: rgba(154, 20, 19, 0.05);
+    background: rgba(21, 101, 192, 0.05);
     border-radius: var(--radius-lg);
-    border: 1px solid rgba(154, 20, 19, 0.1);
+    border: 1px solid rgba(21, 101, 192, 0.15);
     margin: var(--spacing-sm) 0;
 }
 
@@ -241,15 +241,15 @@
 /* Card de exportación */
 .export-card {
     background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
-    border: 2px solid rgba(154, 20, 19, 0.15);
+    border: 2px solid rgba(21, 101, 192, 0.18);
     border-radius: var(--radius-lg) !important;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .export-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 24px rgba(154, 20, 19, 0.2) !important;
-    border-color: #9A1413;
+    box-shadow: 0 12px 24px rgba(21, 101, 192, 0.25) !important;
+    border-color: #1565C0;
 }
 
 /* ════════════════════════════════════════════════════════════════════════════════

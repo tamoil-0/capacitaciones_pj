@@ -673,17 +673,17 @@ def omr_sobre_recorte(recorte_bgr: np.ndarray):
 def dibujar_encabezado_profesional(c, page_width, page_height, dni_str, 
                                    nombre_completo=None, evento_nombre=None):
     """
-    Dibuja encabezado profesional estilo Poder Judicial del Perú con logo.
+    Dibuja encabezado profesional con logo (paleta azul corporativa).
     """
     margin = 1 * cm
-    
+
     # ========== FONDO ELEGANTE SUAVE ==========
-    # Banda superior con color suave para que el logo resalte
-    c.setFillColor(colors.HexColor("#B8342F"))  # Rojo más suave y elegante
+    # Banda superior azul para que el logo resalte
+    c.setFillColor(colors.HexColor("#1565C0"))  # Azul corporativo
     c.rect(0, page_height - 3.5*cm, page_width, 3.5*cm, fill=True, stroke=False)
-    
-    # Banda decorativa dorada inferior
-    c.setFillColor(colors.HexColor("#D4AF37"))  # Dorado más brillante
+
+    # Banda decorativa azul oscuro inferior
+    c.setFillColor(colors.HexColor("#0D47A1"))  # Azul oscuro
     c.rect(0, page_height - 3.7*cm, page_width, 0.2*cm, fill=True, stroke=False)
     
     # ========== LOGO INSTITUCIONAL ==========
@@ -715,17 +715,15 @@ def dibujar_encabezado_profesional(c, page_width, page_height, dni_str,
     text_start_x = logo_x + logo_size + 0.8*cm
     
     c.setFillColor(colors.white)
-    c.setFont("Helvetica-Bold", 16)
-    c.drawString(text_start_x, page_height - 1.3*cm, 
-                "SISTEMA DE CALIFICACIÓN DE EXÁMENES")
-    
-    c.setFont("Helvetica-Bold", 12)
-    c.drawString(text_start_x, page_height - 2.1*cm, 
-                "CORTE SUPERIOR DE JUSTICIA DE PUNO")
-    
+    c.setFont("Helvetica-Bold", 14)
+    c.drawString(text_start_x, page_height - 1.4*cm,
+                "SISTEMA DE ASISTENCIA Y")
+    c.drawString(text_start_x, page_height - 2.0*cm,
+                "CALIFICACIÓN DE EXÁMENES")
+
     c.setFont("Helvetica", 9)
-    c.setFillColor(colors.HexColor("#FFD700"))  # Dorado claro
-    c.drawString(text_start_x, page_height - 2.5*cm, 
+    c.setFillColor(colors.HexColor("#BBDEFB"))  # Azul muy claro
+    c.drawString(text_start_x, page_height - 2.6*cm,
                 "Evaluación y Calificación Automática")
     
     # ========== FECHA DE CALIFICACIÓN (SUPERIOR DERECHA) ==========
@@ -758,7 +756,7 @@ def dibujar_encabezado_profesional(c, page_width, page_height, dni_str,
     c.rect(margin, info_y - 2*cm, page_width - 2*margin, 2*cm, fill=True, stroke=False)
     
     # Bordes decorativos
-    c.setStrokeColor(colors.HexColor("#8B0000"))
+    c.setStrokeColor(colors.HexColor("#0D47A1"))
     c.setLineWidth(2)
     c.rect(margin, info_y - 2*cm, page_width - 2*margin, 2*cm, fill=False, stroke=True)
     
@@ -797,32 +795,32 @@ def dibujar_pie_pagina_profesional(c, page_width, page_height):
     footer_y = 1.8 * cm
     
     # Banda decorativa superior
-    c.setStrokeColor(colors.HexColor("#B8860B"))  # Dorado
+    c.setStrokeColor(colors.HexColor("#1565C0"))  # Azul
     c.setLineWidth(2)
     c.line(margin, footer_y + 0.4*cm, page_width - margin, footer_y + 0.4*cm)
-    
+
     # Fondo del footer
     c.setFillColor(colors.HexColor("#F8F9FA"))  # Gris muy claro
     c.rect(0, 0, page_width, footer_y + 0.3*cm, fill=True, stroke=False)
-    
+
     # Texto principal del footer
     c.setFillColor(colors.HexColor("#2C3E50"))  # Azul oscuro
     c.setFont("Helvetica-Bold", 9)
-    c.drawCentredString(page_width/2, footer_y, 
-                       "Desarrollado por el Área de Informática")
-    
+    c.drawCentredString(page_width/2, footer_y,
+                       "Sistema de Asistencia y Calificación de Exámenes")
+
     # Línea decorativa
-    c.setStrokeColor(colors.HexColor("#8B0000"))
+    c.setStrokeColor(colors.HexColor("#0D47A1"))
     c.setLineWidth(0.5)
     line_center = page_width / 2
-    c.line(line_center - 4*cm, footer_y - 0.3*cm, 
+    c.line(line_center - 4*cm, footer_y - 0.3*cm,
            line_center + 4*cm, footer_y - 0.3*cm)
-    
+
     # Texto secundario
     c.setFillColor(colors.HexColor("#666666"))
     c.setFont("Helvetica", 7)
-    c.drawCentredString(page_width/2, footer_y - 0.7*cm, 
-                       "Corte Superior de Justicia de Puno - Sistema de Calificación de Exámenes")
+    c.drawCentredString(page_width/2, footer_y - 0.7*cm,
+                       "Plataforma de evaluación y registro de asistencia")
     
     c.setFont("Helvetica-Oblique", 6)
     c.setFillColor(colors.HexColor("#999999"))
@@ -1084,7 +1082,7 @@ def generar_pdf_resultado(dni_str: str, recorte_bgr: np.ndarray,
                           generar_hoja_completa: bool = True,
                           imagen_completa: np.ndarray = None) -> Tuple[str, str]:
     """
-    Genera PDFs profesionales con diseño elegante estilo Poder Judicial.
+    Genera PDFs profesionales con diseño elegante (paleta azul corporativa).
     
     Genera 2 PDFs:
     1. EVIDENCIA: Solo imagen recortada con círculos de colores
@@ -1123,8 +1121,8 @@ def generar_pdf_resultado(dni_str: str, recorte_bgr: np.ndarray,
     page_width, page_height = A4
     margin = 1 * cm
     
-    # Encabezado simple rojo
-    c.setFillColor(colors.HexColor("#8B0000"))
+    # Encabezado simple azul
+    c.setFillColor(colors.HexColor("#0D47A1"))
     c.rect(0, page_height - 1.5*cm, page_width, 1.5*cm, fill=True, stroke=False)
     c.setFillColor(colors.white)
     c.setFont("Helvetica-Bold", 11)
@@ -1175,8 +1173,8 @@ def generar_pdf_resultado(dni_str: str, recorte_bgr: np.ndarray,
     # Footer simple
     c.setFillColor(colors.grey)
     c.setFont("Helvetica", 7)
-    c.drawCentredString(page_width/2, 1*cm, 
-                       "Imagen recortada con corrección - Poder Judicial del Perú")
+    c.drawCentredString(page_width/2, 1*cm,
+                       "Imagen recortada con corrección - Sistema de Asistencia y Calificación de Exámenes")
     
     c.save()
     
@@ -1243,7 +1241,7 @@ def generar_pdf_resultado(dni_str: str, recorte_bgr: np.ndarray,
         
         # Marco para la imagen
         img_y = content_start_y - draw_height - 0.5*cm
-        c2.setStrokeColor(colors.HexColor("#8B0000"))
+        c2.setStrokeColor(colors.HexColor("#0D47A1"))
         c2.setLineWidth(2)
         c2.rect(left_col_x, img_y, draw_width, draw_height, fill=False, stroke=True)
         
@@ -1611,7 +1609,7 @@ class OMRApp(ctk.CTk):
     def __init__(self):
         super().__init__()
 
-        self.title("Sistema de Calificación de Exámenes - Corte Superior de Justicia Puno")
+        self.title("Sistema de Asistencia y Calificación de Exámenes")
         self.geometry("1500x900")
         
         # Paleta minimalista profesional
@@ -1658,15 +1656,15 @@ class OMRApp(ctk.CTk):
         
         header_title = ctk.CTkLabel(
             header_frame,
-            text="Sistema de Calificación de Exámenes",
-            font=ctk.CTkFont(size=26, weight="bold"),
+            text="Sistema de Asistencia y Calificación de Exámenes",
+            font=ctk.CTkFont(size=24, weight="bold"),
             text_color="white"
         )
         header_title.pack(side="top", pady=(15, 0))
-        
+
         header_subtitle = ctk.CTkLabel(
             header_frame,
-            text="Corte Superior de Justicia de Puno",
+            text="Plataforma de evaluación automática",
             font=ctk.CTkFont(size=14),
             text_color="#BDC3C7"
         )

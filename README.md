@@ -1,67 +1,70 @@
-# 🏛️ Sistema de Control de Asistencias - Poder Judicial de Puno
+# Sistema de Gestión de Capacitaciones
 
-Sistema web para gestión de asistencias en eventos de capacitación, convocatorias y cursos del Poder Judicial.
+Aplicación integral para administrar eventos de capacitación, participantes, asistencias y evaluaciones. Combina una plataforma web con un módulo de escritorio para procesar hojas ópticas y centralizar los resultados.
 
-## 📋 Características
+## Descripción
 
-- ✅ Registro de asistencias por DNI (con escáner)
-- ✅ Control de entrada/salida con validaciones inteligentes
-- ✅ Múltiples operadores simultáneos (hasta 3 máquinas)
-- ✅ Actualización automática en tiempo real (cada 5 segundos)
-- ✅ Exportación a Excel con formato profesional
-- ✅ Gestión de eventos, personas e inscripciones
-- ✅ Sistema de evaluaciones
-- ✅ Validación anti-duplicados (30 segundos)
-- ✅ Control de estado (no permite entrada sin salida previa)
+El sistema cubre el flujo completo de una capacitación: creación del evento, inscripción de participantes, control de entrada y salida, calificación de exámenes y generación de reportes.
 
-## 🛠️ Tecnologías
+La solución está compuesta por:
 
-**Backend:**
-- Laravel 10
-- PHP 8.2
-- MySQL/MariaDB
-- PhpSpreadsheet (Excel)
+| Componente | Tecnología | Función |
+| --- | --- | --- |
+| API | Laravel 10 y PHP 8.2 | Autenticación, reglas de negocio y persistencia |
+| Interfaz web | Vue 3, Vuetify y Vite | Administración y operación del sistema |
+| Base de datos | MySQL o MariaDB | Usuarios, eventos, personas, registros y evaluaciones |
+| Módulo OMR | Python 3.10 y OpenCV | Lectura de hojas ópticas y cálculo de resultados |
 
-**Frontend:**
-- Vue 3 (Composition API)
-- Vuetify 3
-- Vite
-- Axios
+## Funcionalidades principales
 
-## 📦 Requisitos Previos
+- Gestión de convocatorias, cursos y otros eventos.
+- Administración de usuarios, personas e inscripciones.
+- Importación masiva de participantes desde Excel.
+- Registro de entrada y salida mediante DNI.
+- Validación de duplicados y control del orden de asistencia.
+- Operación concurrente con actualización periódica de datos.
+- Procesamiento de exámenes mediante reconocimiento óptico de marcas.
+- Consulta de resultados y evidencias por participante.
+- Generación de reportes individuales en PDF.
+- Exportación de asistencias y evaluaciones a Excel.
+- Autenticación de la API mediante Laravel Sanctum.
 
-- XAMPP 8.2 (incluye PHP 8.2 + MySQL)
-- Node.js 18+ y npm
-- Git
-- Composer
+## Requisitos
 
-## 🚀 Instalación en Nueva Máquina
+- PHP 8.1 o superior, recomendado PHP 8.2.
+- Composer 2.
+- MySQL 8 o MariaDB compatible.
+- Node.js 18 o superior y npm.
+- Python 3.10 para utilizar o desarrollar el módulo OMR.
+- Poppler para convertir páginas PDF en imágenes durante la calificación.
 
-### 1️⃣ Clonar el Repositorio
+En Windows puede utilizarse XAMPP 8.2 para disponer de Apache, PHP y MySQL en un solo entorno.
+
+## Instalación
+
+### 1. Obtener el proyecto
 
 ```bash
-cd C:\xampp\htdocs
-git clone https://github.com/tamoil-0/capacitaciones_pj.git
-cd capacitaciones_pj
+git clone <URL_DEL_REPOSITORIO>
+cd <CARPETA_DEL_PROYECTO>
 ```
 
-### 2️⃣ Configurar Backend (Laravel)
+### 2. Preparar la API
 
 ```bash
 cd backend
-
-# Instalar dependencias de Composer
 composer install
-
-# Copiar archivo de configuración
 copy .env.example .env
-
-# Generar key de aplicación
 php artisan key:generate
 ```
 
-**Editar `.env`** con los datos de tu base de datos:
+Configure la conexión en `backend/.env`:
+
 ```env
+APP_ENV=local
+APP_DEBUG=true
+APP_URL=http://127.0.0.1:8000
+
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
@@ -70,288 +73,174 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-### 3️⃣ Crear Base de Datos (OBLIGATORIO - HACER PRIMERO)
+Cree la base de datos antes de ejecutar las migraciones:
 
-⚠️ **MUY IMPORTANTE:** Laravel NO crea la base de datos automáticamente. Debes crearla MANUALMENTE antes de ejecutar migraciones.
-
-**Abrir phpMyAdmin:** `http://localhost/phpmyadmin`
-
-1. Clic en "Nueva" (lado izquierdo)
-2. Nombre de la base de datos: `capacitaciones`
-3. Cotejamiento: `utf8mb4_unicode_ci`
-4. Clic en "Crear"
-
-![Crear BD](https://i.imgur.com/placeholder.png)
-
-### 4️⃣ Ejecutar Migraciones y Seeders
-
-⚠️ **SOLO después de crear la base de datos**, ejecutar:
-
-```bash
-cd backend
-
-# Crear TABLAS y datos iniciales dentro de la BD
-php artisan migrate:fresh --seed
+```sql
+CREATE DATABASE capacitaciones
+  CHARACTER SET utf8mb4
+  COLLATE utf8mb4_unicode_ci;
 ```
 
-**¿Qué hace este comando?**
-- ✅ Crea todas las tablas (usuarios, eventos, personas, inscripciones, etc.)
-- ✅ Inserta datos iniciales (usuario admin, tipos de eventos, opciones)
-- ✅ Configura relaciones entre tablas
-- ❌ NO crea la base de datos (debes hacerlo en paso 3️⃣)
+Revise las credenciales iniciales definidas en `backend/database/seeders/UsuariosSeeder.php` y sustitúyalas antes de desplegar el sistema.
 
-**Datos creados automáticamente:**
-- Usuario: `pjudicial`
-- Contraseña: `Corte2026`
-- Tipos de evento (Convocatorias, Cursos, Otros)
-- Opciones de menú
-
-### 5️⃣ Configurar Frontend (Vue)
+Después, cree las tablas y cargue los datos iniciales:
 
 ```bash
-cd ..\frontend
+php artisan migrate --seed
+```
 
-# Instalar dependencias de npm
+> `php artisan migrate:fresh --seed` elimina todas las tablas existentes. Úselo únicamente en entornos de desarrollo que puedan reiniciarse.
+
+### 3. Preparar la interfaz web
+
+En otra terminal:
+
+```bash
+cd frontend
 npm install
+npm run dev
 ```
 
-**Editar `frontend/src/axios.js`** si necesitas cambiar la URL del backend:
-```javascript
-baseURL: "http://localhost/capacitaciones_pj/backend/api",
-```
+La interfaz utiliza por defecto la API disponible en `http://127.0.0.1:8000/api`. La dirección puede modificarse en `frontend/src/axios.js`.
 
-### 6️⃣ Iniciar Servicios
+### 4. Iniciar el backend
 
-#### 🎯 MÉTODO FÁCIL (Recomendado - Un solo clic):
-
-**Hacer doble clic en:**
-```
-INICIAR_SISTEMA.bat
-```
-
-✅ **Esto iniciará AUTOMÁTICAMENTE:**
-- Apache + MySQL
-- Backend (Laravel)
-- Frontend (Vue)
-- Navegador en `http://localhost:5173`
-
-**Para detener todo:**
-```
-DETENER_SISTEMA.bat
-```
-
-📖 **Ver guía completa:** [COMO_USAR_LOS_BAT.md](COMO_USAR_LOS_BAT.md)
-
----
-
-#### 🔧 MÉTODO MANUAL (Avanzado):
-
-**Backend:**
 ```bash
 cd backend
 php artisan serve
 ```
 
-**Frontend:**
+Servicios locales predeterminados:
+
+- Interfaz web: `http://localhost:5173`
+- API: `http://127.0.0.1:8000/api`
+
+## Módulo de calificación OMR
+
+El archivo `completo.py` contiene la aplicación de escritorio encargada de:
+
+1. Obtener los eventos finalizados desde la API.
+2. Cargar el archivo de respuestas correctas.
+3. Convertir las hojas PDF en imágenes.
+4. Detectar marcas, respuestas y DNI.
+5. Calcular el puntaje de cada participante.
+6. Generar el reporte y la evidencia de calificación.
+7. Sincronizar los resultados con el backend.
+
+Instale sus dependencias desde la raíz del proyecto:
+
 ```bash
-cd frontend
+python -m venv .venv
+.venv\Scripts\activate
+python -m pip install -r requirements.txt
+python completo.py
+```
+
+Antes de ejecutarlo, revise la dirección de la API y las rutas de Poppler definidas en `config.py` y `api_client.py`.
+
+## Estructura del repositorio
+
+```text
+.
+├── backend/                 API Laravel
+│   ├── app/                 Controladores, modelos, importaciones y reportes
+│   ├── database/            Migraciones y datos iniciales
+│   └── routes/api.php       Rutas de la API
+├── frontend/                Aplicación Vue
+│   └── src/                 Vistas, componentes, rutas y estado
+├── poppler/                 Utilidades para procesar documentos PDF
+├── ENTREGA_FINAL/           Documentación técnica en PDF
+├── completo.py              Aplicación de calificación OMR
+├── api_client.py            Integración del módulo OMR con la API
+├── config.py                Configuración del módulo de escritorio
+└── requirements.txt         Dependencias de Python
+```
+
+## Documentación
+
+La carpeta `ENTREGA_FINAL` contiene:
+
+- [Manual de usuario](ENTREGA_FINAL/manual_usuario.pdf).
+- [Memoria descriptiva](ENTREGA_FINAL/memoria_descriptiva.pdf).
+- [Documento de código fuente](ENTREGA_FINAL/codigo_fuente.pdf).
+
+## Comandos útiles
+
+### Backend
+
+```bash
+php artisan migrate
+php artisan db:seed
+php artisan route:list
+php artisan config:clear
+php artisan cache:clear
+php artisan test
+```
+
+### Frontend
+
+```bash
 npm run dev
+npm run build
+npm run preview
 ```
 
-Acceder a: `http://localhost:5173`
+## Despliegue
 
-## 🔐 Credenciales Iniciales
-
-```
-Usuario: pjudicial
-Contraseña: Corte2026
-```
-
-## 📂 Estructura del Proyecto
-
-```
-capacitaciones_pj/
-├── backend/                 # Laravel API
-│   ├── app/
-│   │   ├── Http/Controllers/
-│   │   ├── Models/
-│   │   └── Exports/        # Generadores de Excel
-│   ├── database/
-│   │   ├── migrations/     # Estructura de BD
-│   │   └── seeders/        # Datos iniciales
-│   └── routes/
-│       └── api.php         # Rutas del API
-│
-├── frontend/               # Vue 3 + Vuetify
-│   ├── src/
-│   │   ├── views/         # Páginas
-│   │   ├── components/    # Componentes reutilizables
-│   │   ├── router/        # Rutas
-│   │   └── stores/        # Pinia stores
-│   └── public/
-│
-├── completo.py            # Script Python OCR (opcional)
-└── README.md
-```
-
-## 🔄 Resetear Base de Datos
-
-Si necesitas limpiar todos los datos y empezar desde cero:
+Para preparar una versión de producción:
 
 ```bash
 cd backend
-php artisan migrate:fresh --seed
+composer install --no-dev --optimize-autoloader
+php artisan config:cache
+php artisan route:cache
+
+cd ../frontend
+npm ci
+npm run build
 ```
 
-O usa el script:
-```bash
-resetear_base_limpia.bat
-```
+Además:
 
-## 🌐 Configurar en Red Local (Múltiples Máquinas)
+- Configure `APP_ENV=production` y `APP_DEBUG=false`.
+- Utilice credenciales únicas y seguras.
+- Restrinja CORS a los dominios autorizados.
+- Proteja el archivo `.env` y no lo publique en el repositorio.
+- Configure copias de seguridad de la base de datos y de los reportes.
 
-### En la Máquina Servidor:
+## Solución de problemas
 
-1. Obtener IP local:
-```bash
-ipconfig
-# Ejemplo: 192.168.1.100
-```
+### La interfaz no se conecta con la API
 
-2. Permitir acceso en firewall de Windows
+- Confirme que `php artisan serve` esté activo.
+- Revise la URL configurada en `frontend/src/axios.js`.
+- Verifique la configuración de CORS y los puertos del firewall.
 
-### En las Máquinas Cliente:
+### Error de conexión con la base de datos
 
-Editar `frontend/src/axios.js`:
-```javascript
-baseURL: "http://192.168.1.100/capacitaciones_pj/backend/api",
-```
+- Compruebe las variables `DB_*` de `backend/.env`.
+- Confirme que MySQL o MariaDB esté iniciado.
+- Ejecute `php artisan config:clear` después de cambiar el entorno.
 
-Acceder desde navegador:
-```
-http://192.168.1.100:5173
-```
+### Composer o npm no se reconocen
 
-## �️ Sistema OCR de Calificación de Exámenes (Ejecutable)
+- Compruebe que PHP, Composer y Node.js estén incluidos en la variable `PATH`.
+- Cierre y abra nuevamente la terminal después de instalarlos.
 
-El sistema incluye un script Python (`completo.py`) que puede convertirse en un ejecutable standalone (.exe) para usarse en máquinas sin Python instalado.
+### El módulo OMR no convierte un PDF
 
-### Crear Ejecutable:
+- Verifique la instalación o ruta de Poppler.
+- Confirme que el documento pueda abrirse y que las hojas estén correctamente escaneadas.
+- Revise que las marcas de referencia sean visibles y que la resolución sea suficiente.
 
-**Requisitos:**
-- Python 3.10
-- PyInstaller 6.3.0+
+## Seguridad
 
-**Comando:**
-```bash
-python -m PyInstaller --onefile --windowed --name="Sistema_Calificacion_Examenes" --add-data="poppler;poppler" --hidden-import=PIL --hidden-import=PIL.Image --hidden-import=cv2 --hidden-import=numpy --hidden-import=customtkinter --hidden-import=pdf2image --hidden-import=reportlab --hidden-import=requests --collect-all customtkinter --exclude-module=torch --exclude-module=tensorflow --exclude-module=matplotlib --exclude-module=ultralytics --exclude-module=pygame --exclude-module=scipy --exclude-module=pandas --clean completo.py
-```
+- No publique archivos `.env`, registros, resultados reales ni credenciales.
+- Cambie las claves iniciales antes de utilizar el sistema.
+- Mantenga actualizadas las dependencias de PHP, JavaScript y Python.
+- Valide los archivos Excel y PDF antes de procesarlos.
+- Utilice HTTPS y copias de seguridad en producción.
 
-**Resultado:**
-- Ejecutable en: `dist/Sistema_Calificacion_Examenes.exe` (~100 MB)
-- Archivos de soporte copiados automáticamente: `api_client.py`, `config.py`
+## Licencia
 
-**Distribución:**
-Para usar en otra máquina, copiar toda la carpeta `dist/` que incluye:
-- `Sistema_Calificacion_Examenes.exe`
-- `api_client.py` (conexión con Laravel)
-- `config.py` (configuración)
-- `poppler/` (procesamiento PDF - incluido automáticamente)
-
-## �📊 Uso del Sistema
-
-### Registro de Asistencias:
-
-1. Ir a: **Eventos → Ver Asistencias**
-2. Seleccionar tipo (Entrada/Salida)
-3. Escanear DNI o escribir manualmente
-4. El sistema valida automáticamente:
-   - ✅ Persona inscrita
-   - ✅ No duplicados en 30 segundos
-   - ✅ Estado correcto (entrada/salida)
-
-### Exportar a Excel:
-
-1. Botón **"Exportar Asistencias a Excel"**
-2. Archivo se descarga con:
-   - Datos completos de asistentes
-   - Fecha y hora de registro
-   - Estado (A tiempo / Tardanza)
-   - Estadísticas
-
-## 🐛 Solución de Problemas
-
-**Error: "Base de datos no existe" o "Unknown database 'capacitaciones'"**
-```
-CAUSA: No creaste la base de datos manualmente
-SOLUCIÓN:
-1. Abrir http://localhost/phpmyadmin
-2. Crear base de datos: capacitaciones
-3. Cotejamiento: utf8mb4_unicode_ci
-4. Luego ejecutar: php artisan migrate:fresh --seed
-```
-
-**Error: "SQLSTATE[HY000] [1045] Access denied for user..."**
-```
-CAUSA: Credenciales incorrectas en .env
-SOLUCIÓN:
-1. Editar backend/.env
-2. Verificar: DB_USERNAME=root y DB_PASSWORD= (vacío para XAMPP)
-3. Ejecutar: php artisan config:clear
-```
-
-**Error: "composer no reconocido"**
-```bash
-# Descargar Composer desde: https://getcomposer.org/download/
-```
-
-**Error: "npm no reconocido"**
-```bash
-# Descargar Node.js desde: https://nodejs.org/
-```
-
-**Puerto 80 ocupado:**
-- Detener Skype o IIS
-- O cambiar puerto de Apache en XAMPP
-
-**Frontend no conecta con Backend:**
-- Verificar que Apache esté corriendo
-- Revisar `axios.js` tiene la URL correcta
-- Verificar CORS en `backend/config/cors.php`
-
-## 📝 Notas Importantes
-
-- ⚠️ Cambiar credenciales de admin en producción
-- ⚠️ Configurar `.env` con datos reales
-- ⚠️ NO subir `.env` a Git (ya está en .gitignore)
-- ✅ Sistema soporta hasta 3 operadores simultáneos
-- ✅ Auto-actualización cada 5 segundos
-
-## 👨‍💻 Desarrollo
-
-**Comandos útiles:**
-
-```bash
-# Backend
-php artisan migrate          # Ejecutar migraciones
-php artisan db:seed          # Ejecutar seeders
-php artisan route:list       # Ver rutas
-php artisan config:clear     # Limpiar caché
-
-# Frontend  
-npm run dev                  # Modo desarrollo
-npm run build                # Compilar producción
-npm run preview              # Preview producción
-```
-
-## 📄 Licencia
-
-Poder Judicial de Puno - Uso Interno
-
-## 🆘 Soporte
-
-Para problemas o consultas, contactar al área de TI.
-
----
-
-**Desarrollado para la Corte Superior de Justicia de Puno** 🏛️
+El uso y la distribución del proyecto dependen de la licencia definida por su responsable. Si el repositorio se distribuirá públicamente, añada un archivo `LICENSE` con las condiciones correspondientes.
